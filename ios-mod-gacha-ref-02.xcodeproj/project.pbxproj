@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE22D0099D80079F5A9 /* UIHelper.swift */; };
+		C837ABE52D009FAC0079F5A9 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		C837ABE22D0099D80079F5A9 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			children = (
 				FE96E8BC2AF4E7110070BCD2 /* SF-Pro-Display-Regular.otf */,
 				FE96E8BA2AF4E6EF0070BCD2 /* BakbakOne-Regular.ttf */,
+				C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				FEB5A06A2AFE467D00424791 /* FilterCell_MGRE.xib in Resources */,
 				FE9554E22AFE7DEC000DFF12 /* CharacterViewController_MGRE.xib in Resources */,
 				FE94C3C52AF8E3FE00B9B5C4 /* BaseViewController_MGRE.xib in Resources */,
+				C837ABE52D009FAC0079F5A9 /* PTSans-Regular.ttf in Resources */,
 				FE96E8952AF456830070BCD2 /* LaunchScreen.storyboard in Resources */,
 				FE96E8B92AF4E0A80070BCD2 /* MenuViewController_MGRE.xib in Resources */,
 				FE4C8F922B0254C2000E3DD1 /* DropDownCell_MGRE.xib in Resources */,

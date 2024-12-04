@@ -6,6 +6,7 @@
 	<array>
 		<string>SFPro-Display-Regular.otf</string>
 		<string>BakbakOne-Regular.ttf</string>
+		<string>PTSans-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
