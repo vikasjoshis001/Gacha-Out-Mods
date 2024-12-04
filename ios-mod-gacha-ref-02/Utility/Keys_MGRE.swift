@@ -25,7 +25,7 @@ struct Keys_MGRE {
     enum App_MGRE: String {
         case accessCode_MGRE = "czHFetFkAxAAAAAAAAAEa9vA6-b2vQg6uNF-pEhsRBU",
              link_MGRE = "https://api.dropboxapi.com/oauth2/token",
-             secret_MGRE = "7l84hfluiyz2tlz",
-             key_MGRE = "idlgxb0j79jxx08"
+             secret_MGRE = "5mqr8urnnba1hyj",
+             key_MGRE = "hk15jpjilosy7e8"
     }
 }
