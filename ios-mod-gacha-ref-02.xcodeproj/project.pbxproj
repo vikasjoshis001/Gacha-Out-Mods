@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE22D0099D80079F5A9 /* UIHelper.swift */; };
 		C837ABE52D009FAC0079F5A9 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */; };
+		C837ABE72D00A0E40079F5A9 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE62D00A0E40079F5A9 /* StringConstants.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		C837ABE22D0099D80079F5A9 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
+		C837ABE62D00A0E40079F5A9 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				FE94C3872AF81C1800B9B5C4 /* Constants_MGRE.swift */,
+				C837ABE62D00A0E40079F5A9 /* StringConstants.swift */,
 				C837ABE22D0099D80079F5A9 /* UIHelper.swift */,
 			);
 			path = Helpers;
@@ -694,6 +697,7 @@
 				FE96E8AF2AF462880070BCD2 /* CharacterPreview_MGRE.swift in Sources */,
 				FE9554DA2AFE7DD5000DFF12 /* CharacterListViewController_MGRE.swift in Sources */,
 				FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */,
+				C837ABE72D00A0E40079F5A9 /* StringConstants.swift in Sources */,
 				FE9554D22AFE7B7F000DFF12 /* ScanViewController_MGRE.swift in Sources */,
 				FE94C3A42AF821ED00B9B5C4 /* ContentManager_MGRE.swift in Sources */,
 				FE4DB2B32AF7BB7800E0C59D /* UICollectionViewCell+Extension_MGRE.swift in Sources */,
