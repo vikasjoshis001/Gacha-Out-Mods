@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WallpaperCell_MGRE" id="gTV-IL-0wX" customClass="WallpaperCell_MGRE" customModule="ios_mod_gacha_ref_02" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="111" height="186"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="111" height="186"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2j-5i-f6h">
+                        <rect key="frame" x="0.0" y="0.0" width="111" height="186"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="background_GM"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="C2j-5i-f6h" secondAttribute="trailing" id="0Je-a3-CVc"/>
+                <constraint firstItem="C2j-5i-f6h" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="c5p-HX-sJW"/>
+                <constraint firstItem="C2j-5i-f6h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tow-Rk-jac"/>
+                <constraint firstAttribute="bottom" secondItem="C2j-5i-f6h" secondAttribute="bottom" id="twW-Bn-6lu"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView_MGRE" destination="C2j-5i-f6h" id="cAx-Mw-4si"/>
+            </connections>
+            <point key="canvasLocation" x="107.63358778625954" y="19.718309859154932"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="background_GM">
+            <color red="0.96899998188018799" green="0.96100002527236938" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

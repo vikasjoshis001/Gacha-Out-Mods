@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchBar_MGRE" customModule="ios_mod_gacha_ref_02" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomViewHeight_MGRE" destination="RHu-2D-GaL" id="Zef-PB-C6Q"/>
+                <outlet property="leftIndentConstraint_MGRE" destination="eqo-Cq-9xL" id="gEn-jS-kib"/>
+                <outlet property="resultTableView_MGRE" destination="Ss2-FZ-ebU" id="I8I-s5-a0D"/>
+                <outlet property="resultViewHeight_MGRE" destination="oSP-Ug-Ppu" id="g2a-yx-Weg"/>
+                <outlet property="resultView_MGRE" destination="tnl-Fl-sNI" id="Xyt-RO-QeZ"/>
+                <outlet property="rightIndentConstraint_MGRE" destination="iIc-LI-rV7" id="HV8-uR-qIu"/>
+                <outlet property="searchTextField_MGRE" destination="cMz-M5-nfC" id="Ufb-vH-Qco"/>
+                <outlet property="searchViewHeight_MGRE" destination="S4i-wF-1bh" id="9sR-rh-G1k"/>
+                <outlet property="searchView_MGRE" destination="Dwf-lB-NPi" id="nsa-z9-MpJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="209"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Q-bw-fEn">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="209"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpE-Uz-hYA">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="58"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwf-lB-NPi">
+                                    <rect key="frame" x="0.0" y="8" width="393" height="42"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WWd-jk-S0g">
+                                            <rect key="frame" x="12" y="6" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="DMm-CT-ojY"/>
+                                                <constraint firstAttribute="height" constant="30" id="dqf-E2-kCP"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMz-M5-nfC">
+                                            <rect key="frame" x="50" y="0.0" width="288" height="42"/>
+                                            <color key="textColor" name="blackText"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="2hA-Kp-8XY"/>
+                                            </connections>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVl-gs-HGA">
+                                            <rect key="frame" x="346" y="1" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="GQj-6t-yjX"/>
+                                                <constraint firstAttribute="height" constant="40" id="tAN-Ge-HMH"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="closeIcon"/>
+                                            <connections>
+                                                <action selector="dismissButtonDidTap_MGRE:" destination="-1" eventType="touchUpInside" id="LOK-L9-pCm"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="cMz-M5-nfC" firstAttribute="leading" secondItem="WWd-jk-S0g" secondAttribute="trailing" constant="8" id="5iM-aX-n9W"/>
+                                        <constraint firstItem="WWd-jk-S0g" firstAttribute="leading" secondItem="Dwf-lB-NPi" secondAttribute="leading" constant="12" id="B0W-go-DOw"/>
+                                        <constraint firstAttribute="trailing" secondItem="nVl-gs-HGA" secondAttribute="trailing" constant="7" id="B9C-E4-3vO"/>
+                                        <constraint firstItem="WWd-jk-S0g" firstAttribute="centerY" secondItem="Dwf-lB-NPi" secondAttribute="centerY" id="Hk3-JQ-QUC"/>
+                                        <constraint firstAttribute="height" constant="42" id="S4i-wF-1bh"/>
+                                        <constraint firstAttribute="bottom" secondItem="cMz-M5-nfC" secondAttribute="bottom" id="aoJ-ud-SYQ"/>
+                                        <constraint firstItem="nVl-gs-HGA" firstAttribute="centerY" secondItem="Dwf-lB-NPi" secondAttribute="centerY" id="sfY-75-doC"/>
+                                        <constraint firstItem="nVl-gs-HGA" firstAttribute="leading" secondItem="cMz-M5-nfC" secondAttribute="trailing" constant="8" id="uap-Oi-sTF"/>
+                                        <constraint firstItem="cMz-M5-nfC" firstAttribute="top" secondItem="Dwf-lB-NPi" secondAttribute="top" id="wvx-M5-9bj"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Dwf-lB-NPi" firstAttribute="centerY" secondItem="mpE-Uz-hYA" secondAttribute="centerY" id="Pf9-98-AFG"/>
+                                <constraint firstAttribute="height" constant="58" id="RHu-2D-GaL"/>
+                                <constraint firstItem="Dwf-lB-NPi" firstAttribute="leading" secondItem="mpE-Uz-hYA" secondAttribute="leading" id="ToC-gH-icZ"/>
+                                <constraint firstAttribute="trailing" secondItem="Dwf-lB-NPi" secondAttribute="trailing" id="mql-se-iyv"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-Fl-sNI">
+                            <rect key="frame" x="0.0" y="58" width="393" height="151"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ss2-FZ-ebU">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="151"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="NY1-Nc-9Lv"/>
+                                        <outlet property="delegate" destination="-1" id="sfA-Da-tii"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Ss2-FZ-ebU" secondAttribute="bottom" id="5iQ-Ci-n3S"/>
+                                <constraint firstItem="Ss2-FZ-ebU" firstAttribute="top" secondItem="tnl-Fl-sNI" secondAttribute="top" id="AwL-8v-ZaY"/>
+                                <constraint firstItem="Ss2-FZ-ebU" firstAttribute="leading" secondItem="tnl-Fl-sNI" secondAttribute="leading" id="cKN-De-6Sp"/>
+                                <constraint firstAttribute="height" constant="151" id="oSP-Ug-Ppu"/>
+                                <constraint firstAttribute="trailing" secondItem="Ss2-FZ-ebU" secondAttribute="trailing" id="uNr-KB-IL3"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Q0Q-bw-fEn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0Zu-vt-r8R"/>
+                <constraint firstAttribute="bottom" secondItem="Q0Q-bw-fEn" secondAttribute="bottom" id="Ftb-fg-3Qv"/>
+                <constraint firstItem="Q0Q-bw-fEn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eqo-Cq-9xL"/>
+                <constraint firstAttribute="trailing" secondItem="Q0Q-bw-fEn" secondAttribute="trailing" id="iIc-LI-rV7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="127.48091603053435" y="65.140845070422543"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="closeIcon" width="30" height="30"/>
+        <image name="searchIcon" width="30" height="30"/>
+        <namedColor name="blackText">
+            <color red="0.16099999845027924" green="0.17599999904632568" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

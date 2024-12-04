@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BakbakOne-Regular.ttf">
+            <string>BakbakOne-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell_MGRE" id="gTV-IL-0wX" customClass="FilterCell_MGRE" customModule="ios_mod_gacha_ref_02" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="212" height="32"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="212" height="32"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scz-71-xnV">
+                        <rect key="frame" x="0.0" y="0.0" width="212" height="32"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLP-rg-ac6">
+                                <rect key="frame" x="8" y="0.0" width="196" height="32"/>
+                                <fontDescription key="fontDescription" name="BakbakOne-Regular" family="Bakbak One" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HLP-rg-ac6" firstAttribute="top" secondItem="scz-71-xnV" secondAttribute="top" id="AgT-h3-qlS"/>
+                            <constraint firstAttribute="bottom" secondItem="HLP-rg-ac6" secondAttribute="bottom" id="QoQ-tU-yCJ"/>
+                            <constraint firstAttribute="trailing" secondItem="HLP-rg-ac6" secondAttribute="trailing" constant="8" id="UdU-WA-93P"/>
+                            <constraint firstItem="HLP-rg-ac6" firstAttribute="leading" secondItem="scz-71-xnV" secondAttribute="leading" constant="8" id="vQ2-UY-8Gz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="scz-71-xnV" secondAttribute="bottom" id="Bc4-Dv-1ou"/>
+                <constraint firstItem="scz-71-xnV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b3w-Dm-hf5"/>
+                <constraint firstAttribute="trailing" secondItem="scz-71-xnV" secondAttribute="trailing" id="cAu-nP-W3J"/>
+                <constraint firstItem="scz-71-xnV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uRc-Vc-iJ9"/>
+            </constraints>
+            <size key="customSize" width="212" height="50"/>
+            <connections>
+                <outlet property="cellBottomView_MGRE" destination="scz-71-xnV" id="rF4-JL-EP5"/>
+                <outlet property="leftIndentConstraint_MGRE" destination="vQ2-UY-8Gz" id="3gL-xT-GLc"/>
+                <outlet property="rightIndentConstraint_MGRE" destination="UdU-WA-93P" id="HmG-Bt-PEb"/>
+                <outlet property="titleLabel_MGRE" destination="HLP-rg-ac6" id="sdM-j0-Q9W"/>
+            </connections>
+            <point key="canvasLocation" x="262.59541984732823" y="19.718309859154932"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

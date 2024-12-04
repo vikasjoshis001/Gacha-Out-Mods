@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropDownView_MGRE" customModule="ios_mod_gacha_ref_02" customModuleProvider="target">
+            <connections>
+                <outlet property="categoryLabelHeight_MGRE" destination="BF8-SW-wnj" id="Zo9-bX-MaT"/>
+                <outlet property="categoryLabel_MGRE" destination="hMU-ly-Lsv" id="1bv-DX-59O"/>
+                <outlet property="imageView_MGRE" destination="MtC-Mk-Jjh" id="wkI-3c-PRl"/>
+                <outlet property="tableViewHeight_MGRE" destination="yiR-of-krE" id="cPc-CK-8xh"/>
+                <outlet property="tableView_MGRE" destination="9cI-dn-Kwo" id="naP-d1-LwH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="378"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="7K8-Me-x7p">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="378"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHN-hk-pOe">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="48"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMU-ly-Lsv">
+                                    <rect key="frame" x="12" y="13.999999999999998" width="333" height="20.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MtC-Mk-Jjh">
+                                    <rect key="frame" x="357" y="12" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="MtC-Mk-Jjh" secondAttribute="height" multiplier="1:1" id="NE0-m9-1NA"/>
+                                        <constraint firstAttribute="width" constant="24" id="P3N-4n-BR2"/>
+                                        <constraint firstAttribute="height" constant="24" id="cJV-Pj-008"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psh-UD-QsM">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="48"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain"/>
+                                    <connections>
+                                        <action selector="openButtonDidTap_MGRE:" destination="-1" eventType="touchUpInside" id="QUV-4b-Cu9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="buttonBg"/>
+                            <constraints>
+                                <constraint firstItem="hMU-ly-Lsv" firstAttribute="centerY" secondItem="GHN-hk-pOe" secondAttribute="centerY" id="9bi-kU-32t"/>
+                                <constraint firstAttribute="height" constant="48" id="BF8-SW-wnj"/>
+                                <constraint firstItem="MtC-Mk-Jjh" firstAttribute="centerY" secondItem="GHN-hk-pOe" secondAttribute="centerY" id="BiC-Xw-3mX"/>
+                                <constraint firstItem="Psh-UD-QsM" firstAttribute="top" secondItem="GHN-hk-pOe" secondAttribute="top" id="H22-8T-N6O"/>
+                                <constraint firstAttribute="bottom" secondItem="Psh-UD-QsM" secondAttribute="bottom" id="bIt-cG-cBI"/>
+                                <constraint firstAttribute="trailing" secondItem="Psh-UD-QsM" secondAttribute="trailing" id="cyd-Hl-RGZ"/>
+                                <constraint firstItem="hMU-ly-Lsv" firstAttribute="leading" secondItem="GHN-hk-pOe" secondAttribute="leading" constant="12" id="dTG-jz-YhS"/>
+                                <constraint firstItem="MtC-Mk-Jjh" firstAttribute="leading" secondItem="hMU-ly-Lsv" secondAttribute="trailing" constant="12" id="o1t-Im-lEz"/>
+                                <constraint firstAttribute="trailing" secondItem="MtC-Mk-Jjh" secondAttribute="trailing" constant="12" id="pnr-Yv-E71"/>
+                                <constraint firstItem="Psh-UD-QsM" firstAttribute="leading" secondItem="GHN-hk-pOe" secondAttribute="leading" id="yIQ-Qi-6o8"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9cI-dn-Kwo">
+                            <rect key="frame" x="0.0" y="54" width="393" height="324"/>
+                            <color key="backgroundColor" name="buttonBg"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="324" id="yiR-of-krE"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="bP1-yv-Lpa"/>
+                                <outlet property="delegate" destination="-1" id="zBB-MW-bj6"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7K8-Me-x7p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Hk-s3-apY"/>
+                <constraint firstItem="7K8-Me-x7p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SfC-He-rXf"/>
+                <constraint firstAttribute="bottom" secondItem="7K8-Me-x7p" secondAttribute="bottom" id="jFk-sY-myg"/>
+                <constraint firstAttribute="trailing" secondItem="7K8-Me-x7p" secondAttribute="trailing" id="soJ-p6-cOz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="136.64122137404578" y="-147.18309859154931"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="buttonBg">
+            <color red="1" green="0.59600001573562622" blue="0.23100000619888306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "leftButtonIcon.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "leftButtonIcon 1.pdf",
+      "idiom" : "iphone"
+    },
+    {
+      "filename" : "leftButtonIcon 2.pdf",
+      "idiom" : "ipad"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
