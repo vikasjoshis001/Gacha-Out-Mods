@@ -10,6 +10,9 @@
 		C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE22D0099D80079F5A9 /* UIHelper.swift */; };
 		C837ABE52D009FAC0079F5A9 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */; };
 		C837ABE72D00A0E40079F5A9 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE62D00A0E40079F5A9 /* StringConstants.swift */; };
+		C837ABEB2D00A7640079F5A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C837ABE92D00A7640079F5A9 /* Localizable.strings */; };
+		C837ABED2D00A7B00079F5A9 /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABEC2D00A7B00079F5A9 /* LocalizationKeys.swift */; };
+		C837ABEF2D00A8020079F5A9 /* String+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABEE2D00A8020079F5A9 /* String+Extension_MGRE.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -109,6 +112,9 @@
 		C837ABE22D0099D80079F5A9 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		C837ABE42D009F9F0079F5A9 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
 		C837ABE62D00A0E40079F5A9 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		C837ABEA2D00A7640079F5A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C837ABEC2D00A7B00079F5A9 /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
+		C837ABEE2D00A8020079F5A9 /* String+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension_MGRE.swift"; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -205,6 +211,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C837ABE82D00A7500079F5A9 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				C837ABE92D00A7640079F5A9 /* Localizable.strings */,
+				C837ABEC2D00A7B00079F5A9 /* LocalizationKeys.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		FE4C8F802B024E16000E3DD1 /* DropDownView */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +246,7 @@
 				FEB5A06B2AFE497A00424791 /* UILabel+Extension_MGRE.swift */,
 				FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */,
 				FE4C8F8D2B02542D000E3DD1 /* UITableViewCell+Extension_MGRE.swift */,
+				C837ABEE2D00A8020079F5A9 /* String+Extension_MGRE.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +368,7 @@
 		FE96E8872AF456810070BCD2 /* ios-mod-gacha-ref-02 */ = {
 			isa = PBXGroup;
 			children = (
+				C837ABE82D00A7500079F5A9 /* Localization */,
 				FE7EF6AD2B04E54D000D73CE /* ios-mod-gacha-ref-02.entitlements */,
 				FE96E89C2AF456990070BCD2 /* Entities */,
 				FE96E8A22AF4573C0070BCD2 /* Presentation */,
@@ -619,6 +636,7 @@
 				FE4DB2AE2AF7B53400E0C59D /* MenuCell_MGRE.xib in Resources */,
 				FE94C3B92AF833D900B9B5C4 /* ModsCell_MGRE.xib in Resources */,
 				FEB5A06A2AFE467D00424791 /* FilterCell_MGRE.xib in Resources */,
+				C837ABEB2D00A7640079F5A9 /* Localizable.strings in Resources */,
 				FE9554E22AFE7DEC000DFF12 /* CharacterViewController_MGRE.xib in Resources */,
 				FE94C3C52AF8E3FE00B9B5C4 /* BaseViewController_MGRE.xib in Resources */,
 				C837ABE52D009FAC0079F5A9 /* PTSans-Regular.ttf in Resources */,
@@ -648,11 +666,13 @@
 				FEBB862A2AFAC78F0059C153 /* Optional+Extension_MGRE.swift in Sources */,
 				FE4DB2B12AF7BB3D00E0C59D /* UICollectionView+Extension_MGRE.swift in Sources */,
 				FE96E8A72AF459330070BCD2 /* ContentType_MGRE.swift in Sources */,
+				C837ABED2D00A7B00079F5A9 /* LocalizationKeys.swift in Sources */,
 				C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */,
 				FE94C3C72AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift in Sources */,
 				FEBB861F2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift in Sources */,
 				FE9554EB2B014315000DFF12 /* ContentCharacterCell_MGRE.swift in Sources */,
 				FEBB861C2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift in Sources */,
+				C837ABEF2D00A8020079F5A9 /* String+Extension_MGRE.swift in Sources */,
 				FE4C8F912B0254C2000E3DD1 /* DropDownCell_MGRE.swift in Sources */,
 				FE94C38A2AF81C5000B9B5C4 /* UIImageView+Extension_MGRE.swift in Sources */,
 				FEB5A0712AFE519F00424791 /* SearchBar_MGRE.swift in Sources */,
@@ -707,6 +727,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C837ABE92D00A7640079F5A9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C837ABEA2D00A7640079F5A9 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		FE96E8932AF456830070BCD2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
