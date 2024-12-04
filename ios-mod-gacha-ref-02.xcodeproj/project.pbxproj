@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABE22D0099D80079F5A9 /* UIHelper.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -103,6 +104,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C837ABE22D0099D80079F5A9 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				FE94C3872AF81C1800B9B5C4 /* Constants_MGRE.swift */,
+				C837ABE22D0099D80079F5A9 /* UIHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				FEBB862A2AFAC78F0059C153 /* Optional+Extension_MGRE.swift in Sources */,
 				FE4DB2B12AF7BB3D00E0C59D /* UICollectionView+Extension_MGRE.swift in Sources */,
 				FE96E8A72AF459330070BCD2 /* ContentType_MGRE.swift in Sources */,
+				C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */,
 				FE94C3C72AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift in Sources */,
 				FEBB861F2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift in Sources */,
 				FE9554EB2B014315000DFF12 /* ContentCharacterCell_MGRE.swift in Sources */,
