@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 /* A struct to store all typography used in the app. */
-struct Typography {}
+enum Typography {
+    static let heading = UIFont(name: StringConstants.ptSansRegular,
+                                size: 20) ??
+        UIFont.systemFont(ofSize: 50,
+                          weight: .bold)
+}

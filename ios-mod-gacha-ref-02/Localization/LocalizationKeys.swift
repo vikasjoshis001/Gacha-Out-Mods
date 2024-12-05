@@ -7,4 +7,9 @@
 
 import Foundation
 
-class LocalizationKeys {}
+/* Store all localizable string constants used in the app */
+class LocalizationKeys {
+    
+    // MARK: - LaunchScreen
+    static var waitALittleBit: String { return "wait_a_little_bit".localized() }
+}

@@ -8,4 +8,13 @@
 import Foundation
 
 /* A struct to store all string constants used in the app. */
-struct StringConstants {}
+struct StringConstants {
+    // MARK: - Images
+    struct Images {
+        static let launchScreen = "launchscreen"
+        static let launchScreenBackground = "launchScreenBgGradient"
+    }
+    
+    // MARK: - Font
+    static let ptSansRegular = "PTSans-Regular"
+}

@@ -1,5 +1,5 @@
 //
-//  SplashViewController_MGRE.swift
+//  SplashViewController.swift
 //  ios-mod-gacha-ref-02
 //
 //  Created by Systems
@@ -8,45 +8,48 @@
 import UIKit
 
 class SplashViewController_MGRE: UIViewController {
+    // MARK: - UI Components
     
-    private let progressLabel_MGRE: UILabel = {
+    private let backgroundImageView_MGRE: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let launchImageView_MGRE: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: StringConstants.Images.launchScreen)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let waitLabel_MGRE: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .blackText
-        label.text = "Loading"
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        label.font = UIFont(name: "BakbakOne-Regular", size: deviceType == .phone ? 22 : 36)!
+        label.text = LocalizationKeys.waitALittleBit
+        label.textColor = UIColor.blackText
+        label.font = Typography.heading
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let progressBar_MGRE: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.background
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        view.layer.cornerRadius = deviceType == .phone ? 3 : 6
-        return view
-    }()
+    private let progressBar_MGRE = RoundProgressBar_MGRE(frame: .zero)
     
-    private let backView_MGRE: UIView = {
-        let view = UIView()
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        view.backgroundColor = UIColor.buttonBg
-        view.layer.cornerRadius = deviceType == .phone ? 7 : 10
-        return view
-    }()
+    // MARK: - Properties
     
-    private var progress_MGRE: CGFloat = 0.0
-    private var timer_MGRE: Timer?
-    private let animationDuration_MGRE: TimeInterval = 2.0
-    private var progressBarWidth_MGRE: NSLayoutConstraint?
-    var dismiss: (() -> Void)?
+    private var animationDuration: TimeInterval = 2.0
+    private var progress: CGFloat = 0.0
+    private var timer: Timer?
+    var onDismiss: (() -> Void)?
+    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var _M1115g2: Int { 0 }
-        var _M34fda: Bool { false }
-        setupUI_MGRE()
-        startLoadingAnimation_MGRE()
+        setupUI()
+        startLoadingAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,83 +57,88 @@ class SplashViewController_MGRE: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    private func setupUI_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        view.backgroundColor = .background
-        
-        view.addSubview(progressLabel_MGRE)
-        view.addSubview(backView_MGRE)
-        view.addSubview(progressBar_MGRE)
-        
-        progressLabel_MGRE.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            progressLabel_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            progressLabel_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20)
-        ])
-        
-        backView_MGRE.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                   constant: deviceType == .phone ? 40 : 280),
-            backView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                    constant: deviceType == .phone ? -40 : -280),
-            backView_MGRE.heightAnchor.constraint(equalToConstant: deviceType == .phone ? 14 : 20),
-            backView_MGRE.topAnchor.constraint(equalTo: progressLabel_MGRE.bottomAnchor, constant: 16)
-        ])
-        
-        progressBar_MGRE.translatesAutoresizingMaskIntoConstraints = false
-        let progressBarWidth = NSLayoutConstraint(item: progressBar_MGRE, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([
-            progressBar_MGRE.leadingAnchor.constraint(equalTo: backView_MGRE.leadingAnchor, constant: 4),
-            progressBar_MGRE.topAnchor.constraint(equalTo: backView_MGRE.topAnchor, constant: 4),
-            progressBar_MGRE.bottomAnchor.constraint(equalTo: backView_MGRE.bottomAnchor, constant: -4),
-            progressBarWidth
-        ])
-        self.progressBarWidth_MGRE = progressBarWidth
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupConstraints()
     }
     
-    private func startLoadingAnimation_MGRE() {
-        let animationSteps = Int(animationDuration_MGRE / 0.05)
+    // MARK: - Setup UI
+    
+    private func setupUI() {
+        view.addSubview(backgroundImageView_MGRE)
+        view.sendSubviewToBack(backgroundImageView_MGRE)
+        view.addSubview(launchImageView_MGRE)
+        view.addSubview(waitLabel_MGRE)
+        view.addSubview(progressBar_MGRE)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            // Background Image
+            backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            // Launch Image
+            launchImageView_MGRE.widthAnchor.constraint(equalToConstant: 375),
+            launchImageView_MGRE.heightAnchor.constraint(equalToConstant: 375),
+            launchImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            launchImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor, constant: 191),
+            
+            // Wait Label
+            waitLabel_MGRE.widthAnchor.constraint(equalToConstant: 167),
+            waitLabel_MGRE.heightAnchor.constraint(equalToConstant: 20),
+            waitLabel_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
+            waitLabel_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 31),
+            
+            // Progress Bar
+            progressBar_MGRE.widthAnchor.constraint(equalToConstant: 80),
+            progressBar_MGRE.heightAnchor.constraint(equalToConstant: 80),
+            progressBar_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -34),
+            progressBar_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -29)
+        ])
+    }
+    
+    // MARK: - Animation Methods
+    
+    private func startLoadingAnimation() {
+        animateProgress(progressBar: progressBar_MGRE, animationDuration: animationDuration) { [weak self] in
+            guard let self = self else { return }
+            self.navigateToApp()
+            self.onDismiss?()
+        }
+    }
+    
+    private func animateProgress(
+        progressBar: RoundProgressBar_MGRE,
+        animationDuration: TimeInterval = 2.0,
+        completion: @escaping () -> Void
+    ) {
+        let animationSteps = Int(animationDuration / 0.05)
         let stepIncrement = 1.0 / Float(animationSteps)
+        var progress: CGFloat = 0.0
         
-        timer_MGRE = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] timer in
-            guard let self = self else {
-                timer.invalidate()
-                return
-            }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+            progress += CGFloat(stepIncrement)
+            progressBar.progress = progress
             
-            self.progress_MGRE += CGFloat(stepIncrement)
-            self.updateProgress_MGRE(self.progress_MGRE)
-            
-            if self.progress_MGRE >= 1.0 {
+            if progress >= 1.0 {
                 timer.invalidate()
-                self.startApp_MGRE()
-                self.dismiss?()
+                completion()
             }
         }
     }
     
-    func startApp_MGRE() {
-        var _MGN555g2: Int { 0 }
-        var _MGcaadfda: Bool { false }
+    // MARK: - Navigation
+    
+    private func navigateToApp() {
         let containerViewController = BaseContainer_MGRE()
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if let window = windowScene.windows.first {
                 window.rootViewController = containerViewController
                 window.makeKeyAndVisible()
             }
-        }
-    }
-    
-    func updateProgress_MGRE(_ progress: CGFloat) {
-        var _MGnnnf2: Int { 0 }
-        var _M11xcda: Bool { false }
-        let progress = min(1, progress)
-        let fullWidth = backView_MGRE.frame.width - 8
-        progressBarWidth_MGRE?.constant = fullWidth * progress
-        
-        UIView.animate(withDuration: 0.1) {
-            self.view.layoutIfNeeded()
         }
     }
 }
