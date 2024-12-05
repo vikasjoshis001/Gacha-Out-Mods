@@ -48,8 +48,9 @@ class BaseContainer_MGRE: UIViewController {
         menuViewController_MGRE.didMove(toParent: self)
         view.bringSubviewToFront(menuViewController_MGRE.view)
         
-        let menuWidth: CGFloat = view.bounds.width * 0.7
+        let menuWidth: CGFloat = view.bounds.width * 0.56
         menuViewController_MGRE.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: view.bounds.height)
+        menuViewController_MGRE.view.layer.cornerRadius = 20
     }
     
     @objc

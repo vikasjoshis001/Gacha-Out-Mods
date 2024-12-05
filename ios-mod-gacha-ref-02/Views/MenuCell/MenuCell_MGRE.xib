@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,18 +27,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuChevronBlack" translatesAutoresizingMaskIntoConstraints="NO" id="383-fZ-mw8">
-                                <rect key="frame" x="262" y="14.666666666666664" width="15" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="383-fZ-mw8" secondAttribute="height" multiplier="1:1" id="BnT-YI-lCl"/>
-                                    <constraint firstAttribute="width" constant="15" id="i3c-Mv-4HR"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="383-fZ-mw8" firstAttribute="centerY" secondItem="anM-JZ-lh7" secondAttribute="centerY" id="LZZ-FW-ams"/>
-                            <constraint firstAttribute="trailing" secondItem="383-fZ-mw8" secondAttribute="trailing" constant="12" id="VcE-nw-zeT"/>
                             <constraint firstItem="NCk-kf-BN3" firstAttribute="leading" secondItem="anM-JZ-lh7" secondAttribute="leading" constant="12" id="o6b-kx-v57"/>
                             <constraint firstAttribute="height" constant="44" id="vDn-yK-n0Q"/>
                             <constraint firstItem="NCk-kf-BN3" firstAttribute="centerY" secondItem="anM-JZ-lh7" secondAttribute="centerY" id="wSU-hg-1OE"/>
@@ -56,15 +48,12 @@
             <connections>
                 <outlet property="bottomViewHeight_MGRE" destination="vDn-yK-n0Q" id="2yQ-tx-anY"/>
                 <outlet property="bottomView_MGRE" destination="anM-JZ-lh7" id="3r5-1V-Vwp"/>
-                <outlet property="chevronHeight_MGRE" destination="i3c-Mv-4HR" id="RcE-CD-e5O"/>
-                <outlet property="chevronImage_MGRE" destination="383-fZ-mw8" id="0fk-QN-cDq"/>
                 <outlet property="titleLabel_MGRE" destination="NCk-kf-BN3" id="4KP-LG-aL9"/>
             </connections>
             <point key="canvasLocation" x="312.21374045801525" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="menuChevronBlack" width="15" height="15"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

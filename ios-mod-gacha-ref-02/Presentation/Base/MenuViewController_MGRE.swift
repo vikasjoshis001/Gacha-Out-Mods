@@ -9,36 +9,24 @@ import UIKit
 
 class MenuViewController_MGRE: UIViewController {
 
-    @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var rightIndentConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var leftIndentConstraint: NSLayoutConstraint!
     
+    private let deviceType = Helper.getDeviceType()
     var menuAction_MGRE: ((MenuItem_MGRE) -> Void)?
     var selectedMenu_MGRE: MenuItem_MGRE = .mods_MGRE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureLayout_MGRE()
+        view.backgroundColor = UIColor.menubarBackground
         configureCollectionView_MGRE()
-    }
-
-    private func configureLayout_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint.constant = deviceType == .phone ? 20 : 85
-        
-        let fontSize: CGFloat = deviceType == .phone ? 22 : 32
-        titleLabel.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
     }
 
     func configureCollectionView_MGRE() {
         collectionView.allowsMultipleSelection = false
         collectionView.registerNib_MGRE(for: MenuCell_MGRE.self)
-        let deviceType = UIDevice.current.userInterfaceIdiom
+        collectionView.backgroundColor = .clear
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.minimumLineSpacing = deviceType == .phone ? 24 : 32
+            flowLayout.minimumLineSpacing = deviceType == .phone ? 20 : 34
         }
     }
 }
@@ -69,8 +57,7 @@ extension MenuViewController_MGRE: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        let height: CGFloat = deviceType == .phone ? 44 : 56
+        let height: CGFloat = deviceType == .phone ? 38 : 74.8
         return CGSize(width: collectionView.frame.width, height: height)
     }
 }
