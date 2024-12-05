@@ -15,6 +15,7 @@
 		C837ABEF2D00A8020079F5A9 /* String+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABEE2D00A8020079F5A9 /* String+Extension_MGRE.swift */; };
 		C837ABF12D00AC300079F5A9 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF02D00AC300079F5A9 /* Typography.swift */; };
 		C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */; };
+		C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83EB4ED2D01A1B100A84447 /* Helper.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -119,6 +120,7 @@
 		C837ABEE2D00A8020079F5A9 /* String+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension_MGRE.swift"; sourceTree = "<group>"; };
 		C837ABF02D00AC300079F5A9 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBar_MGRE.swift; sourceTree = "<group>"; };
+		C83EB4ED2D01A1B100A84447 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				FE94C3872AF81C1800B9B5C4 /* Constants_MGRE.swift */,
 				C837ABE62D00A0E40079F5A9 /* StringConstants.swift */,
 				C837ABE22D0099D80079F5A9 /* UIHelper.swift */,
+				C83EB4ED2D01A1B100A84447 /* Helper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				FEBB862C2AFAC8270059C153 /* UIViewController+ProgressView_MGRE.swift in Sources */,
 				FE9554E62AFEFECC000DFF12 /* CharacterEditorImage_MGRE.swift in Sources */,
 				FEBB86282AFAC7440059C153 /* UIView+Extension_MGRE.swift in Sources */,
+				C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */,
 				FEBB86242AFAC1F20059C153 /* Alert_MGRE.swift in Sources */,
 				FE94C3A62AF8231300B9B5C4 /* InternetManager_MGRE.swift in Sources */,
 				C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */,
