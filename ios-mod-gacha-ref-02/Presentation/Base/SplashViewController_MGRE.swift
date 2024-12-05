@@ -10,45 +10,62 @@ import UIKit
 class SplashViewController_MGRE: UIViewController {
     // MARK: - UI Components
     
-    private let backgroundImageView_MGRE: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+    private let backgroundImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: StringConstants.Images.launchScreenBackground))
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let launchImageView_MGRE: UIImageView = {
+    private let launchImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: StringConstants.Images.launchScreen)
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let waitLabel_MGRE: UILabel = {
+    private let waitLabel: UILabel = {
         let label = UILabel()
-        label.text = LocalizationKeys.waitALittleBit
         label.textColor = UIColor.blackText
-        label.font = Typography.heading
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let progressBar_MGRE = RoundProgressBar_MGRE(frame: .zero)
+    private let progressBar = RoundProgressBar_MGRE(frame: .zero)
+    
+    private let horizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     // MARK: - Properties
     
-    private var animationDuration: TimeInterval = 2.0
-    private var progress: CGFloat = 0.0
+    private let animationDuration: TimeInterval = 2.0
     private var timer: Timer?
     var onDismiss: (() -> Void)?
+    
+    private var isDevicePhone: Bool {
+        return Helper.getDeviceType() == .phone
+    }
     
     // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        configureUI()
         startLoadingAnimation()
     }
     
@@ -59,68 +76,105 @@ class SplashViewController_MGRE: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupConstraints()
+        applyConstraints()
     }
     
-    // MARK: - Setup UI
+    // MARK: - UI Configuration
     
-    private func setupUI() {
-        view.addSubview(backgroundImageView_MGRE)
-        view.sendSubviewToBack(backgroundImageView_MGRE)
-        view.addSubview(launchImageView_MGRE)
-        view.addSubview(waitLabel_MGRE)
-        view.addSubview(progressBar_MGRE)
+    private func configureUI() {
+        // Add subviews
+        view.addSubview(backgroundImageView)
+        view.addSubview(verticalStackView)
+        view.sendSubviewToBack(backgroundImageView)
+        
+        // Setup horizontal stack view
+        horizontalStackView.addArrangedSubview(waitLabel)
+        horizontalStackView.addArrangedSubview(progressBar)
+        
+        // Setup vertical stack view
+        verticalStackView.addArrangedSubview(launchImageView)
+        verticalStackView.addArrangedSubview(horizontalStackView)
+        
+        // Configure device-specific UI
+        configureDeviceSpecificUI()
     }
     
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            // Background Image
-            backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            // Launch Image
-            launchImageView_MGRE.widthAnchor.constraint(equalToConstant: 375),
-            launchImageView_MGRE.heightAnchor.constraint(equalToConstant: 375),
-            launchImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            launchImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor, constant: 191),
-            
-            // Wait Label
-            waitLabel_MGRE.widthAnchor.constraint(equalToConstant: 167),
-            waitLabel_MGRE.heightAnchor.constraint(equalToConstant: 20),
-            waitLabel_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
-            waitLabel_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 31),
-            
-            // Progress Bar
-            progressBar_MGRE.widthAnchor.constraint(equalToConstant: 80),
-            progressBar_MGRE.heightAnchor.constraint(equalToConstant: 80),
-            progressBar_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -34),
-            progressBar_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -29)
-        ])
-    }
-    
-    // MARK: - Animation Methods
-    
-    private func startLoadingAnimation() {
-        animateProgress(progressBar: progressBar_MGRE, animationDuration: animationDuration) { [weak self] in
-            guard let self = self else { return }
-            self.navigateToApp()
-            self.onDismiss?()
+    private func configureDeviceSpecificUI() {
+        if isDevicePhone {
+            configureForPhone()
+        } else {
+            configureForIpad()
         }
     }
     
-    private func animateProgress(
-        progressBar: RoundProgressBar_MGRE,
-        animationDuration: TimeInterval = 2.0,
-        completion: @escaping () -> Void
-    ) {
-        let animationSteps = Int(animationDuration / 0.05)
-        let stepIncrement = 1.0 / Float(animationSteps)
+    private func configureForPhone() {
+        waitLabel.text = LocalizationKeys.waitALittleBit
+        waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 20)
+        waitLabel.setLineHeight(20)
+        
+        launchImageView.image = UIImage(named: StringConstants.Images.launchScreen)
+        launchImageView.contentMode = .scaleAspectFill
+        
+        verticalStackView.spacing = 138
+        horizontalStackView.spacing = 68
+    }
+    
+    private func configureForIpad() {
+        waitLabel.text = LocalizationKeys.waitALittleBit
+        waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 34)
+        waitLabel.setLineHeight(34)
+        
+        launchImageView.image = UIImage(named: StringConstants.Images.launchScreenIpad)
+        launchImageView.contentMode = .scaleAspectFit
+
+        verticalStackView.spacing = 90
+        horizontalStackView.spacing = 115.6
+    }
+    
+    private func applyConstraints() {
+        NSLayoutConstraint.activate([
+            // Background Image Constraints
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            // Vertical Stack View Constraints
+            verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: isDevicePhone ? 147 : 170.53),
+            
+            // Launch Image Constraints
+            launchImageView.widthAnchor.constraint(equalToConstant: isDevicePhone ? 375 : 818),
+            launchImageView.heightAnchor.constraint(equalTo: launchImageView.widthAnchor),
+            
+            // Horizontal Stack View Constraints
+            horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            horizontalStackView.heightAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
+            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: isDevicePhone ? -64 : -173),
+            
+            // Progress Bar Constraints
+            progressBar.widthAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
+            progressBar.heightAnchor.constraint(equalTo: progressBar.widthAnchor)
+        ])
+    }
+    
+    // MARK: - Animation
+    
+    private func startLoadingAnimation() {
+        animateProgress(progressBar: progressBar, duration: animationDuration) { [weak self] in
+            self?.navigateToApp()
+        }
+    }
+    
+    private func animateProgress(progressBar: RoundProgressBar_MGRE, duration: TimeInterval, completion: @escaping () -> Void) {
+        let stepInterval = 0.05
+        let animationSteps = Int(duration / stepInterval)
+        let progressIncrement = 1.0 / CGFloat(animationSteps)
         var progress: CGFloat = 0.0
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-            progress += CGFloat(stepIncrement)
+        timer = Timer.scheduledTimer(withTimeInterval: stepInterval, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+            progress += progressIncrement
             progressBar.progress = progress
             
             if progress >= 1.0 {
@@ -133,12 +187,9 @@ class SplashViewController_MGRE: UIViewController {
     // MARK: - Navigation
     
     private func navigateToApp() {
-        let containerViewController = BaseContainer_MGRE()
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            if let window = windowScene.windows.first {
-                window.rootViewController = containerViewController
-                window.makeKeyAndVisible()
-            }
-        }
+        guard let window = UIApplication.shared.windows.first else { return }
+        window.rootViewController = BaseContainer_MGRE()
+        window.makeKeyAndVisible()
+        onDismiss?()
     }
 }

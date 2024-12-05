@@ -12,6 +12,7 @@ struct StringConstants {
     // MARK: - Images
     struct Images {
         static let launchScreen = "launchscreen"
+        static let launchScreenIpad = "launchscreenIpad"
         static let launchScreenBackground = "launchScreenBgGradient"
     }
     
