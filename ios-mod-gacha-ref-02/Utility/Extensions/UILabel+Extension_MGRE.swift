@@ -17,4 +17,35 @@ extension UILabel_MGRE {
         label.sizeToFit()
         return label.frame.width
     }
+    
+    func setLineHeight(_ lineHeight: CGFloat) {
+        guard let text = text else { return }
+            
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
+            
+        let attributedString = NSAttributedString(
+            string: text,
+            attributes: [
+                .paragraphStyle: paragraphStyle,
+                .font: font ?? UIFont.systemFont(ofSize: 17)
+            ]
+        )
+            
+        attributedText = attributedString
+    }
+    
+    func setLetterSpacing(_ spacing: CGFloat) {
+        guard let text = text else { return }
+            
+        let attributedString = NSAttributedString(
+            string: text,
+            attributes: [
+                .kern: spacing,
+                .font: font ?? UIFont.systemFont(ofSize: 17)
+            ]
+        )
+            
+        attributedText = attributedString
+    }
 }
