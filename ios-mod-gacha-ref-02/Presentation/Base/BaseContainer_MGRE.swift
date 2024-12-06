@@ -63,7 +63,7 @@ class BaseContainer_MGRE: UIViewController {
                                                     y: 0, 
                                                     width: menuWidth,
                                                     height: view.bounds.height)
-        menuViewController_MGRE.view.layer.cornerRadius = 20
+        UIHelper.applyBottomRightCornerRadius(to: menuViewController_MGRE.view, radius: 20.0)
         
         // Ipad menu view controller
         iPadMenuViewController_MGRE = IpadMenuViewController_MGRE.loadFromNib_MGRE()
