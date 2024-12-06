@@ -54,7 +54,7 @@ extension FilterView_MGRE: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue_MGRE(id: FilterCell_MGRE.self, for: indexPath)
         let filter = filters_MGRE[indexPath.item]
-        let filterText = filter.rawValue
+        let filterText = filter.localizedTitle
         if activeFilter_MGRE == filter,
            !(collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false) {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)

@@ -8,3 +8,18 @@
 
 // MARK: - LaunchScreen
 "wait_a_little_bit" = "Wait a little bit...";
+
+// MARK: - MenuBar
+"wallpapers_MGRE" = "Wallpapers";
+"mods_MGRE" = "Mods";
+"characters_MGRE" = "Characters";
+"collections_MGRE" = "Collections";
+"editor_MGRE" = "Editor";
+"outfitIdeas_MGRE" = "Outfit ideas";
+"favorites_MGRE" = "Favorites";
+
+// MARK: - NavBar
+"all_MGRE" = "All";
+"new_MGRE" = "New";
+"favourites_MGRE" = "Favorites";
+"top_MGRE" = "Top";

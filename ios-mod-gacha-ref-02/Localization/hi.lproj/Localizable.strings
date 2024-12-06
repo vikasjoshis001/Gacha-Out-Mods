@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  ios-mod-gacha-ref-02
+
+  Created by Vikas Joshi on 04/12/24.
+  
+*/
+
+// MARK: - LaunchScreen
+"wait_a_little_bit" = "थोड़ी देर प्रतीक्षा करें...";
+
+// MARK: - MenuBar
+"wallpapers_MGRE" = "वॉलपेपर्स";
+"mods_MGRE" = "मॉड्स";
+"characters_MGRE" = "चरित्र";
+"collections_MGRE" = "संग्रह";
+"editor_MGRE" = "संपादक";
+"outfitIdeas_MGRE" = "आउटफिट विचार";
+"favorites_MGRE" = "पसंदीदा";
+
+// MARK: - NavBar
+"all_mgre" = "All";
+"new_mgre" = "New";
+//"favourites_mgre" = "Favorites";
+"top_mgre" = "Top";

@@ -38,7 +38,7 @@ extension MenuViewController_MGRE: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let text = MenuItem_MGRE.allCases[indexPath.item]
         let cell = collectionView.dequeue_MGRE(id: MenuCell_MGRE.self, for: indexPath)
-        cell.configure_MGRE(with: text.rawValue)
+        cell.configure_MGRE(with: text.localizedTitle)
         if selectedMenu_MGRE == text {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         }

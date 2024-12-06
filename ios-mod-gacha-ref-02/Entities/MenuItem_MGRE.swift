@@ -7,12 +7,35 @@
 
 import UIKit
 
+// MARK: - MenuItem_MGRE
+
 enum MenuItem_MGRE: String, CaseIterable {
-    case wallpapers_MGRE = "Wallpapers"
-    case mods_MGRE = "Mods"
-    case characters_MGRE = "Characters"
-    case collections_MGRE = "Collections"
-    case editor_MGRE = "Editor"
-    case outfitIdeas_MGRE = "Outfit ideas"
-    case favorites_MGRE = "Favorites"
+    case wallpapers_MGRE
+    case mods_MGRE
+    case characters_MGRE
+    case collections_MGRE
+    case editor_MGRE
+    case outfitIdeas_MGRE
+    case favorites_MGRE
+}
+
+extension MenuItem_MGRE {
+    var localizedTitle: String {
+        switch self {
+        case .wallpapers_MGRE:
+            return LocalizationKeys.wallpapers_MGRE
+        case .mods_MGRE:
+            return LocalizationKeys.mods_MGRE
+        case .characters_MGRE:
+            return LocalizationKeys.characters_MGRE
+        case .collections_MGRE:
+            return LocalizationKeys.collections_MGRE
+        case .editor_MGRE:
+            return LocalizationKeys.editor_MGRE
+        case .outfitIdeas_MGRE:
+            return LocalizationKeys.outfitIdeas_MGRE
+        case .favorites_MGRE:
+            return LocalizationKeys.favorites_MGRE
+        }
+    }
 }

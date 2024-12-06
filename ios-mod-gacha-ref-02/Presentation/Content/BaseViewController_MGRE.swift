@@ -8,9 +8,33 @@
 import UIKit
 
 enum Filter_MGRE: String {
-    case all_mgre = "All", new_mgre = "New", favourites_mgre = "Favorites", top_mgre = "Top"
-    case mods_mgre = "Mods", outfitIdea_mgre = "Outfit ideas",
-    characters_mgre = "Characters", collections_mgre = "Collections", wallpapers_mgre = "Wallpapers"
+    case all_mgre, new_mgre, favourites_mgre, top_mgre
+    case mods_mgre, outfitIdea_mgre, characters_mgre, collections_mgre, wallpapers_mgre
+}
+
+extension Filter_MGRE {
+    var localizedTitle: String {
+        switch self {
+        case .wallpapers_mgre:
+            return LocalizationKeys.wallpapers_MGRE
+        case .mods_mgre:
+            return LocalizationKeys.mods_MGRE
+        case .characters_mgre:
+            return LocalizationKeys.characters_MGRE
+        case .collections_mgre:
+            return LocalizationKeys.collections_MGRE
+        case .outfitIdea_mgre:
+            return LocalizationKeys.outfitIdeas_MGRE
+        case .all_mgre:
+            return LocalizationKeys.all_MGRE
+        case .new_mgre:
+            return LocalizationKeys.new_MGRE
+        case .favourites_mgre:
+            return LocalizationKeys.favorites_MGRE
+        case .top_mgre:
+            return LocalizationKeys.top_MGRE
+        }
+    }
 }
 
 class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {

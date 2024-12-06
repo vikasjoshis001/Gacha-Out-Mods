@@ -27,7 +27,7 @@ class BaseContainer_MGRE: UIViewController {
         // Content view controller
         let contentViewController = BaseViewController_MGRE.loadFromNib_MGRE()
         contentViewController.modelType_MGRE = .mods_mgre
-        contentViewController.navTitle_MGRE = MenuItem_MGRE.mods_MGRE.rawValue
+        contentViewController.navTitle_MGRE = MenuItem_MGRE.mods_MGRE.localizedTitle
         contentViewController.toggleMenuAction_MGRE = { [weak self] in
             self?.toggleMenu_MGRE()
         }
@@ -129,31 +129,31 @@ class BaseContainer_MGRE: UIViewController {
         case .mods_MGRE:
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.modelType_MGRE = .mods_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .wallpapers_MGRE:
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.modelType_MGRE = .wallpapers_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .characters_MGRE:
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.modelType_MGRE = .characters_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .outfitIdeas_MGRE:
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.modelType_MGRE = .outfitIdeas_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .collections_MGRE:
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.modelType_MGRE = .collections_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .editor_MGRE:
@@ -164,7 +164,7 @@ class BaseContainer_MGRE: UIViewController {
             let vc = BaseViewController_MGRE.loadFromNib_MGRE()
             vc.isFavoriteMode_MGRE = true
             vc.modelType_MGRE = .mods_mgre
-            vc.navTitle_MGRE = item.rawValue
+            vc.navTitle_MGRE = item.localizedTitle
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         }
