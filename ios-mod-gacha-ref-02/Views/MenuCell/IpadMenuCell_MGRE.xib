@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="IpadMenuCell_MGRE" customModule="ios_mod_gacha_ref_02" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="302" height="51"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="302" height="51"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbe-vM-q8s">
+                        <rect key="frame" x="0.0" y="-9.6666666666666643" width="302" height="70.333333333333329"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgL-nV-0ND">
+                                <rect key="frame" x="130" y="25" width="42" height="20.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cgL-nV-0ND" firstAttribute="centerY" secondItem="Sbe-vM-q8s" secondAttribute="centerY" id="1f1-J4-BzY"/>
+                            <constraint firstItem="cgL-nV-0ND" firstAttribute="centerX" secondItem="Sbe-vM-q8s" secondAttribute="centerX" id="bfI-Oh-wF6"/>
+                            <constraint firstAttribute="height" constant="70" id="mPr-P2-oz0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Sbe-vM-q8s" secondAttribute="trailing" id="817-rC-iyn"/>
+                <constraint firstItem="Sbe-vM-q8s" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="F7L-zM-gpG"/>
+                <constraint firstItem="Sbe-vM-q8s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RdI-A0-6Nl"/>
+            </constraints>
+            <size key="customSize" width="302" height="51"/>
+            <connections>
+                <outlet property="bottomView_MGRE" destination="Sbe-vM-q8s" id="mR7-aa-TLg"/>
+                <outlet property="titleLabel_MGRE" destination="cgL-nV-0ND" id="toO-KK-6Ce"/>
+            </connections>
+            <point key="canvasLocation" x="325.19083969465646" y="14.43661971830986"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

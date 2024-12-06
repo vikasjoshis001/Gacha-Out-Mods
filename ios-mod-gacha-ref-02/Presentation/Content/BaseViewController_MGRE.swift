@@ -59,6 +59,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         var _MGNasasgg2: Int { 0 }
         var _MGfhgha: Bool { false }
+        view.backgroundColor = .red
         configureSubviews_MGRE()
         configureDataSource_MGRE()
         loadFavorites_MGRE()

@@ -9,16 +9,22 @@ import UIKit
 
 class BaseContainer_MGRE: UIViewController {
     
+    // MARK: - Properties
     private var menuViewController_MGRE: MenuViewController_MGRE!
+    private var iPadMenuViewController_MGRE: IpadMenuViewController_MGRE!
     private var navController_MGRE: UINavigationController!
     private var dimmingView_MGRE: UIView!
     
     private var isMenuOpen_MGRE: Bool = false
     private var selectedMenu_MGRE: MenuItem_MGRE = .mods_MGRE
     
+    private let deviceType = Helper.getDeviceType()
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        // Content view controller
         let contentViewController = BaseViewController_MGRE.loadFromNib_MGRE()
         contentViewController.modelType_MGRE = .mods_mgre
         contentViewController.navTitle_MGRE = MenuItem_MGRE.mods_MGRE.rawValue
@@ -26,11 +32,14 @@ class BaseContainer_MGRE: UIViewController {
             self?.toggleMenu_MGRE()
         }
         selectedMenu_MGRE = .mods_MGRE
+        
+        // Navigation controller
         navController_MGRE = UINavigationController(rootViewController: contentViewController)
         addChild(navController_MGRE)
         view.addSubview(navController_MGRE.view)
         navController_MGRE.didMove(toParent: self)
         
+        // Dimming view
         dimmingView_MGRE = UIView(frame: view.bounds)
         dimmingView_MGRE.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         dimmingView_MGRE.alpha = 0.0
@@ -39,6 +48,7 @@ class BaseContainer_MGRE: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dimmingViewTapped_MGRE))
         dimmingView_MGRE.addGestureRecognizer(tap)
         
+        // Menu view controller
         menuViewController_MGRE = MenuViewController_MGRE.loadFromNib_MGRE()
         menuViewController_MGRE.menuAction_MGRE = { [weak self] type in
             self?.selectMenu_MGRE(type)
@@ -49,8 +59,34 @@ class BaseContainer_MGRE: UIViewController {
         view.bringSubviewToFront(menuViewController_MGRE.view)
         
         let menuWidth: CGFloat = view.bounds.width * 0.56
-        menuViewController_MGRE.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: view.bounds.height)
+        menuViewController_MGRE.view.frame = CGRect(x: -menuWidth, 
+                                                    y: 0, 
+                                                    width: menuWidth,
+                                                    height: view.bounds.height)
         menuViewController_MGRE.view.layer.cornerRadius = 20
+        
+        // Ipad menu view controller
+        iPadMenuViewController_MGRE = IpadMenuViewController_MGRE.loadFromNib_MGRE()
+        iPadMenuViewController_MGRE.menuAction_MGRE = { [weak self] type in
+            self?.selectMenu_MGRE(type)
+        }
+        addChild(iPadMenuViewController_MGRE)
+        view.addSubview(iPadMenuViewController_MGRE.view)
+        iPadMenuViewController_MGRE.didMove(toParent: self)
+        view.bringSubviewToFront(iPadMenuViewController_MGRE.view)
+        
+        let contentHeight = iPadMenuViewController_MGRE.getContentHeight()
+        let maxHeight: CGFloat = view.bounds.height
+        
+        let iPadMenuWidth: CGFloat = 430
+        let iPadMenuHeight: CGFloat = min(contentHeight, maxHeight)
+        iPadMenuViewController_MGRE.view.frame = CGRect(
+            x: (view.bounds.width - iPadMenuWidth) / 2,
+            y: view.bounds.height,
+            width: iPadMenuWidth,
+            height: iPadMenuHeight
+        )
+        iPadMenuViewController_MGRE.view.layer.cornerRadius = 24
     }
     
     @objc
@@ -59,14 +95,31 @@ class BaseContainer_MGRE: UIViewController {
     }
     
     func toggleMenu_MGRE() {
-        let menuWidth: CGFloat = menuViewController_MGRE.view.bounds.width
-        let shouldOpen = !isMenuOpen_MGRE
-        UIView.animate(withDuration: 0.3, animations: {
-            self.menuViewController_MGRE.view.frame.origin.x = shouldOpen ? 0 : -menuWidth
-            self.dimmingView_MGRE.alpha = shouldOpen ? 1.0 : 0.0
-            self.navController_MGRE.view.layer.shadowOpacity = shouldOpen ? 0.5 : 0.0
-        })
-        isMenuOpen_MGRE = shouldOpen
+        if deviceType == .phone {
+            let menuWidth: CGFloat = menuViewController_MGRE.view.bounds.width
+            let shouldOpen = !isMenuOpen_MGRE
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuViewController_MGRE.view.frame.origin.x = shouldOpen ? 0 : -menuWidth
+                self.dimmingView_MGRE.alpha = shouldOpen ? 1.0 : 0.0
+                self.navController_MGRE.view.layer.shadowOpacity = shouldOpen ? 0.5 : 0.0
+            })
+            isMenuOpen_MGRE = shouldOpen
+        } else {
+            let shouldOpen = !isMenuOpen_MGRE
+            UIView.animate(withDuration: 0.0, animations: {
+                if shouldOpen {
+                    self.iPadMenuViewController_MGRE.view.center = self.view.center
+                } else {
+                    self.iPadMenuViewController_MGRE.view.center = CGPoint(
+                        x: self.view.center.x,
+                        y: self.view.bounds.height + self.iPadMenuViewController_MGRE.view.bounds.height / 2
+                    )
+                }
+                self.dimmingView_MGRE.alpha = shouldOpen ? 1.0 : 0.0
+                self.navController_MGRE.view.layer.shadowOpacity = shouldOpen ? 0.5 : 0.0
+            })
+            isMenuOpen_MGRE = shouldOpen
+        }
     }
     
     private func selectMenu_MGRE(_ item: MenuItem_MGRE) {
@@ -120,8 +173,9 @@ class BaseContainer_MGRE: UIViewController {
     func switchToViewController(_ viewController: UIViewController) {
         UIView.animate(withDuration: 0.3, animations: {
             self.menuViewController_MGRE.view.frame.origin.x = -self.menuViewController_MGRE.view.bounds.width
+            self.iPadMenuViewController_MGRE.view.frame.origin.x = -self.iPadMenuViewController_MGRE.view.bounds.width
             self.dimmingView_MGRE.alpha = 0.0
-        }) { completed in
+        }) { _ in
             self.navController_MGRE.viewControllers = [viewController]
             self.isMenuOpen_MGRE = false
             self.navController_MGRE.view.layer.shadowOpacity = 0.0
