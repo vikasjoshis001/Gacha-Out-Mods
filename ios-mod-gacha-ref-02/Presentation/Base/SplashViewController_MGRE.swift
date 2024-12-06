@@ -177,9 +177,11 @@ class SplashViewController_MGRE: UIViewController {
             progress += progressIncrement
             progressBar.progress = progress
             
-            if progress >= 1.0 {
+            if progress > 1.0 {
                 timer.invalidate()
-                completion()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    completion()
+                }
             }
         }
     }

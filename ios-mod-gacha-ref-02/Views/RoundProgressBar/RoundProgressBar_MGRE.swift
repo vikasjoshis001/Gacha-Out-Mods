@@ -134,7 +134,8 @@ class RoundProgressBar_MGRE: UIView {
         progressLayer.lineWidth = 4
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.strokeEnd = 0
-
+        progressLayer.lineCap = .round
+        
         circularProgressView.layer.addSublayer(borderLayer)
         circularProgressView.layer.addSublayer(progressLayer)
     }
