@@ -31,11 +31,13 @@ final class ContentManager_MGRE: NSObject {
     func getPath_MGRE(for contentType: ContentType_MGRE, imgPath: String) -> String {
         switch contentType {
         case .mods_mgre:
+                debugPrint("Data original String = ", imgPath)
             var originalString = imgPath
             let replacementString = "TipsAndTricks"
             if let range = originalString.range(of: "Tips_and_Tricks") {
                 originalString.replaceSubrange(range, with: replacementString)
             }
+                debugPrint("Data updated String = ", String(format: "/%@", originalString))
             return String(format: "/%@", originalString)
         case .wallpapers_mgre, .editor_mgre, .outfitIdeas_mgre, .characters_mgre, .collections_mgre:
             return String(format: "/%@", imgPath)
@@ -65,7 +67,7 @@ final class ContentManager_MGRE: NSObject {
         do {
             let result = try managedContext_MGRE.fetch(fetchRequest)
             switch contentType {
-            case .mods_mgre:            return result.compactMap { Mods_MGRE(from: $0) }
+                case .mods_mgre:            return result.compactMap { Mods_MGRE(from: $0) }
             case .outfitIdeas_mgre:     return result.compactMap { OutfitIdea_MGRE(from: $0) }
             case .characters_mgre:      return result.compactMap { Character_MGRE(from: $0) }
             case .collections_mgre:     return result.compactMap { Collections_MGRE(from: $0) }

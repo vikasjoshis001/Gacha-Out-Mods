@@ -7,12 +7,16 @@
 
 import UIKit
 
+// MARK: - CellConfigurable_MGRE
+
 protocol CellConfigurable_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
-                           isFavorites: Bool,
-                           update: (() -> Void)?,
-                           action: (() -> Void)?)
+                            isFavorites: Bool,
+                            update: (() -> Void)?,
+                            action: (() -> Void)?)
 }
+
+// MARK: - ModelProtocol_MGRE
 
 protocol ModelProtocol_MGRE: CellConfigurable_MGRE, Codable, Hashable {
     static var type: ContentType_MGRE { get }
@@ -22,22 +26,89 @@ protocol ModelProtocol_MGRE: CellConfigurable_MGRE, Codable, Hashable {
     var top: Bool { get }
 }
 
-struct ModsResponseCodable_MGRE: Codable {
-    let list: [Mods_MGRE]
-    
-    enum CodingKeys_MGRE: String, CodingKey {
-        case list = "chldw_list"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
-        self.list = try container.decode([Mods_MGRE].self, forKey: .list)
-    }
-}
+// MARK: - ModsResponseCodable_MGRE
 
-struct Mods_MGRE: Codable, ModelProtocol_MGRE {
+// struct ModsResponseCodable_MGRE: Codable {
+//    let list: [Mods_MGRE]
+//
+//    enum CodingKeys_MGRE: String, CodingKey {
+//        case list = "qqwm"
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
+//        self.list = try container.decode([Mods_MGRE].self, forKey: .list)
+//    }
+// }
+//
+// struct Mods_MGRE: Codable, ModelProtocol_MGRE {
+//    static let type: ContentType_MGRE = .mods_mgre
+//    let id: Int
+//    let name: String
+//    let image: String
+//    let description: String
+//    let filePath: String
+//    let new: Bool
+//    let top: Bool
+//
+//    var favId: String { String(id) }
+//    var searchText: String? { name }
+//
+//    enum CodingKeys_MGRE: String, CodingKey {
+//        case id = "id", name = "2nx", image = "xgqej-", description = "kdmn8xz3o",
+//             new = "lastAdded", top = "isTop", filePath = "g2663hwnn"
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
+//        self.id = try container.decode(Int.self, forKey: .id)
+//        self.name = try container.decode(String.self, forKey: .name)
+//        self.image = try container.decode(String.self, forKey: .image)
+//        self.description = try container.decode(String.self, forKey: .description)
+//        self.new = Bool(try container.decode(String.self, forKey: .new)) ?? false
+//        self.top = Bool(try container.decode(String.self, forKey: .top)) ?? false
+//        self.filePath = try container.decode(String.self, forKey: .filePath)
+//    }
+//
+//    init?(from entity: ContentEntity) {
+//        guard let id = entity.id,
+//              let name = entity.name,
+//              let image = entity.image,
+//              let description = entity.descr,
+//              let filePath = entity.filePath else { return nil }
+//        self.id = Int(id) ?? 0
+//        self.name = name
+//        self.image = image
+//        self.description = description
+//        self.filePath = filePath
+//        self.new = entity.new
+//        self.top = entity.top
+//    }
+// }
+
+//struct ModsResponseCodable_MGRE: Codable {
+//    let mods: [Mods_MGRE]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case mods = "qqwm"
+//    }
+//    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        debugPrint("Mods Container 1 are = ", container)
+//        let modsContainer = try container.decode([String: [String: Mods_MGRE]].self, forKey: .mods)
+//        debugPrint("Mods Container 2 are = ", modsContainer)
+//        self.mods = modsContainer["Mods"]?.map { _, mod in mod } ?? []
+//        debugPrint("Block Mods are = ", mods)
+//    }
+//}
+
+// MARK: - Mods_MGRE
+
+struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
     static let type: ContentType_MGRE = .mods_mgre
-    let id: Int
+
+    let id: String
     let name: String
     let image: String
     let description: String
@@ -45,34 +116,46 @@ struct Mods_MGRE: Codable, ModelProtocol_MGRE {
     let new: Bool
     let top: Bool
     
-    var favId: String { String(id) }
-    var searchText: String? { name }
-    
-    enum CodingKeys_MGRE: String, CodingKey {
-        case id = "id", name = "chldwf2", image = "chldwt3", description = "chldwd4",
-             new = "new", top = "top", filePath = "chldwi1"
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.image = try container.decode(String.self, forKey: .image)
-        self.description = try container.decode(String.self, forKey: .description)
-        self.new = Bool(try container.decode(String.self, forKey: .new)) ?? false
-        self.top = Bool(try container.decode(String.self, forKey: .top)) ?? false
-        self.filePath = try container.decode(String.self, forKey: .filePath)
+    static func == (lhs: Mods_MGRE, rhs: Mods_MGRE) -> Bool {
+        return lhs.name == rhs.name &&
+        lhs.image == rhs.image &&
+        lhs.description == rhs.description
+        && lhs.id == rhs.id
+//               lhs.name == rhs.name &&
+//               lhs.image == rhs.image &&
+//               lhs.description == rhs.description
+    }
+    
+//    var favId: String { String(id) }
+    var favId: String { id }
+    var searchText: String? { name }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name = "2nx", image = "xgqej-",
+             description = "kdmn8xz3o", new = "lastAdded",
+             top = "isTop", filePath = "g2663hwnn"
     }
     
     init?(from entity: ContentEntity) {
-        guard let id = entity.id,
+        guard 
+//            let idString = entity.id,
+//              let id = Int(idString),
+//            let id = id,
               let name = entity.name,
               let image = entity.image,
               let description = entity.descr,
-              let filePath = entity.filePath else { return nil }
-        self.id = Int(id) ?? 0
+              let filePath = entity.filePath else {
+            return nil
+        }
+        
+        self.id = UUID().uuidString
         self.name = name
-        self.image = image
+        self.image = "content/6737730ea7e31/\(image)"
         self.description = description
         self.filePath = filePath
         self.new = entity.new
@@ -80,11 +163,13 @@ struct Mods_MGRE: Codable, ModelProtocol_MGRE {
     }
 }
 
+// MARK: - WallpapersListCodable_MGRE
+
 struct WallpapersListCodable_MGRE: Codable {
     let list: [Wallpaper_MGRE]
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case list = "1ce_list"
+        case list = "m6yr"
     }
     
     init(from decoder: Decoder) throws {
@@ -92,6 +177,8 @@ struct WallpapersListCodable_MGRE: Codable {
         self.list = try container.decode([Wallpaper_MGRE].self, forKey: .list)
     }
 }
+
+// MARK: - Wallpaper_MGRE
 
 struct Wallpaper_MGRE: Codable, ModelProtocol_MGRE {
     static let type: ContentType_MGRE = .wallpapers_mgre
@@ -104,14 +191,14 @@ struct Wallpaper_MGRE: Codable, ModelProtocol_MGRE {
     var searchText: String? { nil }
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case new = "1cidf3", top = "1cxwc4", image = "1cef2", id = "1cei1"
+        case new = "isNew", top = "1cxwc4", image = "e7wu46os-q", id = "1cei1"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.new = Bool(try container.decode(String.self, forKey: .new)) ?? false
-        self.top = Bool(try container.decode(String.self, forKey: .top)) ?? false
+        self.new = try Bool(container.decode(String.self, forKey: .new)) ?? false
+        self.top = try Bool(container.decode(String.self, forKey: .top)) ?? false
         self.image = try container.decode(String.self, forKey: .image)
     }
     
@@ -125,11 +212,13 @@ struct Wallpaper_MGRE: Codable, ModelProtocol_MGRE {
     }
 }
 
+// MARK: - CharactersResponseCodable_MGRE
+
 struct CharactersResponseCodable_MGRE: Codable {
     let list: [Character_MGRE]
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case list = "dr6sg6_list"
+        case list = "supxqqoyl3"
     }
     
     init(from decoder: Decoder) throws {
@@ -137,6 +226,8 @@ struct CharactersResponseCodable_MGRE: Codable {
         self.list = try container.decode([Character_MGRE].self, forKey: .list)
     }
 }
+
+// MARK: - Character_MGRE
 
 struct Character_MGRE: Codable, ModelProtocol_MGRE {
     static let type: ContentType_MGRE = .characters_mgre
@@ -147,25 +238,25 @@ struct Character_MGRE: Codable, ModelProtocol_MGRE {
     let top: Bool
     
     var favId: String { String(id) }
-    var searchText: String? { nil /*description*/ }
+    var searchText: String? { nil /* description */ }
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case id = "dr6sg6i1", image = "dr6sg6f2", new = "new", top = "top"//, description = "dr6sg6t3"
+        case id = "dr6sg6i1", image = "aa9iigtr", new = "isNew", top = "isTop" // , description = "dr6sg6t3"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
         self.id = try container.decode(Int.self, forKey: .id)
         self.image = try container.decode(String.self, forKey: .image)
-        self.new = Bool(try container.decode(String.self, forKey: .new)) ?? false
-        self.top = Bool(try container.decode(String.self, forKey: .top)) ?? false
+        self.new = try Bool(container.decode(String.self, forKey: .new)) ?? false
+        self.top = try Bool(container.decode(String.self, forKey: .top)) ?? false
 //        self.description = try container.decode(String.self, forKey: .description)
     }
     
     init?(from entity: ContentEntity) {
         guard let id = entity.id,
-              let image = entity.image/*,
-              let description = entity.descr*/ else { return nil }
+              let image = entity.image /* ,
+               let description = entity.descr */ else { return nil }
         self.id = Int(id) ?? 0
         self.image = image
         self.new = entity.new
@@ -174,11 +265,13 @@ struct Character_MGRE: Codable, ModelProtocol_MGRE {
     }
 }
 
+// MARK: - OutfitIdeasListCodable_MGRE
+
 struct OutfitIdeasListCodable_MGRE: Codable {
     let list: [OutfitIdea_MGRE]
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case list = "eg-_list"
+        case list = "km8rncdgy"
     }
     
     init(from decoder: Decoder) throws {
@@ -186,6 +279,8 @@ struct OutfitIdeasListCodable_MGRE: Codable {
         self.list = try container.decode([OutfitIdea_MGRE].self, forKey: .list)
     }
 }
+
+// MARK: - OutfitIdea_MGRE
 
 struct OutfitIdea_MGRE: Codable, ModelProtocol_MGRE {
     static let type: ContentType_MGRE = .outfitIdeas_mgre
@@ -196,25 +291,25 @@ struct OutfitIdea_MGRE: Codable, ModelProtocol_MGRE {
     let top: Bool
     
     var favId: String { String(id) }
-    var searchText: String? { nil /*description*/ }
+    var searchText: String? { nil /* description */ }
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case id = "eg-d4", image = "eg-i1", new = "new", top = "top"//, description = "eg-t3"
+        case id = "eg-d4", image = "pgnri4mc", new = "isNew", top = "isTop" // , description = "eg-t3"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
         self.id = try container.decode(Int.self, forKey: .id)
         self.image = try container.decode(String.self, forKey: .image)
-        self.new = Bool(try container.decode(String.self, forKey: .new)) ?? false
-        self.top = Bool(try container.decode(String.self, forKey: .top)) ?? false
+        self.new = try Bool(container.decode(String.self, forKey: .new)) ?? false
+        self.top = try Bool(container.decode(String.self, forKey: .top)) ?? false
 //        self.description = try container.decode(String.self, forKey: .description)
     }
     
     init?(from entity: ContentEntity) {
         guard let id = entity.id,
-              let image = entity.image/*,
-              let description = entity.descr*/ else { return nil }
+              let image = entity.image /* ,
+               let description = entity.descr */ else { return nil }
         self.id = Int(id) ?? 0
         self.image = image
         self.new = entity.new
@@ -223,11 +318,13 @@ struct OutfitIdea_MGRE: Codable, ModelProtocol_MGRE {
     }
 }
 
+// MARK: - CollectionsListCodable_MGRE
+
 struct CollectionsListCodable_MGRE: Codable {
     let list: [Collections_MGRE]
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case list = "9sz_list"
+        case list = "d9otsrt"
     }
     
     init(from decoder: Decoder) throws {
@@ -235,6 +332,8 @@ struct CollectionsListCodable_MGRE: Codable {
         self.list = try container.decode([Collections_MGRE].self, forKey: .list)
     }
 }
+
+// MARK: - Collections_MGRE
 
 struct Collections_MGRE: Codable, ModelProtocol_MGRE {
     static let type: ContentType_MGRE = .collections_mgre
@@ -245,10 +344,10 @@ struct Collections_MGRE: Codable, ModelProtocol_MGRE {
     let top: Bool
     
     var favId: String { String(id) }
-    var searchText: String? { nil /*description*/ }
+    var searchText: String? { nil /* description */ }
     
     enum CodingKeys_MGRE: String, CodingKey {
-        case id = "9szf2", image = "9szt3", new = "new", top = "top"//, description = "9szd4"
+        case id = "9szf2", image = "9szt3", new = "isNew", top // , description = "9szd4"
     }
     
     init(from decoder: Decoder) throws {
@@ -262,8 +361,8 @@ struct Collections_MGRE: Codable, ModelProtocol_MGRE {
     
     init?(from entity: ContentEntity) {
         guard let id = entity.id,
-              let image = entity.image/*,
-              let description = entity.descr*/ else { return nil }
+              let image = entity.image /* ,
+               let description = entity.descr */ else { return nil }
         self.id = Int(id) ?? 0
         self.image = image
         self.new = entity.new
@@ -276,7 +375,8 @@ extension Mods_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?) {
+                            action: (() -> Void)?)
+    {
         var _mge45566: Int { 0 }
         var _mcdfgr22: Bool { true }
         if let cell = cell as? ModsCell_MGRE {
@@ -289,7 +389,8 @@ extension Wallpaper_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?) {
+                            action: (() -> Void)?)
+    {
         var _m2344t66: Int { 0 }
         var _mc566r22: Bool { true }
         if let cell = cell as? WallpaperCell_MGRE {
@@ -302,7 +403,8 @@ extension Character_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?) {
+                            action: (() -> Void)?)
+    {
         var _mdfgg66: Int { 0 }
         var _m678r22: Bool { true }
         if let cell = cell as? ContentCell_MGRE {
@@ -315,7 +417,8 @@ extension OutfitIdea_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?) {
+                            action: (() -> Void)?)
+    {
         var _xcxvt66: Int { 0 }
         var _mc1222: Bool { true }
         if let cell = cell as? ModsCell_MGRE {
@@ -328,7 +431,8 @@ extension Collections_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?) {
+                            action: (() -> Void)?)
+    {
         var _mgvbn66: Int { 0 }
         var _mcsdw22: Bool { true }
         if let cell = cell as? ContentCell_MGRE {

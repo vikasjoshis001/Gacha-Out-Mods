@@ -83,7 +83,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         var _MGNasasgg2: Int { 0 }
         var _MGfhgha: Bool { false }
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
         configureSubviews_MGRE()
         configureDataSource_MGRE()
         loadFavorites_MGRE()
@@ -203,7 +203,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             
             let model: any ModelProtocol_MGRE
             switch unifiedModel {
-            case .mods_mgre(let value): model = value
+                case .mods_mgre(let value): model = value as! any ModelProtocol_MGRE
             case .wallpaper_mgre(let value): model = value
             case .characters_mgre(let value): model = value
             case .outfitIdea_mgre(let value): model = value
@@ -241,7 +241,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func applySnapshot_MGRE(for contentType: ContentType_MGRE) {
         var snapshot = Snapshot_MGRE()
         snapshot.appendSections([.zero])
-        
+        debugPrint("NewData is data_MGRE isEmpty = ", data_MGRE.isEmpty)
+
         if data_MGRE.isEmpty {
             emptyLabel_MGRE.isHidden = false
             if let searchText = searchText_MGRE, !searchText.isEmpty {
@@ -253,6 +254,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             emptyLabel_MGRE.isHidden = true
         }
         
+//        debugPrint("NewData data_MGRE = ", data_MGRE)
         switch contentType {
         case .mods_mgre:            snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })
         case .outfitIdeas_mgre:     snapshot.appendItems(data_MGRE.map { .outfitIdea_mgre($0 as! OutfitIdea_MGRE) })
@@ -266,6 +268,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             self.dataSource_MGRE?.apply(snapshot, animatingDifferences: false)
             self.collectionView_MGRE.reloadData()
         }
+        debugPrint("NewData is data_MGRE isEmpty = ", data_MGRE.isEmpty)
+
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

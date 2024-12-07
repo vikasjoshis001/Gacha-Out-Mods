@@ -20,23 +20,36 @@ extension UIImageView_MGRE {
     func add_MGRE(image imgPath: String, for contentType: ContentType_MGRE) {
         self.tag = imgPath.hashValue
         UIImageView.retrieveImage_MGRE(forKey: imgPath) { [weak self] image in
-            guard let self = self else { return }
-            if let image = image {
-                set_MGRE(image: image, tag: imgPath.hashValue)
-            } else {
-                self.kf.indicatorType = .activity
-                self.kf.indicator?.startAnimatingView()
-                
-                DBManager_MGRE.shared.fetchImage_MGRE(for: contentType, imgPath: imgPath) { [weak self] data in
-                    guard let self = self,
-                          let data = data,
-                          let image = UIImage(data: data) else { return }
-                    UIImageView.cacheImage_MGRE(with: imgPath, imageData: data)
+            // If self is nil, set the default image without returning
+            if let self = self {
+                if let image = image {
                     self.set_MGRE(image: image, tag: imgPath.hashValue)
-                    self.kf.indicator?.stopAnimatingView()
+                } else {
+                    self.kf.indicatorType = .activity
+                    self.kf.indicator?.startAnimatingView()
+                    
+                    DBManager_MGRE.shared.fetchImage_MGRE(for: contentType, imgPath: imgPath) { [weak self] data in
+                        if let self = self, let data = data, let image = UIImage(data: data) {
+                            UIImageView.cacheImage_MGRE(with: imgPath, imageData: data)
+                            self.set_MGRE(image: image, tag: imgPath.hashValue)
+                            self.kf.indicator?.stopAnimatingView()
+                        } else {
+                            debugPrint("Check set default image")
+                            self?.setDefaultImage() // Set default image if fetching fails
+                        }
+                    }
                 }
+            } else {
+                // Set default image if self is nil
+                self?.setDefaultImage()
             }
         }
+    }
+
+    func setDefaultImage() {
+        // Logic to set the default image (e.g., a placeholder or a default UIImage)
+        let defaultImage = UIImage(named: StringConstants.Images.launchScreen) // Replace with your default image name or object
+        self.set_MGRE(image: defaultImage, tag: self.tag)
     }
     
     func addPDF_MGRE(image imgPath: String) {
@@ -100,7 +113,7 @@ extension UIImageView_MGRE {
             case .success(let value):
                 completion(value.image)
             case .failure(let error):
-                print("Error retrieving image from cache: \(error)")
+                print("Block Error retrieving image from cache: \(error)")
                 completion(nil)
             }
         }

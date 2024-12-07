@@ -116,36 +116,47 @@ extension DBManager_MGRE {
         }
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
+            debugPrint("NewData contentType = ", contentType)
             let path = contentType.associatedPath_MGRE.contentPath
+            debugPrint("NewData path = ", path)
+
+//            debugPrint("Block Model File is = ", path)
+//            debugPrint("Block File to download is = ", path)
+//            getFileAndVerifyDropboxPath_MGRE(client: client, with: path)
             getFile_MGRE(client: client, with: path) { [unowned self] data in
-                guard let data else { completion([]); return }
-                switch contentType {
-                case .mods_mgre:
-                    let models: [Mods_MGRE] = serialized_MGRE(ModsResponseCodable_MGRE.self, from: data) { $0.list }
-                    contentManager.storeContents_MGRE(with: contentType, models: models)
-                    completion(models.sorted(by: { $0.favId < $1.favId }))
-                case .wallpapers_mgre:
-                    let models: [Wallpaper_MGRE] = serialized_MGRE(WallpapersListCodable_MGRE.self, from: data) { $0.list }
-                    contentManager.storeContents_MGRE(with: contentType, models: models)
-                    completion(models.sorted(by: { $0.favId < $1.favId }))
-                    break
-                case .characters_mgre:
-                    let models: [Character_MGRE] = serialized_MGRE(CharactersResponseCodable_MGRE.self, from: data) { $0.list }
-                    contentManager.storeContents_MGRE(with: contentType, models: models)
-                    completion(models.sorted(by: { $0.favId < $1.favId }))
-                    break
-                case .outfitIdeas_mgre:
-                    let models: [OutfitIdea_MGRE] = serialized_MGRE(OutfitIdeasListCodable_MGRE.self, from: data) { $0.list }
-                    contentManager.storeContents_MGRE(with: contentType, models: models)
-                    completion(models.sorted(by: { $0.favId < $1.favId }))
-                case .collections_mgre:
-                    let models: [Collections_MGRE] = serialized_MGRE(CollectionsListCodable_MGRE.self, from: data) { $0.list }
-                    contentManager.storeContents_MGRE(with: contentType, models: models)
-                    completion(models.sorted(by: { $0.favId < $1.favId }))
-                    break
-                default:
-                    completion([])
+                guard let data else {
+                    debugPrint("Block Error, Some issue occured")
+                    completion([]);
+                    return
                 }
+//                switch contentType {
+//                case .mods_mgre:
+//                    let models: [Mods_MGRE] = serialized_MGRE(ModsResponseCodable_MGRE.self, from: data) { $0.mods }
+//                    debugPrint("Block Models ", models)
+//                    contentManager.storeContents_MGRE(with: contentType, models: models)
+//                    completion(models.sorted(by: { $0.favId < $1.favId }))
+//                case .wallpapers_mgre:
+//                    let models: [Wallpaper_MGRE] = serialized_MGRE(WallpapersListCodable_MGRE.self, from: data) { $0.list }
+//                    contentManager.storeContents_MGRE(with: contentType, models: models)
+//                    completion(models.sorted(by: { $0.favId < $1.favId }))
+//                    break
+//                case .characters_mgre:
+//                    let models: [Character_MGRE] = serialized_MGRE(CharactersResponseCodable_MGRE.self, from: data) { $0.list }
+//                    contentManager.storeContents_MGRE(with: contentType, models: models)
+//                    completion(models.sorted(by: { $0.favId < $1.favId }))
+//                    break
+//                case .outfitIdeas_mgre:
+//                    let models: [OutfitIdea_MGRE] = serialized_MGRE(OutfitIdeasListCodable_MGRE.self, from: data) { $0.list }
+//                    contentManager.storeContents_MGRE(with: contentType, models: models)
+//                    completion(models.sorted(by: { $0.favId < $1.favId }))
+//                case .collections_mgre:
+//                    let models: [Collections_MGRE] = serialized_MGRE(CollectionsListCodable_MGRE.self, from: data) { $0.list }
+//                    contentManager.storeContents_MGRE(with: contentType, models: models)
+//                    completion(models.sorted(by: { $0.favId < $1.favId }))
+//                    break
+//                default:
+//                    completion([])
+//                }
             }
         }
         
@@ -165,6 +176,7 @@ extension DBManager_MGRE {
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
             let path = contentManager.getPath_MGRE(for: contentType, imgPath: imgPath)
+            debugPrint("Data new path from getPath is ", path)
             getFile_MGRE(client: client, with: path) { data in
                 guard let data else {
                     completion(nil)
@@ -348,9 +360,65 @@ private extension DBManager_MGRE {
                       completion: @escaping (Data?) -> Void) {
         var _MGRdfg: Bool { false }
         var _MG124f: Int { 0 }
+        debugPrint("Check reading file in getFile_MGRE = ", path)
         client.files.download(path: path).response { response, error in
-            if let error { print(error.description) }
+            if let error {
+                print(error.description)
+            }
+            debugPrint("New Data Response is = ", response)
             completion(response?.1)
+        }
+    }
+
+    func getFileAndVerifyDropboxPath_MGRE(client: DropboxClient,
+                                           with path: String) {
+        
+//        let newPath = "/content/6737730ea7e31/6737737b66be4.png"
+        let newPath = path
+        debugPrint("Block downloding file in getFileAndVerifyDropboxPath_MGRE = ", path)
+
+        // First, check if the file exists in Dropbox by getting its metadata
+        client.files.getMetadata(path: newPath).response { response, error in
+            if let error {
+                print("Block Test New Error: File does not exist on Dropbox: \(error)")
+            }
+            
+            // If the file exists, proceed with downloading
+            guard let metadata = response else {
+                print("Block Test New Error: No metadata received.")
+                return
+            }
+            
+            print("Block Test New File exists on Dropbox: \(metadata.name ?? "Unknown file")")
+            
+            // Now download the file after confirming its existence
+            client.files.download(path: newPath).response { response, error in
+                if let error {
+                    print("Block Test New Error downloading file: \(error.description)")
+                    return
+                }
+                
+                // Ensure the file was successfully downloaded
+                guard let fileData = response?.1 else {
+                    print("Block Test New No data received")
+                    return
+                }
+                
+                // Get the URL for the app's Documents directory
+                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // Construct the destination file URL by appending the file name from the Dropbox path
+                let destinationURL = documentsDirectory.appendingPathComponent((path as NSString).lastPathComponent)
+                
+                do {
+                    // Save the file to the Documents directory
+                    try fileData.write(to: destinationURL)
+                    print("Block Test New File saved successfully to Documents: \(destinationURL.path)")
+                    
+                } catch {
+                    print("Block Test New Error saving file: \(error.localizedDescription)")
+                }
+            }
         }
     }
     

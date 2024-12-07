@@ -10,12 +10,14 @@ import Foundation
 struct Keys_MGRE {
     
     enum Path_MGRE: String {
-        case editor_mgre = "Editor",
-             mods_mgre = "Mods",
-             outfitIdeas_mgre = "Outfits_ideas",
-             characters_mgre = "Characters",
-             collections_mgre = "Mini-games",
-             wallpapers_mgre = "Wallpapers"
+        case editor_mgre = "content/6737730eab005/content",
+             mods_mgre = "content/6737730ea7e31/content",
+             outfitIdeas_mgre = "content/673773360eb16/content",
+             characters_mgre = "content/6737734a3d155/content",
+             collections_mgre = "content/673773184087f/content",
+             wallpapers_mgre = "content/6737731c09cad/content"
+    
+        
         
         var contentPath: String {
             .init(format: "/%@.json", rawValue, rawValue)
