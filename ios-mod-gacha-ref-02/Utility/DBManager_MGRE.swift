@@ -5,12 +5,13 @@
 //  Created by Systems
 //
 
-import UIKit
 import Combine
 import SwiftyDropbox
+import UIKit
+
+// MARK: - DBManager_MGRE
 
 final class DBManager_MGRE: NSObject {
-    
     static let shared = DBManager_MGRE()
     
     let contentManager = ContentManager_MGRE()
@@ -19,13 +20,13 @@ final class DBManager_MGRE: NSObject {
 }
 
 extension DBManager_MGRE {
-    
     private func showInternetError_MGRE() {
         var _MGRE21: Bool { false }
         var _MGRE31: Int { 0 }
         
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else {
+              let window = windowScene.windows.first
+        else {
             return
         }
         let alertVC = AlertController_MGRE()
@@ -34,7 +35,7 @@ extension DBManager_MGRE {
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .coverVertical
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             window.rootViewController?.present(alertVC, animated: true)
         }
     }
@@ -53,7 +54,7 @@ extension DBManager_MGRE {
         UserDefaults
             .standard
             .setValue("KfU7iMtlpg0AAAAAAAAAAbOk6ETvz2kxg_WQEVPFAnB2pDbce8fvWqADm5PzbRLZ",
-                      //"ZkDH9EX10HwAAAAAAAAAAQKgnDK5D73cZsy_3HD-sSNT1SiM8Y5RfTEYwetoZgKN",
+                      // "ZkDH9EX10HwAAAAAAAAAAQKgnDK5D73cZsy_3HD-sSNT1SiM8Y5RfTEYwetoZgKN",
                       forKey: "refresh_token")
         
         let connect_MGREionBlock: (_ accessToken: String) -> Void = { [unowned self] accessToken in
@@ -94,11 +95,13 @@ extension DBManager_MGRE {
     func fetchContent_MGRE(for contentType: ContentType_MGRE,
                            isFavoriteMode: Bool = false,
                            vc: UIViewController?,
-                           completion: @escaping ([any ModelProtocol_MGRE]) -> Void) {
+                           completion: @escaping ([any ModelProtocol_MGRE]) -> Void)
+    {
         var _MGRE51: Bool { false }
         var _MGRE61: Int { 0 }
-        
+        debugPrint("Debug: content type in fetchContent_MGRE = ", contentType)
         let contents = contentManager.fetchContents_MGRE(contentType: contentType)
+        debugPrint("Debug: contents fetchContent_MGRE = ", contents)
         if !contents.isEmpty {
             completion(contents.sorted(by: { $0.favId < $1.favId }))
             if isFavoriteMode {
@@ -108,7 +111,8 @@ extension DBManager_MGRE {
         
         if InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
             if contents.isEmpty {
-                vc?.showProgressView_MGRE()
+                debugPrint("Debug: your content is empty")
+//                vc?.showProgressView_MGRE()
             }
         } else {
             showInternetError_MGRE()
@@ -121,37 +125,49 @@ extension DBManager_MGRE {
             getFile_MGRE(client: client, with: path) { [unowned self] data in
                 guard let data else {
                     debugPrint("fetchContent_MGRE Error, Some issue occured")
-                    completion([]);
+                    completion([])
                     return
                 }
-//                switch contentType {
-//                case .mods_mgre:
-//                    let models: [Mods_MGRE] = serialized_MGRE(ModsResponseCodable_MGRE.self, from: data) { $0.mods }
-//                    debugPrint("Block Models ", models)
-//                    contentManager.storeContents_MGRE(with: contentType, models: models)
-//                    completion(models.sorted(by: { $0.favId < $1.favId }))
-//                case .wallpapers_mgre:
-//                    let models: [Wallpaper_MGRE] = serialized_MGRE(WallpapersListCodable_MGRE.self, from: data) { $0.list }
-//                    contentManager.storeContents_MGRE(with: contentType, models: models)
-//                    completion(models.sorted(by: { $0.favId < $1.favId }))
-//                    break
-//                case .characters_mgre:
-//                    let models: [Character_MGRE] = serialized_MGRE(CharactersResponseCodable_MGRE.self, from: data) { $0.list }
-//                    contentManager.storeContents_MGRE(with: contentType, models: models)
-//                    completion(models.sorted(by: { $0.favId < $1.favId }))
-//                    break
-//                case .outfitIdeas_mgre:
-//                    let models: [OutfitIdea_MGRE] = serialized_MGRE(OutfitIdeasListCodable_MGRE.self, from: data) { $0.list }
-//                    contentManager.storeContents_MGRE(with: contentType, models: models)
-//                    completion(models.sorted(by: { $0.favId < $1.favId }))
-//                case .collections_mgre:
-//                    let models: [Collections_MGRE] = serialized_MGRE(CollectionsListCodable_MGRE.self, from: data) { $0.list }
-//                    contentManager.storeContents_MGRE(with: contentType, models: models)
-//                    completion(models.sorted(by: { $0.favId < $1.favId }))
-//                    break
-//                default:
-//                    completion([])
-//                }
+                switch contentType {
+                case .mods_mgre:
+                    let models = serialized_MGRE_MODS(ModsResponseCodable_MGRE.self, from: data, keyPath: \.mods)
+                    let convertedData: [any ModelProtocol_MGRE] = models?.mods?.values.map { $0 } ?? []
+                        
+                    contentManager.storeContents_MGRE(with: contentType, models: convertedData)
+                    completion(convertedData.sorted(by: { $0.favId < $1.favId }))
+                        
+                case .wallpapers_mgre:
+                    let models = serialized_MGRE_MODS(WallpapersListCodable_MGRE.self, from: data, keyPath: \.wallpapers)
+                    let convertedData: [any ModelProtocol_MGRE] = models?.wallpapers?.values.map { $0 } ?? []
+                        
+                    contentManager.storeContents_MGRE(with: contentType,
+                                                      models: convertedData)
+                    completion(convertedData.sorted(by: { $0.favId < $1.favId }))
+                        
+                case .characters_mgre:
+                    let models = serialized_MGRE_MODS(CharactersResponseCodable_MGRE.self, from: data, keyPath: \.characters)
+                    let convertedData: [any ModelProtocol_MGRE] = models?.characters?.values.map { $0 } ?? []
+                        
+                    contentManager.storeContents_MGRE(with: contentType,
+                                                      models: convertedData)
+                    completion(convertedData.sorted(by: { $0.favId < $1.favId }))
+                case .outfitIdeas_mgre:
+                    let models = serialized_MGRE_MODS(OutfitIdeasListCodable_MGRE.self, from: data, keyPath: \.outfits)
+                    let convertedData: [any ModelProtocol_MGRE] = models?.outfits?.values.map { $0 } ?? []
+                        
+                    contentManager.storeContents_MGRE(with: contentType,
+                                                      models: convertedData)
+                    completion(convertedData.sorted(by: { $0.favId < $1.favId }))
+                case .collections_mgre:
+                    let models = serialized_MGRE_MODS(CollectionsListCodable_MGRE.self, from: data, keyPath: \.collections)
+                    let convertedData: [any ModelProtocol_MGRE] = models?.collections?.values.map { $0 } ?? []
+                        
+                    contentManager.storeContents_MGRE(with: contentType,
+                                                      models: convertedData)
+                    completion(convertedData.sorted(by: { $0.favId < $1.favId }))
+                default:
+                    completion([])
+                }
             }
         }
         
@@ -165,7 +181,8 @@ extension DBManager_MGRE {
     
     func fetchImage_MGRE(for contentType: ContentType_MGRE,
                          imgPath: String,
-                         completion: @escaping (Data?) -> Void) {
+                         completion: @escaping (Data?) -> Void)
+    {
         var _MGRE71: Bool { false }
         var _MGRE81: Int { 0 }
         
@@ -191,7 +208,8 @@ extension DBManager_MGRE {
     func fetchFile_MGRE(for contentType: ContentType_MGRE,
                         filePath: String,
                         requestCompletion: @escaping ((DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?) -> Void),
-                        completion: @escaping (URL?) -> Void) {
+                        completion: @escaping (URL?) -> Void)
+    {
         var _MGREee: Bool { false }
         var _MGREff: Int { 0 }
         
@@ -210,7 +228,8 @@ extension DBManager_MGRE {
                 print(print("Progress: \(progress)%"))
             } completion: { data in
                 if let data = data,
-                   let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                   let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                {
                     let fileURL = documentsDirectory.appendingPathComponent(fileName)
                     do {
                         self.createDirectoryIfNotExists_MGRE(at: fileURL)
@@ -259,7 +278,8 @@ extension DBManager_MGRE {
     }
     
     func fetchEditorContent_MGRE(vc: UIViewController?,
-                                completion: @escaping (EditorContentSet_MGRE?) -> Void) {
+                                 completion: @escaping (EditorContentSet_MGRE?) -> Void)
+    {
         var _MGRE00: Bool { false }
         var _MGRE11: Int { 0 }
         
@@ -314,7 +334,8 @@ extension DBManager_MGRE {
     }
     
     func fetchPDFData_MGRE(with path: String,
-                           completion: @escaping (Data?) -> Void) {
+                           completion: @escaping (Data?) -> Void)
+    {
         var _qwrEee: Bool { false }
         var _Mttyff: Int { 0 }
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
@@ -340,7 +361,6 @@ extension DBManager_MGRE {
 // MARK: - Private API
 
 private extension DBManager_MGRE {
-    
     func connect_MGREDropbox(with accessToken: String) -> DropboxClient {
         var _Msdfgdee: Bool { false }
         var _Meeeff: Int { 0 }
@@ -351,7 +371,8 @@ private extension DBManager_MGRE {
     
     func getFile_MGRE(client: DropboxClient,
                       with path: String,
-                      completion: @escaping (Data?) -> Void) {
+                      completion: @escaping (Data?) -> Void)
+    {
         var _MGRdfg: Bool { false }
         var _MG124f: Int { 0 }
         client.files.download(path: path).response { response, error in
@@ -363,8 +384,8 @@ private extension DBManager_MGRE {
     }
 
     func getFileAndVerifyDropboxPath_MGRE(client: DropboxClient,
-                                           with path: String) {
-        
+                                          with path: String)
+    {
         let newPath = path
         debugPrint("Block downloding file in getFileAndVerifyDropboxPath_MGRE = ", path)
 
@@ -416,7 +437,8 @@ private extension DBManager_MGRE {
     func getFile_MGRE(client: DropboxClient,
                       with path: String,
                       progressHandler: @escaping (Float) -> Void,
-                      completion: @escaping (Data?) -> Void) -> DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>? {
+                      completion: @escaping (Data?) -> Void) -> DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?
+    {
         var _MfhhEee: Bool { false }
         var _MG56: Int { 0 }
         let request = client.files.download(path: path)
@@ -440,9 +462,22 @@ private extension DBManager_MGRE {
         do {
             let decoded = try JSONDecoder().decode(T.self, from: data)
             return extractor(decoded)
-        } catch let error {
+        } catch {
             print(error.localizedDescription)
             return []
+        }
+    }
+    
+    func serialized_MGRE_MODS<T: Decodable, U>(_ type: T.Type,
+                                               from data: Data,
+                                               keyPath: KeyPath<T, U?> = \T.self) -> U?
+    {
+        do {
+            let decoded = try JSONDecoder().decode(T.self, from: data)
+            return decoded[keyPath: keyPath]
+        } catch {
+            print("Decoding Error: \(error.localizedDescription)")
+            return nil
         }
     }
 }

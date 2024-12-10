@@ -29,6 +29,7 @@ final class ContentManager_MGRE: NSObject {
     }
     
     func getPath_MGRE(for contentType: ContentType_MGRE, imgPath: String) -> String {
+//        debugPrint("Debug: CONTENT TYPE == ", )
         switch contentType {
         case .mods_mgre:
             var originalString = imgPath
@@ -36,9 +37,11 @@ final class ContentManager_MGRE: NSObject {
             if let range = originalString.range(of: "Tips_and_Tricks") {
                 originalString.replaceSubrange(range, with: replacementString)
             }
-                debugPrint("Data updated String = ", String(format: "/%@", originalString))
+                debugPrint("Debug: Data updated String = ", String(format: "/%@", originalString))
+                debugPrint("Debug: Mods String = ", String(format: "/%@", originalString))
             return String(format: "/%@", originalString)
         case .wallpapers_mgre, .editor_mgre, .outfitIdeas_mgre, .characters_mgre, .collections_mgre:
+            debugPrint("Debug: Wallpapers String = ", String(format: "/%@", imgPath))
             return String(format: "/%@", imgPath)
         }
     }
@@ -63,10 +66,12 @@ final class ContentManager_MGRE: NSObject {
     func fetchContents_MGRE(contentType: ContentType_MGRE) -> [any ModelProtocol_MGRE] {
         let fetchRequest = ContentEntity.fetchRequest()
         fetchRequest.predicate = .init(format: "contentType == %i", contentType.int64_MGRE)
+        debugPrint("Debug: fetchRequest = ", fetchRequest)
         do {
             let result = try managedContext_MGRE.fetch(fetchRequest)
+//            debugPrint("Debug: Result is = ", result)
             switch contentType {
-                case .mods_mgre:            return result.compactMap { Mods_MGRE(from: $0) }
+            case .mods_mgre:            return result.compactMap { Mods_MGRE(from: $0)  }
             case .outfitIdeas_mgre:     return result.compactMap { OutfitIdea_MGRE(from: $0) }
             case .characters_mgre:      return result.compactMap { Character_MGRE(from: $0) }
             case .collections_mgre:     return result.compactMap { Collections_MGRE(from: $0) }
@@ -130,7 +135,7 @@ final class ContentManager_MGRE: NSObject {
                 entity.contentType = contentType.int64_MGRE
                 entity.id = model.favId
                 entity.image = model.image
-//                entity.descr = model.description
+                entity.descr = model.description
                 entity.new = model.new
                 entity.top = model.top
             }

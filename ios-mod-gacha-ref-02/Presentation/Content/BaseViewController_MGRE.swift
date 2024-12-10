@@ -212,6 +212,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             
             let isFavorites = favorites_MGRE.contains(model.favId)
             model.configureCell_MGRE(cell, isFavorites: isFavorites) { [weak self] in
+                debugPrint("Block: calling updateFavorites_MGRE")
                 self?.updateFavorites_MGRE(with: model.favId)
             } action: { [weak self] in
                 self?.pushTo_MGRE(contentType: self?.modelType_MGRE ?? .mods_mgre, index: indexPath.item)

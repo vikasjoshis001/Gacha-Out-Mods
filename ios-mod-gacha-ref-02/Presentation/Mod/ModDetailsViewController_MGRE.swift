@@ -78,7 +78,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         switch modelType {
         case .mods_mgre(let model):
             navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(.backChevronIcon), rightIcon: nil)
-            titleLabel_MGRE.text = model.name
+            titleLabel_MGRE.text = "Hello World"
             descriptionLabel_MGRE.text = model.description
             let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageViewHeight_MGRE.constant = deviceType == .phone ? (width * 0.5) : (width * 0.9)
@@ -119,8 +119,8 @@ class ModDetailsViewController_MGRE: UIViewController {
         let contentType: ContentType_MGRE
         switch modelType {
         case .mods_mgre(let model):
-            favId = model.favId
-            contentType = Mods_MGRE.type
+            favId = "1"
+            contentType = OutfitIdea_MGRE.type
         case .outfitIdeas_mgre(let model):
             favId = model.favId
             contentType = OutfitIdea_MGRE.type
