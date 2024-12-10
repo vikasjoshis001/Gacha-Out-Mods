@@ -116,16 +116,11 @@ extension DBManager_MGRE {
         }
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
-            debugPrint("NewData contentType = ", contentType)
             let path = contentType.associatedPath_MGRE.contentPath
-            debugPrint("NewData path = ", path)
-
-//            debugPrint("Block Model File is = ", path)
-//            debugPrint("Block File to download is = ", path)
-//            getFileAndVerifyDropboxPath_MGRE(client: client, with: path)
+            
             getFile_MGRE(client: client, with: path) { [unowned self] data in
                 guard let data else {
-                    debugPrint("Block Error, Some issue occured")
+                    debugPrint("fetchContent_MGRE Error, Some issue occured")
                     completion([]);
                     return
                 }
@@ -176,7 +171,6 @@ extension DBManager_MGRE {
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
             let path = contentManager.getPath_MGRE(for: contentType, imgPath: imgPath)
-            debugPrint("Data new path from getPath is ", path)
             getFile_MGRE(client: client, with: path) { data in
                 guard let data else {
                     completion(nil)
@@ -360,12 +354,10 @@ private extension DBManager_MGRE {
                       completion: @escaping (Data?) -> Void) {
         var _MGRdfg: Bool { false }
         var _MG124f: Int { 0 }
-        debugPrint("Check reading file in getFile_MGRE = ", path)
         client.files.download(path: path).response { response, error in
             if let error {
                 print(error.description)
             }
-            debugPrint("New Data Response is = ", response)
             completion(response?.1)
         }
     }
@@ -373,7 +365,6 @@ private extension DBManager_MGRE {
     func getFileAndVerifyDropboxPath_MGRE(client: DropboxClient,
                                            with path: String) {
         
-//        let newPath = "/content/6737730ea7e31/6737737b66be4.png"
         let newPath = path
         debugPrint("Block downloding file in getFileAndVerifyDropboxPath_MGRE = ", path)
 

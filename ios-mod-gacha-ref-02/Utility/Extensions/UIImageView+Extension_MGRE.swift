@@ -34,8 +34,7 @@ extension UIImageView_MGRE {
                             self.set_MGRE(image: image, tag: imgPath.hashValue)
                             self.kf.indicator?.stopAnimatingView()
                         } else {
-                            debugPrint("Check set default image")
-                            self?.setDefaultImage() // Set default image if fetching fails
+                            self?.setDefaultImage()
                         }
                     }
                 }

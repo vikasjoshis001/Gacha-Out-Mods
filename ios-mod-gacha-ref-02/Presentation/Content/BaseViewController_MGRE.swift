@@ -83,7 +83,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         var _MGNasasgg2: Int { 0 }
         var _MGfhgha: Bool { false }
-//        view.backgroundColor = .red
+        debugPrint("Mods Page is Loaded")
         configureSubviews_MGRE()
         configureDataSource_MGRE()
         loadFavorites_MGRE()
@@ -241,7 +241,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func applySnapshot_MGRE(for contentType: ContentType_MGRE) {
         var snapshot = Snapshot_MGRE()
         snapshot.appendSections([.zero])
-        debugPrint("NewData is data_MGRE isEmpty = ", data_MGRE.isEmpty)
 
         if data_MGRE.isEmpty {
             emptyLabel_MGRE.isHidden = false
@@ -254,7 +253,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             emptyLabel_MGRE.isHidden = true
         }
         
-//        debugPrint("NewData data_MGRE = ", data_MGRE)
         switch contentType {
         case .mods_mgre:            snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })
         case .outfitIdeas_mgre:     snapshot.appendItems(data_MGRE.map { .outfitIdea_mgre($0 as! OutfitIdea_MGRE) })
@@ -268,8 +266,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             self.dataSource_MGRE?.apply(snapshot, animatingDifferences: false)
             self.collectionView_MGRE.reloadData()
         }
-        debugPrint("NewData is data_MGRE isEmpty = ", data_MGRE.isEmpty)
-
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -31,7 +31,6 @@ final class ContentManager_MGRE: NSObject {
     func getPath_MGRE(for contentType: ContentType_MGRE, imgPath: String) -> String {
         switch contentType {
         case .mods_mgre:
-                debugPrint("Data original String = ", imgPath)
             var originalString = imgPath
             let replacementString = "TipsAndTricks"
             if let range = originalString.range(of: "Tips_and_Tricks") {

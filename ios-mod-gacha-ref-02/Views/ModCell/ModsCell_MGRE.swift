@@ -55,7 +55,6 @@ class ModsCell_MGRE: UICollectionViewCell {
         self.action_MGRE = action
         
         self.isFavourite_MGRE = isFavorites
-        debugPrint("Data is ", data.image)
         titleLabel_MGRE.text = data.name
         descriptionLabel_MGRE.text = data.description
         imageView_MGRE.add_MGRE(image: data.image, for: .mods_mgre)
