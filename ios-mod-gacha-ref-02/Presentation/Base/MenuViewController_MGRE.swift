@@ -48,7 +48,6 @@ extension MenuViewController_MGRE: UICollectionViewDataSource {
 
 extension MenuViewController_MGRE: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint("Debug: ", MenuItem_MGRE.allCases[indexPath.item])
         menuAction_MGRE?(MenuItem_MGRE.allCases[indexPath.item])
     }
 }

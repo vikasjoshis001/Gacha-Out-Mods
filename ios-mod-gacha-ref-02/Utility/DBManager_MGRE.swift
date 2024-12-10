@@ -99,9 +99,7 @@ extension DBManager_MGRE {
     {
         var _MGRE51: Bool { false }
         var _MGRE61: Int { 0 }
-        debugPrint("Debug: content type in fetchContent_MGRE = ", contentType)
         let contents = contentManager.fetchContents_MGRE(contentType: contentType)
-        debugPrint("Debug: contents fetchContent_MGRE = ", contents)
         if !contents.isEmpty {
             completion(contents.sorted(by: { $0.favId < $1.favId }))
             if isFavoriteMode {
@@ -111,8 +109,7 @@ extension DBManager_MGRE {
         
         if InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
             if contents.isEmpty {
-                debugPrint("Debug: your content is empty")
-//                vc?.showProgressView_MGRE()
+                vc?.showProgressView_MGRE()
             }
         } else {
             showInternetError_MGRE()
@@ -124,7 +121,6 @@ extension DBManager_MGRE {
             
             getFile_MGRE(client: client, with: path) { [unowned self] data in
                 guard let data else {
-                    debugPrint("fetchContent_MGRE Error, Some issue occured")
                     completion([])
                     return
                 }
@@ -380,57 +376,6 @@ private extension DBManager_MGRE {
                 print(error.description)
             }
             completion(response?.1)
-        }
-    }
-
-    func getFileAndVerifyDropboxPath_MGRE(client: DropboxClient,
-                                          with path: String)
-    {
-        let newPath = path
-        debugPrint("Block downloding file in getFileAndVerifyDropboxPath_MGRE = ", path)
-
-        // First, check if the file exists in Dropbox by getting its metadata
-        client.files.getMetadata(path: newPath).response { response, error in
-            if let error {
-                print("Block Test New Error: File does not exist on Dropbox: \(error)")
-            }
-            
-            // If the file exists, proceed with downloading
-            guard let metadata = response else {
-                print("Block Test New Error: No metadata received.")
-                return
-            }
-            
-            print("Block Test New File exists on Dropbox: \(metadata.name ?? "Unknown file")")
-            
-            // Now download the file after confirming its existence
-            client.files.download(path: newPath).response { response, error in
-                if let error {
-                    print("Block Test New Error downloading file: \(error.description)")
-                    return
-                }
-                
-                // Ensure the file was successfully downloaded
-                guard let fileData = response?.1 else {
-                    print("Block Test New No data received")
-                    return
-                }
-                
-                // Get the URL for the app's Documents directory
-                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                
-                // Construct the destination file URL by appending the file name from the Dropbox path
-                let destinationURL = documentsDirectory.appendingPathComponent((path as NSString).lastPathComponent)
-                
-                do {
-                    // Save the file to the Documents directory
-                    try fileData.write(to: destinationURL)
-                    print("Block Test New File saved successfully to Documents: \(destinationURL.path)")
-                    
-                } catch {
-                    print("Block Test New Error saving file: \(error.localizedDescription)")
-                }
-            }
         }
     }
     

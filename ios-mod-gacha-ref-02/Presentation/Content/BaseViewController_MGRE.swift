@@ -83,7 +83,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         var _MGNasasgg2: Int { 0 }
         var _MGfhgha: Bool { false }
-        debugPrint("Mods Page is Loaded")
         configureSubviews_MGRE()
         configureDataSource_MGRE()
         loadFavorites_MGRE()
@@ -212,7 +211,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             
             let isFavorites = favorites_MGRE.contains(model.favId)
             model.configureCell_MGRE(cell, isFavorites: isFavorites) { [weak self] in
-                debugPrint("Block: calling updateFavorites_MGRE")
                 self?.updateFavorites_MGRE(with: model.favId)
             } action: { [weak self] in
                 self?.pushTo_MGRE(contentType: self?.modelType_MGRE ?? .mods_mgre, index: indexPath.item)
