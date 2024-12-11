@@ -105,9 +105,7 @@ extension DBManager_MGRE {
     {
         var _MGRE51: Bool { false }
         var _MGRE61: Int { 0 }
-        debugPrint("Debug:- contentType = ", contentType)
         let contents = contentManager.fetchContents_MGRE(contentType: contentType)
-        debugPrint("Debug:- contents = ", contentType)
 
         if !contents.isEmpty {
             completion(contents.sorted(by: { $0.favId < $1.favId }))
@@ -127,9 +125,7 @@ extension DBManager_MGRE {
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
             let path = contentType.associatedPath_MGRE.contentPath
-            debugPrint("Debug:- path = ", path)
             getFile_MGRE(client: client, with: path) { [unowned self] data in
-                debugPrint("Debug:- data = ", data)
                 guard let data else {
                     completion([])
                     return

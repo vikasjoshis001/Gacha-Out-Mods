@@ -60,7 +60,7 @@ class WallpaperViewController_MGRE: UIViewController {
 //            actionButtons[0].isHidden = true
         case .collections(let model):
             navigationView_MGRE.build_MGRE(with: "Collection", leftIcon: UIImage(.backChevronIcon), rightIcon: nil)
-            imageView_MGRE.add_MGRE(image: model.image, for: .wallpapers_mgre)
+            imageView_MGRE.add_MGRE(image: model.image, for: .collections_mgre)
             imageView_MGRE.contentMode = .scaleAspectFill
             contentType_MGRE = .collections_mgre
         }

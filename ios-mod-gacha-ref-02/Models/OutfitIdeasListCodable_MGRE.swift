@@ -30,7 +30,7 @@ struct OutfitSection_MGRE: Codable {
 // MARK: - OutfitIdea_MGRE
 
 struct OutfitIdea_MGRE: Codable, Hashable, ModelProtocol_MGRE {
-    static let type: ContentType_MGRE = .mods_mgre
+    static let type: ContentType_MGRE = .outfitIdeas_mgre
 
     let id: String
     let name: String
@@ -47,7 +47,7 @@ struct OutfitIdea_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         case top = "isTop"
     }
 
-    var favId: String { id }
+    var favId: String { String (id) }
     var searchText: String? { name }
 
     init?(from entity: ContentEntity) {

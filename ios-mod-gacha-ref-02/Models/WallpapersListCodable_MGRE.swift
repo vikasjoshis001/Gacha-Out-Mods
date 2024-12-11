@@ -36,8 +36,7 @@ struct Wallpaper_MGRE: Codable, Hashable, ModelProtocol_MGRE {
     var new: Bool
     let top: Bool
 
-//    var favId: String { id }
-    var favId: String { id }
+    var favId: String { String (id) }
     var searchText: String? { nil }
 
     enum CodingKeys_MGRE: String, CodingKey {

@@ -225,6 +225,7 @@ final class ContentManager_MGRE: NSObject {
         fetchRequest.predicate = .init(format: "contentType == %i AND id == %@",
                                        contentType.int64_MGRE,
                                        id as CVarArg)
+
         fetchRequest.fetchLimit = 1
         
         do {

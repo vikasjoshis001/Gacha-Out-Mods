@@ -30,7 +30,7 @@ struct CharacterSection_MGRE: Codable {
 // MARK: - Character_MGRE
 
 struct Character_MGRE: Codable, Hashable, ModelProtocol_MGRE {
-    static let type: ContentType_MGRE = .mods_mgre
+    static let type: ContentType_MGRE = .characters_mgre
 
     let id: String
     let name: String
@@ -47,7 +47,7 @@ struct Character_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         case top = "isTop"
     }
 
-    var favId: String { id }
+    var favId: String { String (id) }
     var searchText: String? { name }
 
     init?(from entity: ContentEntity) {
