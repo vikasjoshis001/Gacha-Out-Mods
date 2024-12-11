@@ -46,7 +46,7 @@ extension DBManager_MGRE {
         
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
             completion?(nil)
-//            showInternetError_MGRE()
+            showInternetError_MGRE()
             return
         }
         print("DBManager_MGRE - connect_MGRE!")
@@ -126,14 +126,14 @@ extension DBManager_MGRE {
                 }
                 switch contentType {
                 case .mods_mgre:
-                    let models = serialized_MGRE_MODS(ModsResponseCodable_MGRE.self, from: data, keyPath: \.mods)
+                    let models = serialized_models_MGRE(ModsResponseCodable_MGRE.self, from: data, keyPath: \.mods)
                     let convertedData: [any ModelProtocol_MGRE] = models?.mods?.values.map { $0 } ?? []
                         
                     contentManager.storeContents_MGRE(with: contentType, models: convertedData)
                     completion(convertedData.sorted(by: { $0.favId < $1.favId }))
                         
                 case .wallpapers_mgre:
-                    let models = serialized_MGRE_MODS(WallpapersListCodable_MGRE.self, from: data, keyPath: \.wallpapers)
+                    let models = serialized_models_MGRE(WallpapersListCodable_MGRE.self, from: data, keyPath: \.wallpapers)
                     let convertedData: [any ModelProtocol_MGRE] = models?.wallpapers?.values.map { $0 } ?? []
                         
                     contentManager.storeContents_MGRE(with: contentType,
@@ -141,21 +141,21 @@ extension DBManager_MGRE {
                     completion(convertedData.sorted(by: { $0.favId < $1.favId }))
                         
                 case .characters_mgre:
-                    let models = serialized_MGRE_MODS(CharactersResponseCodable_MGRE.self, from: data, keyPath: \.characters)
+                    let models = serialized_models_MGRE(CharactersResponseCodable_MGRE.self, from: data, keyPath: \.characters)
                     let convertedData: [any ModelProtocol_MGRE] = models?.characters?.values.map { $0 } ?? []
                         
                     contentManager.storeContents_MGRE(with: contentType,
                                                       models: convertedData)
                     completion(convertedData.sorted(by: { $0.favId < $1.favId }))
                 case .outfitIdeas_mgre:
-                    let models = serialized_MGRE_MODS(OutfitIdeasListCodable_MGRE.self, from: data, keyPath: \.outfits)
+                    let models = serialized_models_MGRE(OutfitIdeasListCodable_MGRE.self, from: data, keyPath: \.outfits)
                     let convertedData: [any ModelProtocol_MGRE] = models?.outfits?.values.map { $0 } ?? []
                         
                     contentManager.storeContents_MGRE(with: contentType,
                                                       models: convertedData)
                     completion(convertedData.sorted(by: { $0.favId < $1.favId }))
                 case .collections_mgre:
-                    let models = serialized_MGRE_MODS(CollectionsListCodable_MGRE.self, from: data, keyPath: \.collections)
+                    let models = serialized_models_MGRE(CollectionsListCodable_MGRE.self, from: data, keyPath: \.collections)
                     let convertedData: [any ModelProtocol_MGRE] = models?.collections?.values.map { $0 } ?? []
                         
                     contentManager.storeContents_MGRE(with: contentType,
@@ -174,7 +174,7 @@ extension DBManager_MGRE {
             fetchBlock(client)
         }
     }
-    
+        
     func fetchImage_MGRE(for contentType: ContentType_MGRE,
                          imgPath: String,
                          completion: @escaping (Data?) -> Void)
@@ -182,22 +182,33 @@ extension DBManager_MGRE {
         var _MGRE71: Bool { false }
         var _MGRE81: Int { 0 }
         
-        let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
+        let fetchBlock: (DropboxClient) -> Void = { [weak self] client in
+            
+            guard let self = self else {
+                completion(nil)
+                return
+            }
+                
             let path = contentManager.getPath_MGRE(for: contentType, imgPath: imgPath)
             getFile_MGRE(client: client, with: path) { data in
-                guard let data else {
+                if let data = data {
+                    completion(data)
+                } else {
                     completion(nil)
-                    return
                 }
-                completion(data)
             }
         }
         
-        if let client { fetchBlock(client); return }
-        
-        connect_MGRE { client in
-            guard let client else { completion(nil); return }
+        if let client = client {
             fetchBlock(client)
+        } else {
+            connect_MGRE { [weak self] client in
+                guard let client = client else {
+                    completion(nil)
+                    return
+                }
+                fetchBlock(client)
+            }
         }
     }
     
@@ -369,13 +380,17 @@ private extension DBManager_MGRE {
                       with path: String,
                       completion: @escaping (Data?) -> Void)
     {
-        var _MGRdfg: Bool { false }
-        var _MG124f: Int { 0 }
         client.files.download(path: path).response { response, error in
-            if let error {
-                print(error.description)
+            if let error = error {
+                print("Debug: Error downloading file - \(error)")
+                completion(nil)
+            } else if let (_, data) = response {
+                print("Debug: File downloaded successfully, size: \(data.count) bytes")
+                completion(data)
+            } else {
+                print("Debug: Unexpected response, no data received")
+                completion(nil)
             }
-            completion(response?.1)
         }
     }
     
@@ -413,7 +428,7 @@ private extension DBManager_MGRE {
         }
     }
     
-    func serialized_MGRE_MODS<T: Decodable, U>(_ type: T.Type,
+    func serialized_models_MGRE<T: Decodable, U>(_ type: T.Type,
                                                from data: Data,
                                                keyPath: KeyPath<T, U?> = \T.self) -> U?
     {

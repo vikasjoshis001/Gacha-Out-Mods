@@ -5,18 +5,17 @@
 //  Created by Systems
 //
 
-import Foundation
 import CoreData
+import Foundation
+
+// MARK: - ContentManager_MGRE
 
 final class ContentManager_MGRE: NSObject {
-    
-    lazy var managedContext_MGRE: NSManagedObjectContext = {
-        persistentContainer_MGRE.viewContext
-    }()
+    lazy var managedContext_MGRE: NSManagedObjectContext = persistentContainer_MGRE.viewContext
     
     private lazy var persistentContainer_MGRE: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ContentCache_MGRE")
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Unable to load persistent stores: \(error)")
             }
@@ -27,11 +26,12 @@ final class ContentManager_MGRE: NSObject {
     func getModelPath_MGRE(for imgPath: String) -> String {
         String(format: "/%@", imgPath)
     }
-    
+        
     func getPath_MGRE(for contentType: ContentType_MGRE, imgPath: String) -> String {
         switch contentType {
         case .mods_mgre:
             var originalString = imgPath
+
             let replacementString = "TipsAndTricks"
             if let range = originalString.range(of: "Tips_and_Tricks") {
                 originalString.replaceSubrange(range, with: replacementString)
@@ -53,7 +53,8 @@ final class ContentManager_MGRE: NSObject {
     func serialized_MGRE(markups data: Data) -> [EditorCodableContentList_MGRE] {
         if let jsonObj = jsonObj_MGRE(from: data, with: "dfnsh-sd5"),
            let markups = try? JSONDecoder().decode([EditorCodableContentList_MGRE].self,
-                                                   from: jsonObj) {
+                                                   from: jsonObj)
+        {
             return markups
         }
         return []
@@ -65,11 +66,11 @@ final class ContentManager_MGRE: NSObject {
         do {
             let result = try managedContext_MGRE.fetch(fetchRequest)
             switch contentType {
-            case .mods_mgre:            return result.compactMap { Mods_MGRE(from: $0)  }
-            case .outfitIdeas_mgre:     return result.compactMap { OutfitIdea_MGRE(from: $0) }
-            case .characters_mgre:      return result.compactMap { Character_MGRE(from: $0) }
-            case .collections_mgre:     return result.compactMap { Collections_MGRE(from: $0) }
-            case .wallpapers_mgre:      return result.compactMap { Wallpaper_MGRE(from: $0) }
+            case .mods_mgre: return result.compactMap { Mods_MGRE(from: $0) }
+            case .outfitIdeas_mgre: return result.compactMap { OutfitIdea_MGRE(from: $0) }
+            case .characters_mgre: return result.compactMap { Character_MGRE(from: $0) }
+            case .collections_mgre: return result.compactMap { Collections_MGRE(from: $0) }
+            case .wallpapers_mgre: return result.compactMap { Wallpaper_MGRE(from: $0) }
             default: return []
             }
         } catch let error as NSError {
@@ -79,7 +80,8 @@ final class ContentManager_MGRE: NSObject {
     }
     
     func storeContents_MGRE(with contentType: ContentType_MGRE,
-                            models: [any ModelProtocol_MGRE]) {
+                            models: [any ModelProtocol_MGRE])
+    {
         let fetchRequest = ContentEntity.fetchRequest()
         fetchRequest.predicate = .init(format: "contentType == %i", contentType.int64_MGRE)
         
@@ -100,9 +102,10 @@ final class ContentManager_MGRE: NSObject {
         }
     }
     
-    private func update_MGRE(entity: ContentEntity, 
+    private func update_MGRE(entity: ContentEntity,
                              model: any ModelProtocol_MGRE,
-                             contentType: ContentType_MGRE) {
+                             contentType: ContentType_MGRE)
+    {
         switch contentType {
         case .mods_mgre:
             if let model = model as? Mods_MGRE {
@@ -159,13 +162,13 @@ final class ContentManager_MGRE: NSObject {
     
         do {
             let result = try managedContext_MGRE.fetch(fetchRequest)
-            let groupedModels = result.reduce(into: [String: [EditorContentEntity]]()) { (result, model) in
+            let groupedModels = result.reduce(into: [String: [EditorContentEntity]]()) { result, model in
                 result[model.contentType ?? "value", default: []].append(model)
             }
             
             let sortedModelArrays = groupedModels.values.map { group -> [EditorContentEntity] in
                 group.sorted(by: { $0.id < $1.id })
-            }.sorted { (group1, group2) -> Bool in
+            }.sorted { group1, group2 -> Bool in
                 guard let firstGroup1 = group1.first, let firstGroup2 = group2.first else { return false }
                 return (firstGroup1.sortOrder ?? "0") < (firstGroup2.sortOrder ?? "0")
             }
@@ -330,11 +333,11 @@ final class ContentManager_MGRE: NSObject {
 // MARK: - Private API
 
 private extension ContentManager_MGRE {
-    
     func jsonObj_MGRE(from data: Data, with key: String) -> Data? {
         if let jsonDict = jsonDict_MGRE(from: data),
            let jsonObj = jsonDict[key],
-           let data = try? JSONSerialization.data(withJSONObject: jsonObj) {
+           let data = try? JSONSerialization.data(withJSONObject: jsonObj)
+        {
             return data
         }
         
@@ -349,7 +352,7 @@ private extension ContentManager_MGRE {
         do {
             try managedContext_MGRE.execute(deleteRequest)
             return true
-        } catch let error {
+        } catch {
             print(error.localizedDescription)
             managedContext_MGRE.rollback()
             return false

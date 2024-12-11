@@ -64,7 +64,7 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
 
         id = UUID().uuidString
         self.name = name
-        self.image = "content/6737730ea7e31/\(image)"
+        self.image = image
         self.description = description
         self.filePath = filePath
         new = entity.new
@@ -84,3 +84,4 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         top = try container.decode(Bool.self, forKey: .top)
     }
 }
+

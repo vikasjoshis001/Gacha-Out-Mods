@@ -57,7 +57,7 @@ class ModsCell_MGRE: UICollectionViewCell {
         self.isFavourite_MGRE = isFavorites
         titleLabel_MGRE.text = data.name
         descriptionLabel_MGRE.text = data.description
-        imageView_MGRE.add_MGRE(image: data.image, for: .mods_mgre)
+        imageView_MGRE.add_MGRE(image: "content/6737730ea7e31/\(data.image)", for: .mods_mgre)
         
         configureCell_MGRE()
     }
