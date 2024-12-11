@@ -16,6 +16,7 @@
 		C837ABF12D00AC300079F5A9 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF02D00AC300079F5A9 /* Typography.swift */; };
 		C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */; };
 		C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83EB4ED2D01A1B100A84447 /* Helper.swift */; };
+		C865E40F2D0A290000BD1118 /* EditorContentModel_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865E40E2D0A290000BD1118 /* EditorContentModel_MGRE.swift */; };
 		C86A81C52D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */; };
 		C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */; };
 		C86A81C92D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */; };
@@ -132,6 +133,7 @@
 		C837ABF02D00AC300079F5A9 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBar_MGRE.swift; sourceTree = "<group>"; };
 		C83EB4ED2D01A1B100A84447 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C865E40E2D0A290000BD1118 /* EditorContentModel_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentModel_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersListCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersResponseCodable_MGRE.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */,
 				C86A81CA2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift */,
 				C86A81CC2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift */,
+				C865E40E2D0A290000BD1118 /* EditorContentModel_MGRE.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				C837ABEF2D00A8020079F5A9 /* String+Extension_MGRE.swift in Sources */,
 				FE4C8F912B0254C2000E3DD1 /* DropDownCell_MGRE.swift in Sources */,
 				FE94C38A2AF81C5000B9B5C4 /* UIImageView+Extension_MGRE.swift in Sources */,
+				C865E40F2D0A290000BD1118 /* EditorContentModel_MGRE.swift in Sources */,
 				FEB5A0712AFE519F00424791 /* SearchBar_MGRE.swift in Sources */,
 				C8D441882D022A6F00ABB77B /* IpadMenuViewController_MGRE.swift in Sources */,
 				C86A81C52D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift in Sources */,
