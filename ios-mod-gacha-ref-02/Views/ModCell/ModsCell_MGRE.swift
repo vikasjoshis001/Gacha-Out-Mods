@@ -57,7 +57,7 @@ class ModsCell_MGRE: UICollectionViewCell {
         self.isFavourite_MGRE = isFavorites
         titleLabel_MGRE.text = data.name
         descriptionLabel_MGRE.text = data.description
-        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagPath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
+        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
         
         configureCell_MGRE()
     }
@@ -73,7 +73,7 @@ class ModsCell_MGRE: UICollectionViewCell {
         
         self.isFavourite_MGRE = isFavorites
         labelsView_MGRE.isHidden = true
-        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagPath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
+        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
         configureCell_MGRE()
     }
     

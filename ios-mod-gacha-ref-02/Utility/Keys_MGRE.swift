@@ -30,7 +30,7 @@ struct Keys_MGRE {
              key_MGRE = "hk15jpjilosy7e8"
     }
     
-    enum ImagPath_MGRE {
+    enum ImagePath_MGRE {
         static let editor_mgre = "content/6737730eab005/"
         static let mods_mgre = "content/6737730ea7e31/"
         static let outfitIdeas_mgre = "content/673773360eb16/"
