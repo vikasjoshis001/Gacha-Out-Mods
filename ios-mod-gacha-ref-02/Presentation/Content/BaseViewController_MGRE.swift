@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Filter_MGRE
+
 enum Filter_MGRE: String {
     case all_mgre, new_mgre, favourites_mgre, top_mgre
     case mods_mgre, outfitIdea_mgre, characters_mgre, collections_mgre, wallpapers_mgre
@@ -37,8 +39,9 @@ extension Filter_MGRE {
     }
 }
 
+// MARK: - BaseViewController_MGRE
+
 class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
-    
     enum UnifiedModel_MGRE: Hashable {
         case mods_mgre(Mods_MGRE)
         case wallpaper_mgre(Wallpaper_MGRE)
@@ -73,6 +76,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             return [.all_mgre, .new_mgre, .favourites_mgre, .top_mgre]
         }
     }
+
     var activeFilter_MGRE: Filter_MGRE = .all_mgre
     var searchText_MGRE: String?
     var isPushed_MGRE = false
@@ -101,7 +105,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func configureSubviews_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        emptyLabel_MGRE.font =  UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        emptyLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
 
         configureNavigationView_MGRE()
         configureCollectionView_MGRE()
@@ -113,7 +117,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         if modelType_MGRE == .wallpapers_mgre ||
             modelType_MGRE == .collections_mgre ||
             modelType_MGRE == .outfitIdeas_mgre ||
-            modelType_MGRE == .characters_mgre {
+            modelType_MGRE == .characters_mgre
+        {
             navigationView_MGRE.build_MGRE(with: navTitle_MGRE, rightIcon: nil)
         } else {
             navigationView_MGRE.build_MGRE(with: navTitle_MGRE)
@@ -129,7 +134,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     
     func configureFilterView_MGRE() {
         filterView_MGRE.filters_MGRE = filters_MGRE
-        if self.isFavoriteMode_MGRE {
+        if isFavoriteMode_MGRE {
             filterView_MGRE.activeFilter_MGRE = .mods_mgre
             activeFilter_MGRE = .mods_mgre
         }
@@ -137,11 +142,11 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             guard let self = self else { return }
             if self.isFavoriteMode_MGRE {
                 switch filter {
-                case .mods_mgre:        self.modelType_MGRE = .mods_mgre
-                case .outfitIdea_mgre:  self.modelType_MGRE = .outfitIdeas_mgre
-                case .characters_mgre:  self.modelType_MGRE = .characters_mgre
+                case .mods_mgre: self.modelType_MGRE = .mods_mgre
+                case .outfitIdea_mgre: self.modelType_MGRE = .outfitIdeas_mgre
+                case .characters_mgre: self.modelType_MGRE = .characters_mgre
                 case .collections_mgre: self.modelType_MGRE = .collections_mgre
-                case .wallpapers_mgre:  self.modelType_MGRE = .wallpapers_mgre
+                case .wallpapers_mgre: self.modelType_MGRE = .wallpapers_mgre
                 default: break
                 }
                 self.configureNavigationView_MGRE()
@@ -166,7 +171,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             var results: [String] = []
             if let text = text, !text.isEmpty {
                 results = data_MGRE
-                    .filter({ $0.searchText?.localizedCaseInsensitiveContains(text) ?? false })
+                    .filter { $0.searchText?.localizedCaseInsensitiveContains(text) ?? false }
                     .prefix(5)
                     .map { $0.searchText ?? "" }
             }
@@ -196,13 +201,13 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     }
     
     func configureDataSource_MGRE() {
-        dataSource_MGRE = DataSource_MGRE(collectionView: collectionView_MGRE) { [weak self] (collectionView, indexPath, unifiedModel) in
+        dataSource_MGRE = DataSource_MGRE(collectionView: collectionView_MGRE) { [weak self] collectionView, indexPath, unifiedModel in
             guard let self, let cellClass = modelType_MGRE.cellClass_MGRE else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellClass.identifier_MGRE, for: indexPath)
             
             let model: any ModelProtocol_MGRE
             switch unifiedModel {
-                case .mods_mgre(let value): model = value as! any ModelProtocol_MGRE
+            case .mods_mgre(let value): model = value
             case .wallpaper_mgre(let value): model = value
             case .characters_mgre(let value): model = value
             case .outfitIdea_mgre(let value): model = value
@@ -232,8 +237,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     
     func updateFavouritesFilters_MGRE() {
         if activeFilter_MGRE == .favourites_mgre || isFavoriteMode_MGRE {
-            self.applyFilters_MGRE()
-            self.applySnapshot_MGRE(for: modelType_MGRE)
+            applyFilters_MGRE()
+            applySnapshot_MGRE(for: modelType_MGRE)
         }
     }
     
@@ -253,11 +258,11 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         }
         
         switch contentType {
-        case .mods_mgre:            snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })
-        case .outfitIdeas_mgre:     snapshot.appendItems(data_MGRE.map { .outfitIdea_mgre($0 as! OutfitIdea_MGRE) })
-        case .characters_mgre:      snapshot.appendItems(data_MGRE.map { .characters_mgre($0 as! Character_MGRE) })
-        case .collections_mgre:     snapshot.appendItems(data_MGRE.map { .collections_mgre($0 as! Collections_MGRE) })
-        case .wallpapers_mgre:      snapshot.appendItems(data_MGRE.map { .wallpaper_mgre($0 as! Wallpaper_MGRE) })
+        case .mods_mgre: snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })
+        case .outfitIdeas_mgre: snapshot.appendItems(data_MGRE.map { .outfitIdea_mgre($0 as! OutfitIdea_MGRE) })
+        case .characters_mgre: snapshot.appendItems(data_MGRE.map { .characters_mgre($0 as! Character_MGRE) })
+        case .collections_mgre: snapshot.appendItems(data_MGRE.map { .collections_mgre($0 as! Collections_MGRE) })
+        case .wallpapers_mgre: snapshot.appendItems(data_MGRE.map { .wallpaper_mgre($0 as! Wallpaper_MGRE) })
         default: break
         }
         
@@ -325,15 +330,15 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         
         data = data.filter { model in
             switch activeFilter_MGRE {
-            case .all_mgre:         return true
-            case .favourites_mgre:  return favorites_MGRE.contains(model.favId)
-            case .new_mgre:         return model.new  == true
-            case .top_mgre:         return model.top  == true
-            default:                return favorites_MGRE.contains(model.favId)
+            case .all_mgre: return true
+            case .favourites_mgre: return favorites_MGRE.contains(model.favId)
+            case .new_mgre: return model.new == true
+            case .top_mgre: return model.top == true
+            default: return favorites_MGRE.contains(model.favId)
             }
         }
         
-        self.data_MGRE = data
+        data_MGRE = data
     }
 }
 

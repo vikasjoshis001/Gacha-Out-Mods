@@ -17,6 +17,12 @@ final class DBManager_MGRE: NSObject {
     let contentManager = ContentManager_MGRE()
     
     private var client: DropboxClient?
+    
+    private let downloadQueue = OperationQueue()
+    
+    override init() {
+        downloadQueue.maxConcurrentOperationCount = 1 // Process one download at a time
+    }
 }
 
 extension DBManager_MGRE {
@@ -99,7 +105,10 @@ extension DBManager_MGRE {
     {
         var _MGRE51: Bool { false }
         var _MGRE61: Int { 0 }
+        debugPrint("Debug:- contentType = ", contentType)
         let contents = contentManager.fetchContents_MGRE(contentType: contentType)
+        debugPrint("Debug:- contents = ", contentType)
+
         if !contents.isEmpty {
             completion(contents.sorted(by: { $0.favId < $1.favId }))
             if isFavoriteMode {
@@ -118,8 +127,9 @@ extension DBManager_MGRE {
         
         let fetchBlock: (DropboxClient) -> Void = { [unowned self] client in
             let path = contentType.associatedPath_MGRE.contentPath
-            
+            debugPrint("Debug:- path = ", path)
             getFile_MGRE(client: client, with: path) { [unowned self] data in
+                debugPrint("Debug:- data = ", data)
                 guard let data else {
                     completion([])
                     return
@@ -382,13 +392,16 @@ private extension DBManager_MGRE {
     {
         client.files.download(path: path).response { response, error in
             if let error = error {
-                print("Debug: Error downloading file - \(error)")
+                if error.description.contains("sessionDeinitialized") {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.getFile_MGRE(client: client, with: path, completion: completion)
+                    }
+                    return
+                }
                 completion(nil)
             } else if let (_, data) = response {
-                print("Debug: File downloaded successfully, size: \(data.count) bytes")
                 completion(data)
             } else {
-                print("Debug: Unexpected response, no data received")
                 completion(nil)
             }
         }
@@ -429,8 +442,8 @@ private extension DBManager_MGRE {
     }
     
     func serialized_models_MGRE<T: Decodable, U>(_ type: T.Type,
-                                               from data: Data,
-                                               keyPath: KeyPath<T, U?> = \T.self) -> U?
+                                                 from data: Data,
+                                                 keyPath: KeyPath<T, U?> = \T.self) -> U?
     {
         do {
             let decoded = try JSONDecoder().decode(T.self, from: data)
