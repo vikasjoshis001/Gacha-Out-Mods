@@ -49,7 +49,7 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         case top = "isTop"
     }
 
-    var favId: String { id }
+    var favId: String { String (id) }
     var searchText: String? { name }
 
     init?(from entity: ContentEntity) {
@@ -61,8 +61,8 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         else {
             return nil
         }
-
-        id = UUID().uuidString
+        
+        self.id = UUID().uuidString
         self.name = name
         self.image = image
         self.description = description
@@ -75,7 +75,7 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id = UUID().uuidString
+        id = Helper.setIdToFields(decoder: decoder)
         name = try container.decode(String.self, forKey: .name)
         image = try container.decode(String.self, forKey: .image)
         description = try container.decode(String.self, forKey: .description)

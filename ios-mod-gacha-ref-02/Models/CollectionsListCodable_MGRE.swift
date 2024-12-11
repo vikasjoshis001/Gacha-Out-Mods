@@ -66,7 +66,7 @@ struct Collections_MGRE: Codable, Hashable, ModelProtocol_MGRE {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id = UUID().uuidString
+        id = Helper.setIdToFields(decoder: decoder)
         name = try container.decode(String.self, forKey: .name)
         image = try container.decode(String.self, forKey: .image)
         new = try container.decode(Bool.self, forKey: .new)

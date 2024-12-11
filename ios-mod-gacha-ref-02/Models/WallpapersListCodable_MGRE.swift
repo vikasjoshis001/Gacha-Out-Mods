@@ -56,7 +56,8 @@ struct Wallpaper_MGRE: Codable, Hashable, ModelProtocol_MGRE {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
-        id = UUID().uuidString
+        
+        id = Helper.setIdToFields(decoder: decoder)
         new = try container.decode(Bool.self, forKey: .new)
         top = try container.decode(Bool.self, forKey: .top)
         image = try container.decode(String.self, forKey: .image)
