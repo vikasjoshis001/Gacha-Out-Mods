@@ -18,7 +18,6 @@ struct Keys_MGRE {
              wallpapers_mgre = "content/6737731c09cad/content"
     
         
-        
         var contentPath: String {
             .init(format: "/%@.json", rawValue, rawValue)
         }
@@ -29,5 +28,14 @@ struct Keys_MGRE {
              link_MGRE = "https://api.dropboxapi.com/oauth2/token",
              secret_MGRE = "5mqr8urnnba1hyj",
              key_MGRE = "hk15jpjilosy7e8"
+    }
+    
+    enum ImagPath_MGRE {
+        static let editor_mgre = "content/6737730eab005/"
+        static let mods_mgre = "content/6737730ea7e31/"
+        static let outfitIdeas_mgre = "content/673773360eb16/"
+        static let characters_mgre = "content/6737734a3d155/"
+        static let collections_mgre = "content/673773184087f/"
+        static let wallpapers_mgre = "content/6737731c09cad/"
     }
 }

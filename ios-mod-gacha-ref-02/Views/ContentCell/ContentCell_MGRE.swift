@@ -41,7 +41,7 @@ class ContentCell_MGRE: UICollectionViewCell {
         self.update_MGRE = update
         
         imageView_MGRE.contentMode = .scaleAspectFill
-        imageView_MGRE.add_MGRE(image: data.image, for: .collections_mgre)
+        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagPath_MGRE.collections_mgre)\(data.image)", for: .collections_mgre)
     }
     
     func configure_MGRE(with data: Character_MGRE,
@@ -53,6 +53,6 @@ class ContentCell_MGRE: UICollectionViewCell {
         self.update_MGRE = update
         
         imageView_MGRE.contentMode = .scaleAspectFill
-        imageView_MGRE.add_MGRE(image: data.image, for: .wallpapers_mgre)
+        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagPath_MGRE.characters_mgre)\(data.image)", for: .wallpapers_mgre)
     }
 }
