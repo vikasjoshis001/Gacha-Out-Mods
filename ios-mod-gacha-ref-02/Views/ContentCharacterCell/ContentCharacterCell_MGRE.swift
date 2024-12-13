@@ -35,8 +35,8 @@ class ContentCharacterCell_MGRE: UICollectionViewCell {
     }
     
     func configure_MGRE(with model: EditorContentModel_MGRE) {
-        contentImageView_MGRE.add_MGRE(image: model.path.elPath, for: .editor_mgre)
-        UIImageView.uploadPDF_MGRE(image: model.path.pdfPath)
+        contentImageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.editor_mgre)\(model.path.elPath)", for: .editor_mgre)
+        UIImageView.uploadPDF_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.editor_mgre)\(model.path.pdfPath)")
     }
     
     func configure_MGRE(with image: UIImage) {

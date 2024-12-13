@@ -7,22 +7,25 @@
 
 import UIKit
 
+// MARK: - CharacterListViewController_MGRE
+
 class CharacterListViewController_MGRE: UIViewController {
+    // MARK: - Properties
+
+    @IBOutlet private var navigationView_MGRE: NavigationView_MGRE!
+    @IBOutlet var imageView_MGRE: UIImageView!
+    @IBOutlet var leftButton_MGRE: UIButton!
+    @IBOutlet var rightButton_MGRE: UIButton!
+    @IBOutlet var addNewButton_MGRE: UIButton!
+    @IBOutlet var emptyLabel_MGRE: UILabel!
+    @IBOutlet var addNewButtonTopConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet var addNewButtonHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet var leftButtonHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet var rightButtonHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet var rightIndentConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet var leftIndentConstraint_MGRE: NSLayoutConstraint!
     
-    @IBOutlet private weak var navigationView_MGRE: NavigationView_MGRE!
-    @IBOutlet weak var imageView_MGRE: UIImageView!
-    @IBOutlet weak var leftButton_MGRE: UIButton!
-    @IBOutlet weak var rightButton_MGRE: UIButton!
-    @IBOutlet weak var addNewButton_MGRE: UIButton!
-    @IBOutlet weak var emptyLabel_MGRE: UILabel!
-    @IBOutlet weak var addNewButtonTopConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var addNewButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var leftButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var rightButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var rightIndentConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var leftIndentConstraint_MGRE: NSLayoutConstraint!
-    
-    @IBOutlet weak var topConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet var topConstraint_MGRE: NSLayoutConstraint!
     
     private var dropbox_MGRE: DBManager_MGRE { .shared }
     private var editorContentSet_MGRE: EditorContentSet_MGRE?
@@ -30,6 +33,8 @@ class CharacterListViewController_MGRE: UIViewController {
     private var currentPage_MGRE = 0
     
     var toggleMenuAction_MGRE: (() -> Void)?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +48,10 @@ class CharacterListViewController_MGRE: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    
+    // MARK: - Functions
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
@@ -59,7 +66,7 @@ class CharacterListViewController_MGRE: UIViewController {
         leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 32 : 40
         
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        addNewButton_MGRE.titleLabel?.font =  UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        addNewButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
         addNewButtonHeight_MGRE.constant = deviceType == .phone ? 58 : 72
         addNewButton_MGRE.layer.cornerRadius = deviceType == .phone ? 29 : 36
         
@@ -100,12 +107,16 @@ class CharacterListViewController_MGRE: UIViewController {
     
     @IBAction func addNewButtonDidTap_MGRE(_ sender: UIButton) {
         guard let editorContentSet = editorContentSet_MGRE else { return }
-        let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
-        vc.editorContentSet_MGRE = editorContentSet
-        vc.addNewCharAction_MGRE = { [weak self] character in
-            self?.add_MGRE(character: character)
+        showProgressView_MGRE()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            self?.removeProgressView_MGRE()
+            let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
+            vc.editorContentSet_MGRE = editorContentSet
+            vc.addNewCharAction_MGRE = { [weak self] character in
+                self?.add_MGRE(character: character)
+            }
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func add_MGRE(character: CharacterPreview_MGRE) {
@@ -123,9 +134,10 @@ class CharacterListViewController_MGRE: UIViewController {
     private func deleteButtonDidTap_MGRE() {
         guard !characters_MGRE.isEmpty else { return }
         let alertData = AlertData_MGRE(with: "ARE YOU CERTAIN?",
-                                  subtitle: "You want to erase your character?",
-                                  leftBtnText: "NO",
-                                  rightBtnText: "Delete") { [weak self] in
+                                       subtitle: "You want to erase your character?",
+                                       leftBtnText: "NO",
+                                       rightBtnText: "Delete")
+        { [weak self] in
             self?.deleteCharacter_MGRE()
         }
         showAlert_MGRE(with: alertData)
@@ -137,7 +149,7 @@ class CharacterListViewController_MGRE: UIViewController {
         dropbox_MGRE.contentManager.delete_MGRE(character: character)
         characters_MGRE.remove(at: currentPage_MGRE)
         emptyLabel_MGRE.isHidden = !characters_MGRE.isEmpty
-        currentPage_MGRE = characters_MGRE.count > 0 ? characters_MGRE.count - 1 : 0
+        currentPage_MGRE = characters_MGRE.count > 0 ? characters_MGRE.count-1 : 0
         updateCharImageView_MGRE()
     }
     
@@ -184,7 +196,7 @@ extension CharacterListViewController_MGRE {
     func loadStartContent_MGRE() {
         editorContentSet_MGRE?.contentTypes.forEach { [weak self] type in
             if let model = self?.editorContentSet_MGRE?.getModels(for: type)?.first {
-                UIImageView.uploadPDF_MGRE(image: model.path.pdfPath)
+                UIImageView.uploadPDF_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.editor_mgre)\(model.path.pdfPath)")
             }
         }
     }

@@ -316,12 +316,15 @@ extension DBManager_MGRE {
             getFile_MGRE(client: client, with: path) { [unowned self] data in
                 guard let data else { completion(nil); return }
                 
-                let markups = contentManager.serialized_MGRE(markups: data)
-                
-                if markups.isEmpty { completion(nil); return }
-                
                 var modelsSet: [[EditorContentModel_MGRE]] = []
-                for markup in markups {
+                let markups = contentManager.serialized_MGRE(markups: data)
+                guard let markups = markups else {
+                    return
+                }
+                
+                let modified_markups = transformEditorCategories(markups)
+                
+                for markup in modified_markups {
                     let models = markup.list.map {
                         EditorContentModel_MGRE(id: $0.id,
                                                 contentType: markup.tag,
@@ -344,6 +347,44 @@ extension DBManager_MGRE {
             guard let client else { completion(nil); return }
             fetchBlock(client)
         }
+    }
+            
+    func transformEditorCategories(_ categories: EditorCategories) -> [EditorCodableContentList_MGRE] {
+        var result: [EditorCodableContentList_MGRE] = []
+        var order = 1
+        
+        // Use Mirror to reflect all properties
+        let mirror = Mirror(reflecting: categories)
+        
+        // Iterate through all properties
+        for child in mirror.children {
+            // Get the category name (property name)
+            guard let categoryName = child.label,
+                  // Cast the value to dictionary of EditorItems
+                  let items = child.value as? [String: EditorItems]
+            else {
+                continue
+            }
+            
+            let contentList = items.map { id, item in
+                EditorCodableContent_MGRE(
+                    id: id,
+                    path: item.thumbnail,
+                    preview: item.image
+                )
+            }
+            
+            if !contentList.isEmpty {
+                result.append(EditorCodableContentList_MGRE(
+                    tag: categoryName.lowercased(),
+                    order: order,
+                    list: Array(contentList)
+                ))
+                order += 1
+            }
+        }
+        
+        return result
     }
     
     func fetchPDFData_MGRE(with path: String,

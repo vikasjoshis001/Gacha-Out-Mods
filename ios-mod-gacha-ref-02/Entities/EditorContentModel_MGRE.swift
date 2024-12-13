@@ -67,6 +67,12 @@ struct EditorCodableContentList_MGRE: Codable {
         case tag = "scfwe_7f3", order = "dkfrt_2m5", list = "sdc5_3n5"
     }
     
+    init(tag: String, order: Int, list: [EditorCodableContent_MGRE]) {
+            self.tag = tag
+            self.order = String(order)
+            self.list = list
+        }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)
         self.tag = try container.decode(String.self, forKey: .tag)
@@ -86,6 +92,12 @@ struct EditorCodableContent_MGRE: Codable {
     enum CodingKeys_MGRE: String, CodingKey {
         case id = "sdca_123", path = "stu3-qws", preview = "lfjy4_wb64"
     }
+    
+   init(id: String, path: String, preview: String) {
+       self.id = id
+       self.path = path
+       self.preview = preview
+   }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys_MGRE.self)

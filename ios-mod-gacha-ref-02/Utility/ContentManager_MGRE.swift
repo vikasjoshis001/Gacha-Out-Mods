@@ -50,16 +50,16 @@ final class ContentManager_MGRE: NSObject {
         }
     }
     
-    func serialized_MGRE(markups data: Data) -> [EditorCodableContentList_MGRE] {
-        if let jsonObj = jsonObj_MGRE(from: data, with: "dfnsh-sd5"),
-           let markups = try? JSONDecoder().decode([EditorCodableContentList_MGRE].self,
+    func serialized_MGRE(markups data: Data) -> EditorCategories? {
+        if let jsonObj = jsonObj_MGRE(from: data, with: "rvn3a20vig"),
+           let markups = try? JSONDecoder().decode(EditorCategories.self,
                                                    from: jsonObj)
         {
             return markups
         }
-        return []
+        return nil
     }
-    
+
     func fetchContents_MGRE(contentType: ContentType_MGRE) -> [any ModelProtocol_MGRE] {
         let fetchRequest = ContentEntity.fetchRequest()
         fetchRequest.predicate = .init(format: "contentType == %i", contentType.int64_MGRE)
@@ -196,8 +196,8 @@ final class ContentManager_MGRE: NSObject {
                     entity.id = model.id
                     entity.contentType = model.contentType
                     entity.order = model.order
-                    entity.path = model.path.pdfPath
-                    entity.preview = model.path.elPath
+                    entity.path = "\(Keys_MGRE.ImagePath_MGRE.editor_mgre)\(model.path.pdfPath)"
+                    entity.preview = "\(Keys_MGRE.ImagePath_MGRE.editor_mgre)\(model.path.elPath)"
                     entity.sortOrder = String(value.offset)
                 }
             }
