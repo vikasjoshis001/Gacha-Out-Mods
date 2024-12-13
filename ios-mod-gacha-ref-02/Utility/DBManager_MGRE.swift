@@ -208,7 +208,7 @@ extension DBManager_MGRE {
         if let client = client {
             fetchBlock(client)
         } else {
-            connect_MGRE { [weak self] client in
+            connect_MGRE { client in
                 guard let client = client else {
                     completion(nil)
                     return

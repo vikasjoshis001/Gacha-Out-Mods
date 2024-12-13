@@ -54,8 +54,7 @@ struct Character_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         guard
             let name = entity.name,
             let image = entity.image,
-            let description = entity.descr,
-            let filePath = entity.filePath
+            let description = entity.descr
         else {
             return nil
         }

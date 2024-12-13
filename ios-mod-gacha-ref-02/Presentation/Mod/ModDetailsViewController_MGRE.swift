@@ -200,9 +200,9 @@ class ModDetailsViewController_MGRE: UIViewController {
             showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
             return
         }
-        var request: DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?
+//        var request: DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?
         DBManager_MGRE.shared.fetchFile_MGRE(for: .mods_mgre, filePath: filePath) { [weak self] value in
-            request = value
+//            request = value
             self?.showProgressView_MGRE()
         } completion: { [weak self] url in
             if let url = url {

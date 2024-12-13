@@ -173,7 +173,7 @@ class SplashViewController_MGRE: UIViewController {
         var progress: CGFloat = 0.0
         
         timer = Timer.scheduledTimer(withTimeInterval: stepInterval, repeats: true) { [weak self] timer in
-            guard let self = self else { return }
+            guard let _ = self else { return }
             progress += progressIncrement
             progressBar.progress = progress
             
@@ -189,9 +189,16 @@ class SplashViewController_MGRE: UIViewController {
     // MARK: - Navigation
     
     private func navigateToApp() {
-        guard let window = UIApplication.shared.windows.first else { return }
-        window.rootViewController = BaseContainer_MGRE()
-        window.makeKeyAndVisible()
+        let window: UIWindow?
+        if #available(iOS 15.0, *) {
+            window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
+        } else {
+            window = UIApplication.shared.windows.first
+        }
+            
+        guard let mainWindow = window else { return }
+        mainWindow.rootViewController = BaseContainer_MGRE()
+        mainWindow.makeKeyAndVisible()
         onDismiss?()
     }
 }
