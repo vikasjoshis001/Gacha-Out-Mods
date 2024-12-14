@@ -17,8 +17,14 @@ class Alert_MGRE: UIView {
     @IBOutlet private weak var rightIndentConstraint_MGRE: NSLayoutConstraint!
     @IBOutlet private weak var leftIndentConstraint_MGRE: NSLayoutConstraint!
     @IBOutlet private weak var buttonHeight_MGRE: NSLayoutConstraint!
-    
+    @IBOutlet var dialogView: UIView! {
+        didSet {
+            dialogView.backgroundColor = .menubarBackground
+        }
+    }
+
     private var action_MGRE: (()->())?
+    let deviceType = UIDevice.current.userInterfaceIdiom
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,31 +46,43 @@ class Alert_MGRE: UIView {
         super.layoutSubviews()
         var _mgxbb: Int { 0 }
         var _mqwerer2: Bool { true }
-        layer.cornerRadius = 16
+        layer.cornerRadius = deviceType == .phone ? 15.63 : 26.58
         layer.masksToBounds = true
     }
     
     private func configureLayout_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 32
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 32
-        buttonHeight_MGRE.constant = deviceType == .phone ? 34 : 44
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 15 : 25.5
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 17 : 28.9
+        buttonHeight_MGRE.constant = deviceType == .phone ? 37.78 : 64.23
         
-        let titleFontSize: CGFloat = deviceType == .phone ? 22 : 32
+        let titleFontSize: CGFloat = deviceType == .phone ? 30 : 51
         let subtitleFontSize: CGFloat = deviceType == .phone ? 16 : 24
-        let buttonFontSize: CGFloat = deviceType == .phone ? 16 : 24
+        let buttonFontSize: CGFloat = deviceType == .phone ? 20 : 34
         
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
-        subtitleLabel_MGRE.font = UIFont(name: "SF-Pro-Display-Regular", size: subtitleFontSize) ?? UIFont.systemFont(ofSize: subtitleFontSize)
-        leftButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
-        rightButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
-        leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 17 : 22
-        rightButton_MGRE.layer.cornerRadius = deviceType == .phone ? 17 : 22
+        let titleFontLineHeight: CGFloat = deviceType == .phone ? 38.85 : 66.05
+        let buttonFontLineHeight: CGFloat = deviceType == .phone ? 25.9 : 44.03
+        
+        titleLabel_MGRE.setLineHeight(titleFontLineHeight)
+        titleLabel_MGRE.textAlignment = .center
+        
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        subtitleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: subtitleFontSize) ?? UIFont.systemFont(ofSize: subtitleFontSize)
+        leftButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
+        rightButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
+        
+        leftButton_MGRE.titleLabel?.setLineHeight(buttonFontLineHeight)
+        leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 10 : 17
+        
+        rightButton_MGRE.titleLabel?.setLineHeight(buttonFontLineHeight)
+        rightButton_MGRE.layer.cornerRadius = deviceType == .phone ? 10 : 17
     }
     
     func build_MGRE(with data: AlertData_MGRE) {
         leftButton_MGRE.setTitle(data.leftBtnText, for: .normal)
         rightButton_MGRE.setTitle(data.rightBtnText, for: .normal)
+        
+        leftButton_MGRE.titleLabel?.textColor = .black
+        rightButton_MGRE.titleLabel?.textColor = .black
         
         buttonContainer_MGRE.isHidden = false
         

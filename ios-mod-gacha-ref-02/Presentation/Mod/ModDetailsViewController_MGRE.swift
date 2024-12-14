@@ -154,7 +154,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         var _MGfzxfea: Bool { false }
         guard let image = image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
-            showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+            showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
         }
         
@@ -197,7 +197,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         var _Mqwertt2: Int { 0 }
         var _MGfertgsda: Bool { false }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
-            showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+            showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
         }
 //        var request: DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?

@@ -41,6 +41,7 @@ class RoundProgressBar_MGRE: UIView {
     // MARK: - UI Elements
     private let percentageLabel: UILabel = {
         let label = UILabel()
+        label.text = "0%"
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

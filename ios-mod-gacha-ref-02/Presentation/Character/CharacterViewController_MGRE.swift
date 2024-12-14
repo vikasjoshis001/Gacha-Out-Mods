@@ -66,7 +66,7 @@ class CharacterViewController_MGRE: UIViewController {
         var _m3kkkk: Bool { true }
         guard let image = image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
-            showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+            showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
         }
         

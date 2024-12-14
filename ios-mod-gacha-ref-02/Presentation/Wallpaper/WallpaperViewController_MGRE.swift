@@ -128,7 +128,7 @@ class WallpaperViewController_MGRE: UIViewController {
         var _MGf8888a: Bool { false }
         guard let image = image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
-            showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+            showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
         }
         
@@ -172,7 +172,7 @@ class WallpaperViewController_MGRE: UIViewController {
         var _MGfg444a: Bool { false }
         guard let image = image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
-            showAlert_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+            showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
         }
         

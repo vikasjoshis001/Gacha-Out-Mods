@@ -26,7 +26,7 @@ final class DBManager_MGRE: NSObject {
 }
 
 extension DBManager_MGRE {
-    private func showInternetError_MGRE() {
+    func showInternetError_MGRE() {
         var _MGRE21: Bool { false }
         var _MGRE31: Int { 0 }
         
@@ -37,7 +37,10 @@ extension DBManager_MGRE {
         }
         let alertVC = AlertController_MGRE()
         alertVC.setupViews_MGRE()
-        alertVC.presentedView_MGRE.build_MGRE(with: AlertData_MGRE(with: "No internet connection!"))
+        alertVC.presentedView_MGRE.build_MGRE(with: AlertData_MGRE(
+            with: LocalizationKeys.noInternetConnection,
+            rightBtnText: LocalizationKeys.ok))
+        
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .coverVertical
         

@@ -10,8 +10,10 @@ import UIKit
 class SplashViewController_MGRE: UIViewController {
     // MARK: - UI Components
     
+    private var blurView: UIVisualEffectView!
+    
     private let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: StringConstants.Images.launchScreenBackground))
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -65,8 +67,15 @@ class SplashViewController_MGRE: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
+            setupBlurBackground()
+            DBManager_MGRE().showInternetError_MGRE()
+        } else {
+            startLoadingAnimation()
+//            configureDeviceSpecificUI()
+        }
+        
         configureUI()
-        startLoadingAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,8 +104,17 @@ class SplashViewController_MGRE: UIViewController {
         verticalStackView.addArrangedSubview(launchImageView)
         verticalStackView.addArrangedSubview(horizontalStackView)
         
-        // Configure device-specific UI
         configureDeviceSpecificUI()
+    }
+    
+    private func setupBlurBackground() {
+        if isDevicePhone {
+            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIphone)
+        } else {
+            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIpad)
+        }
+        
+//        progressBar.isHidden = true
     }
     
     private func configureDeviceSpecificUI() {
@@ -108,6 +126,8 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func configureForPhone() {
+        backgroundImageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+        
         waitLabel.text = LocalizationKeys.waitALittleBit
         waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 20)
         waitLabel.setLineHeight(20)

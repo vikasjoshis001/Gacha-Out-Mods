@@ -14,6 +14,8 @@ struct StringConstants {
         static let launchScreen = "launchscreen"
         static let launchScreenIpad = "launchscreenIpad"
         static let launchScreenBackground = "launchScreenBgGradient"
+        static let blurBackgroundIphone = "iphoneBlurBackground"
+        static let blurBackgroundIpad = "ipadBlurBackground"
     }
     
     // MARK: - Font

@@ -10,8 +10,12 @@ import Foundation
 /* Store all localizable string constants used in the app */
 class LocalizationKeys {
     
+    // MARK: - Common
+    static var ok: String { return "ok".localized() }
+    
     // MARK: - LaunchScreen
     static var waitALittleBit: String { return "wait_a_little_bit".localized() }
+    static var noInternetConnection: String { return "no_internet_connection".localized() }
     
     // MARK: - MenuBar
     static var wallpapers_MGRE: String { return "wallpapers_MGRE".localized() }

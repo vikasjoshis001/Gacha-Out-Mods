@@ -6,8 +6,12 @@
   
 */
 
+// MARK: - Common
+"ok" = "Ok";
+
 // MARK: - LaunchScreen
 "wait_a_little_bit" = "Wait a little bit...";
+"no_internet_connection" = "No internet connection!";
 
 // MARK: - MenuBar
 "wallpapers_MGRE" = "Wallpapers";
