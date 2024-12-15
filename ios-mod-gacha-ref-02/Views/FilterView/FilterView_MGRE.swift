@@ -16,7 +16,7 @@ class FilterView_MGRE: UIView {
     
     var filters_MGRE: [Filter_MGRE] = []
     
-    var activeFilter_MGRE: Filter_MGRE = .all_mgre
+    var activeFilter_MGRE: Filter_MGRE = .new_mgre
     var filtersAction_MGRE: ((Filter_MGRE) -> Void)?
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,9 +35,9 @@ class FilterView_MGRE: UIView {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        collectionViewHeight_MGRE.constant = deviceType == .phone ? 32 : 44
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 85
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 85
+        collectionViewHeight_MGRE.constant = deviceType == .phone ? 38 : 44
     }
     
     func configureCollectionView_MGRE() {
@@ -71,11 +71,11 @@ extension FilterView_MGRE: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let filter = filters_MGRE[indexPath.item].rawValue
         let deviceType = UIDevice.current.userInterfaceIdiom
-        let fontSize: CGFloat = deviceType == .phone ? 18 : 28
-        let font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        let fontSize: CGFloat = deviceType == .phone ? 16 : 28
+        let font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         let width = UILabel.widthForLabel_MGRE(text: filter, font: font)
-        let height: CGFloat = deviceType == .phone ? 32 : 44
-        let indent: CGFloat = deviceType == .phone ? 24 : 56
+        let height: CGFloat = deviceType == .phone ? 38 : 44
+        let indent: CGFloat = deviceType == .phone ? 0 : 0
         return CGSize(width: width + indent, height: height)
     }
 }

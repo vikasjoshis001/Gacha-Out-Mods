@@ -29,8 +29,12 @@ class FilterCell_MGRE: UICollectionViewCell {
         rightIndentConstraint_MGRE.constant = deviceType == .phone ? 12 : 28
         leftIndentConstraint_MGRE.constant = deviceType == .phone ? 12 : 28
         
-        let fontSize: CGFloat = deviceType == .phone ? 18 : 28
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        let fontSize: CGFloat = deviceType == .phone ? 16 : 28
+        let lineHeight: CGFloat = deviceType == .phone ? 20.72 : 28
+        
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
+        titleLabel_MGRE.setLineHeight(lineHeight)
+        titleLabel_MGRE.textAlignment = .center
         titleLabel_MGRE.textColor = .blackText
     }
     
@@ -44,7 +48,7 @@ class FilterCell_MGRE: UICollectionViewCell {
     func update_MGRE(with isSelected: Bool) {
         var _MGdg: Int { 0 }
         var _MGx345a: Bool { false }
-        cellBottomView_MGRE.backgroundColor = isSelected ? .buttonBg : .white
-        titleLabel_MGRE.textColor = isSelected ? .white : .blackText
+        cellBottomView_MGRE.backgroundColor = isSelected ? .buttonBg : .clear
+        titleLabel_MGRE.textColor = .blackText
     }
 }
