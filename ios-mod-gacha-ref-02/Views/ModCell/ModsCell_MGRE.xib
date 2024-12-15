@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,9 +55,6 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4t-VO-B30">
                                         <rect key="frame" x="0.0" y="24" width="350" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="JUt-Ev-4lR"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                         <color key="textColor" name="greyText"/>
                                         <nil key="highlightedColor"/>
@@ -125,7 +123,8 @@
             <size key="customSize" width="401" height="213"/>
             <connections>
                 <outlet property="buttonsHeight_MGRE" destination="73Z-j2-Yph" id="kpm-Kj-GOG"/>
-                <outlet property="descriptionLabelHeight_MGRE" destination="JUt-Ev-4lR" id="JX7-Co-P7g"/>
+                <outlet property="cardLeadingSpace" destination="nSc-so-J4a" id="2LY-Nx-ZfQ"/>
+                <outlet property="cardTrailingSpace" destination="J6y-kZ-xAe" id="Fjr-H1-bYF"/>
                 <outlet property="descriptionLabel_MGRE" destination="P4t-VO-B30" id="8Be-Z5-oPU"/>
                 <outlet property="favoriteButton_MGRE" destination="qPU-u3-dZD" id="RXI-ed-FIE"/>
                 <outlet property="imageViewHeight_MGRE" destination="Mxr-ks-bUP" id="3zv-MA-8qk"/>
@@ -144,10 +143,10 @@
             <color red="0.96899998188018799" green="0.96100002527236938" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="blackText">
-            <color red="0.16099999845027924" green="0.17599999904632568" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="buttonBg">
-            <color red="1" green="0.59600001573562622" blue="0.23100000619888306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.52156862745098043" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="greyText">
             <color red="0.3059999942779541" green="0.3059999942779541" blue="0.3059999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

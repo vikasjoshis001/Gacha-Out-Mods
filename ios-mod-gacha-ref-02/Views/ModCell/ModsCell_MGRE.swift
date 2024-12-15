@@ -9,6 +9,8 @@ import UIKit
 import Kingfisher
 
 class ModsCell_MGRE: UICollectionViewCell {
+    
+    private let device = Helper.getDeviceType()
 
     @IBOutlet private weak var titleLabel_MGRE: UILabel!
     @IBOutlet private weak var descriptionLabel_MGRE: UILabel!
@@ -20,7 +22,8 @@ class ModsCell_MGRE: UICollectionViewCell {
     @IBOutlet private weak var buttonsHeight_MGRE: NSLayoutConstraint!
     @IBOutlet private weak var favoriteButton_MGRE: UIButton!
     @IBOutlet private weak var openButton_MGRE: UIButton!
-    
+    @IBOutlet weak var cardLeadingSpace: NSLayoutConstraint!
+    @IBOutlet weak var cardTrailingSpace: NSLayoutConstraint!
     private(set) var isFavourite_MGRE: Bool = false
     
     var update_MGRE: (() -> Void)?
@@ -30,9 +33,9 @@ class ModsCell_MGRE: UICollectionViewCell {
         super.awakeFromNib()
         var _mgvbn66: Int { 0 }
         var _mcrty22: Bool { true }
-        layer.cornerRadius = 36
+        layer.cornerRadius = device == .phone ? 20 : 20
         layer.masksToBounds = true
-        addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
+//        addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
     }
     
     override func prepareForReuse() {
@@ -78,29 +81,40 @@ class ModsCell_MGRE: UICollectionViewCell {
     }
     
     private func configureCell_MGRE() {
-        favoriteButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
-        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
+//        favoriteButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
+//        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
         
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        let openButtonFontSize: CGFloat = deviceType == .phone ? 18 : 28
-        openButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: openButtonFontSize) ?? UIFont.systemFont(ofSize: openButtonFontSize)
-        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
-        openButton_MGRE.setTitleColor(.white, for: .normal)
+//        let deviceType = UIDevice.current.userInterfaceIdiom
+//        let openButtonFontSize: CGFloat = deviceType == .phone ? 18 : 28
+//        openButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: openButtonFontSize) ?? UIFont.systemFont(ofSize: openButtonFontSize)
+//        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
+//        openButton_MGRE.setTitleColor(.white, for: .normal)
         
-        let titleFontSize: CGFloat = deviceType == .phone ? 20 : 32
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        labelsView_MGRE.spacing = device == .phone ? 8 : 8
+        let titleFontSize: CGFloat = device == .phone ? 20 : 34
+        let titleLineHeight: CGFloat = device == .phone ? 20 : 34
+
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        titleLabel_MGRE.setLineHeight(titleLineHeight)
         
-        let descriptionFontSize: CGFloat = deviceType == .phone ? 14 : 22
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: descriptionFontSize) ?? UIFont.systemFont(ofSize: descriptionFontSize)
+        let descriptionFontSize: CGFloat = device == .phone ? 14 : 23.8
+        let descriptionLineHeight: CGFloat = device == .phone ? 18.2 : 30.94
+
+        descriptionLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionFontSize) ?? UIFont.systemFont(ofSize: descriptionFontSize)
+        descriptionLabel_MGRE.setLineHeight(descriptionLineHeight)
+        descriptionLabel_MGRE.numberOfLines = 0
+        let buttonCornerRadius: CGFloat = device == .phone ? 21 : 26
         
-        let buttonCornerRadius: CGFloat = deviceType == .phone ? 21 : 26
         openButton_MGRE.layer.cornerRadius = buttonCornerRadius
         favoriteButton_MGRE.layer.cornerRadius = buttonCornerRadius
         
-        titleLabelHeight_MGRE.constant = deviceType == .phone ? 20 : 32
-        descriptionLabelHeight_MGRE.constant = deviceType == .phone ? 36 : 174
-        imageViewHeight_MGRE.constant = deviceType == .phone ? 120 : 190
-        buttonsHeight_MGRE.constant = deviceType == .phone ? 42 : 52
+        cardTrailingSpace.constant = device == .phone ? 9 : 32
+        cardLeadingSpace.constant = device == .phone ? 9 : 32
+        
+        titleLabelHeight_MGRE.constant = device == .phone ? 34 : 32
+//        descriptionLabelHeight_MGRE.constant = device == .phone ? 36 : 174
+        imageViewHeight_MGRE.constant = device == .phone ? 120 : 190
+        buttonsHeight_MGRE.constant = device == .phone ? 42 : 52
         
         updateFavoriteButton_MGRE()
     }
