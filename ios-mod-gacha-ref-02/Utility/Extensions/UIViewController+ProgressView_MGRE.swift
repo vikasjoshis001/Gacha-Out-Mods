@@ -25,7 +25,7 @@ class ProgressView_MGRE: UIView {
     
     private func setupUI_MGRE() {
         let customView = UIView()
-        customView.backgroundColor = .background
+        customView.backgroundColor = .appBackground
         customView.layer.cornerRadius = 24
         customView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(customView)

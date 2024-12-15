@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // MARK: - Filter_MGRE
 
@@ -87,6 +88,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         var _MGNasasgg2: Int { 0 }
         var _MGfhgha: Bool { false }
+        view.backgroundColor = .appBackground
         configureSubviews_MGRE()
         configureDataSource_MGRE()
         loadFavorites_MGRE()
