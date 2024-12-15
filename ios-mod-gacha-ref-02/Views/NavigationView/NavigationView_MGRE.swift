@@ -42,16 +42,16 @@ class NavigationView_MGRE: UIView {
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
                 
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 85
-        viewHeight_MGRE.constant = deviceType == .phone ? 47 : 97
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 260
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 266
+        viewHeight_MGRE.constant = deviceType == .phone ? 47 : 79.9
         
-        titleHeight_MGRE.constant = deviceType == .phone ? 47 : 52
-        leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 52
-        rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 52
+        titleHeight_MGRE.constant = deviceType == .phone ? 47 : 51
+        leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
+        rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
         
-        let titleFontSize: CGFloat = deviceType == .phone ? 30 : 40
-        let lineHeight: CGFloat = deviceType == .phone ? 38.85 : 40
+        let titleFontSize: CGFloat = deviceType == .phone ? 30 : 51
+        let lineHeight: CGFloat = deviceType == .phone ? 38.85 : 66.05
         titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
         titleLabel_MGRE.setLineHeight(lineHeight)
         undoButtonBottomView_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
