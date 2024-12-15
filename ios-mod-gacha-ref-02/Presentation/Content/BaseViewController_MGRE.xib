@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +14,9 @@
                 <outlet property="collectionView_MGRE" destination="FLf-uu-14M" id="mHC-jd-hW7"/>
                 <outlet property="emptyLabel_MGRE" destination="CR8-sb-oY7" id="bwR-G2-R3a"/>
                 <outlet property="filterView_MGRE" destination="ky6-va-hAY" id="HRm-M3-Erv"/>
+                <outlet property="leftIdentationCollectionView" destination="Mwv-9j-gYu" id="WOh-yq-I6R"/>
                 <outlet property="navigationView_MGRE" destination="bVc-QX-JII" id="cML-6A-gyu"/>
+                <outlet property="rightIdentationCollectionView" destination="MmZ-Da-4B4" id="rKb-S9-Okj"/>
                 <outlet property="searchBar_MGRE" destination="78j-28-J4O" id="APM-dK-LOb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

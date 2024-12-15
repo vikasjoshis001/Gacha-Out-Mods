@@ -40,17 +40,17 @@ extension NSCollectionLayoutSection_MGRE {
                                        itemHeight: 278,
                                        columns: 1,
                                        horizontalSpacing: 0,
-                                       verticalSpacing: 8,
+                                       verticalSpacing: 15,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
         case (.mods_mgre, .pad):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
-                                                           horizontalSpacing: 12,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+                                                           horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
                                        itemHeight: 508,
-                                       columns: 2,
-                                       horizontalSpacing: 12,
-                                       verticalSpacing: 12,
+                                       columns: 1,
+                                       horizontalSpacing: 0,
+                                       verticalSpacing: 25.5,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.outfitIdeas_mgre, .phone):
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
@@ -60,58 +60,58 @@ extension NSCollectionLayoutSection_MGRE {
                                        itemHeight: 218,
                                        columns: 1,
                                        horizontalSpacing: 0,
-                                       verticalSpacing: 8,
+                                       verticalSpacing: 15,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
         case (.outfitIdeas_mgre, .pad):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2, 
-                                                           horizontalSpacing: 12,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+                                                           horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth,
                                        itemHeight: 298,
-                                       columns: 2,
-                                       horizontalSpacing: 12,
-                                       verticalSpacing: 12,
+                                       columns: 1,
+                                       horizontalSpacing: 0,
+                                       verticalSpacing: 25.5,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.wallpapers_mgre, .phone):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 3, 
-                                                           horizontalSpacing: 5,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
+                                                           horizontalSpacing: 19,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
                                        itemHeight: itemWidth*1.67,
-                                       columns: 3,
-                                       horizontalSpacing: 5,
-                                       verticalSpacing: 8,
+                                       columns: 2,
+                                       horizontalSpacing: 19,
+                                       verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
         case (.wallpapers_mgre, .pad):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 3,
-                                                           horizontalSpacing: 15,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
+                                                           horizontalSpacing: 32.3,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
                                        itemHeight: itemWidth*1.87,
-                                       columns: 3,
-                                       horizontalSpacing: 15,
-                                       verticalSpacing: 15,
+                                       columns: 2,
+                                       horizontalSpacing: 32.3,
+                                       verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.characters_mgre, .phone), (.collections_mgre, .phone):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2, 
-                                                           horizontalSpacing: 10,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+                                                           horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
                                        itemHeight: itemWidth*0.83,
-                                       columns: 2,
-                                       horizontalSpacing: 10,
-                                       verticalSpacing: 10,
+                                       columns: 1,
+                                       horizontalSpacing: 0,
+                                       verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             
         case (.characters_mgre, .pad), (.collections_mgre, .pad):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 3, 
-                                                           horizontalSpacing: 12.5,
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+                                                           horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
                                        itemHeight: itemWidth*0.76,
-                                       columns: 3,
-                                       horizontalSpacing: 12.5,
-                                       verticalSpacing: 12.5,
+                                       columns: 1,
+                                       horizontalSpacing: 0,
+                                       verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         default:
             fatalError("Unsupported configuration")
@@ -125,9 +125,9 @@ extension NSCollectionLayoutSection_MGRE {
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(config.itemWidth),
                                               heightDimension: .absolute(totalItemHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: config.verticalSpacing / 2,
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                      leading: config.horizontalSpacing / 2,
-                                                     bottom: config.verticalSpacing / 2,
+                                                     bottom: config.verticalSpacing,
                                                      trailing: config.horizontalSpacing / 2)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

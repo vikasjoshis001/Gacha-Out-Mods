@@ -59,6 +59,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     @IBOutlet private weak var navigationView_MGRE: NavigationView_MGRE!
     @IBOutlet private weak var searchBar_MGRE: SearchBar_MGRE!
     @IBOutlet private weak var filterView_MGRE: FilterView_MGRE!
+    @IBOutlet weak var rightIdentationCollectionView: NSLayoutConstraint!
+    @IBOutlet weak var leftIdentationCollectionView: NSLayoutConstraint!
     
     private var dropbox_MGRE: DBManager_MGRE { .shared }
     private var dataSource_MGRE: DataSource_MGRE?
@@ -191,9 +193,24 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     }
     
     func configureCollectionView_MGRE() {
+        let deviceType = UIDevice.current.userInterfaceIdiom
+
+        var rightConstraint: CGFloat = deviceType == .phone ? 0 : 175
+        var leftConstraint: CGFloat = deviceType == .phone ? 0 : 175
+    
+        if modelType_MGRE == .mods_mgre || modelType_MGRE == .outfitIdeas_mgre {
+            rightConstraint += 20
+            leftConstraint += 20
+        } else {
+            rightConstraint += 0
+            leftConstraint += 0
+        }
+        
+        rightIdentationCollectionView.constant = rightConstraint
+        leftIdentationCollectionView.constant = leftConstraint
+        
         collectionView_MGRE.keyboardDismissMode = .interactive
         collectionView_MGRE.collectionViewLayout = UICollectionViewCompositionalLayout(section: generateSectionLayout_MGRE())
-        collectionView_MGRE.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 30, right: 0)
         collectionView_MGRE.registerAllNibs_MGRE()
         collectionView_MGRE.delegate = self
     }
