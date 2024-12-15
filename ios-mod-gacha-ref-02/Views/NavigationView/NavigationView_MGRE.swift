@@ -41,18 +41,19 @@ class NavigationView_MGRE: UIView {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        viewHeight_MGRE.constant = deviceType == .phone ? 58 : 97
+                
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 85
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 85
+        viewHeight_MGRE.constant = deviceType == .phone ? 47 : 97
         
-        titleHeight_MGRE.constant = deviceType == .phone ? 42 : 52
-        leftButtonHeight_MGRE.constant = deviceType == .phone ? 42 : 52
-        rightButtonHeight_MGRE.constant = deviceType == .phone ? 42 : 52
+        titleHeight_MGRE.constant = deviceType == .phone ? 47 : 52
+        leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 52
+        rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 52
         
-        let titleFontSize: CGFloat = deviceType == .phone ? 22 : 40
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
-        leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
-        rightButton_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
+        let titleFontSize: CGFloat = deviceType == .phone ? 30 : 40
+        let lineHeight: CGFloat = deviceType == .phone ? 38.85 : 40
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        titleLabel_MGRE.setLineHeight(lineHeight)
         undoButtonBottomView_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
         
         let fontSize: CGFloat = deviceType == .phone ? 18 : 24
@@ -60,18 +61,15 @@ class NavigationView_MGRE: UIView {
         undoButton_MGRE.titleLabel?.font = font
         let width = UILabel.widthForLabel(text: "Reset changes", font: font)
         undoButtonWidth_MGRE.constant = width
-        
-        leftButton_MGRE.addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
-        rightButton_MGRE.addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
+
         undoButtonBottomView_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
         
-        titleView_MGRE.customizeView_MGRE(with: deviceType == .phone ? 21 : 26)
-        titleView_MGRE.addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
+        titleView_MGRE.customizeView_MGRE(with: deviceType == .phone ? 0 : 0)
     }
     
     func build_MGRE(with title: String,
-                    leftIcon: UIImage? = UIImage(.menuIcon),
-                    rightIcon: UIImage? = UIImage(.searchIcon), 
+                    leftIcon: UIImage? = UIImage(named: StringConstants.Images.menu),
+                    rightIcon: UIImage? = UIImage(named: StringConstants.Images.search),
                     isEditor: Bool = false) {
         titleLabel_MGRE.text = title
         titleLabel_MGRE.textColor = .blackText
@@ -83,6 +81,10 @@ class NavigationView_MGRE: UIView {
         if title.isEmpty {
             titleView_MGRE.isHidden = true
         }
+        
+        titleView_MGRE.backgroundColor = .clear
+        leftButton_MGRE.backgroundColor = .clear
+        rightButton_MGRE.backgroundColor = .clear
         
         if let leftIcon = leftIcon {
             leftButton_MGRE.isHidden = false

@@ -11,11 +11,17 @@ import Foundation
 struct StringConstants {
     // MARK: - Images
     struct Images {
+        
+        // Images
         static let launchScreen = "launchscreen"
         static let launchScreenIpad = "launchscreenIpad"
         static let launchScreenBackground = "launchScreenBgGradient"
         static let blurBackgroundIphone = "iphoneBlurBackground"
         static let blurBackgroundIpad = "ipadBlurBackground"
+        
+        // Icons
+        static let menu = "menu"
+        static let search = "search"
     }
     
     // MARK: - Font
