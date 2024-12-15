@@ -29,8 +29,8 @@ class FilterCell_MGRE: UICollectionViewCell {
         rightIndentConstraint_MGRE.constant = deviceType == .phone ? 12 : 28
         leftIndentConstraint_MGRE.constant = deviceType == .phone ? 12 : 28
         
-        let fontSize: CGFloat = deviceType == .phone ? 16 : 28
-        let lineHeight: CGFloat = deviceType == .phone ? 20.72 : 28
+        let fontSize: CGFloat = deviceType == .phone ? 16 : 27.2
+        let lineHeight: CGFloat = deviceType == .phone ? 20.72 : 35.22
         
         titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         titleLabel_MGRE.setLineHeight(lineHeight)

@@ -35,9 +35,9 @@ class FilterView_MGRE: UIView {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 85
-        collectionViewHeight_MGRE.constant = deviceType == .phone ? 38 : 44
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 237
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 237
+        collectionViewHeight_MGRE.constant = deviceType == .phone ? 38 : 64.6
     }
     
     func configureCollectionView_MGRE() {
@@ -71,10 +71,10 @@ extension FilterView_MGRE: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let filter = filters_MGRE[indexPath.item].rawValue
         let deviceType = UIDevice.current.userInterfaceIdiom
-        let fontSize: CGFloat = deviceType == .phone ? 16 : 28
+        let fontSize: CGFloat = deviceType == .phone ? 16 : 27.2
         let font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         let width = UILabel.widthForLabel_MGRE(text: filter, font: font)
-        let height: CGFloat = deviceType == .phone ? 38 : 44
+        let height: CGFloat = deviceType == .phone ? 38 : 64.6
         let indent: CGFloat = deviceType == .phone ? 0 : 0
         return CGSize(width: width + indent, height: height)
     }
