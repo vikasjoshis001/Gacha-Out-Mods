@@ -14,7 +14,7 @@ extension UICollectionView_MGRE {
         registerNib_MGRE(for: ContentCell_MGRE.self)
         registerNib_MGRE(for: WallpaperCell_MGRE.self)
         registerNib_MGRE(for: ModsCell_MGRE.self)
-        registerNib_MGRE(for: ModsCellNew.self)
+        registerNib_MGRE(for: ModsCell_MGRE.self)
     }
     
     func registerNib_MGRE(for cellClass: UICollectionViewCell.Type?) {

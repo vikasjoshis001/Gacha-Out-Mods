@@ -38,7 +38,7 @@ extension Mods_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
         
-        if let cell = cell as? ModsCellNew {
+        if let cell = cell as? ModsCell_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
     }
@@ -80,7 +80,7 @@ extension OutfitIdea_MGRE {
     {
         var _xcxvt66: Int { 0 }
         var _mc1222: Bool { true }
-        if let cell = cell as? ModsCellNew {
+        if let cell = cell as? ModsCell_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
     }

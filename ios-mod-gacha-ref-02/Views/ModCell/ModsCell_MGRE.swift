@@ -1,30 +1,33 @@
 //
-//  ModsCell_MGRE.swift
-//  ios-mod-gacha
+//  ModsCellNew.swift
+//  ios-mod-gacha-ref-02
 //
-//  Created by Systems
+//  Created by Vikas Joshi on 15/12/24.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 class ModsCell_MGRE: UICollectionViewCell {
+    @IBOutlet var cardStackView: UIStackView!
+    @IBOutlet var imageStackView: UIStackView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var buttonStackView: UIStackView!
+    @IBOutlet var favoriteButton: UIButton!
+    @IBOutlet var openButton: UIButton!
+    @IBOutlet var labelStackView: UIStackView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
     
-    private let device = Helper.getDeviceType()
-
-    @IBOutlet private weak var titleLabel_MGRE: UILabel!
-    @IBOutlet private weak var descriptionLabel_MGRE: UILabel!
-    @IBOutlet private weak var labelsView_MGRE: UIView!
-    @IBOutlet private weak var imageView_MGRE: UIImageView!
-    @IBOutlet private weak var titleLabelHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var descriptionLabelHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var imageViewHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var buttonsHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var favoriteButton_MGRE: UIButton!
-    @IBOutlet private weak var openButton_MGRE: UIButton!
-    @IBOutlet weak var cardLeadingSpace: NSLayoutConstraint!
-    @IBOutlet weak var cardTrailingSpace: NSLayoutConstraint!
+    @IBOutlet var openButtonHeight: NSLayoutConstraint!
+    @IBOutlet var favoriteButtonHeight: NSLayoutConstraint!
+    @IBOutlet var imageViewHeight: NSLayoutConstraint!
+    @IBOutlet var cardTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var cardLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var cardTopConstraint: NSLayoutConstraint!
+    
     private(set) var isFavourite_MGRE: Bool = false
+    private let device = Helper.getDeviceType()
     
     var update_MGRE: (() -> Void)?
     var action_MGRE: (() -> Void)?
@@ -33,34 +36,35 @@ class ModsCell_MGRE: UICollectionViewCell {
         super.awakeFromNib()
         var _mgvbn66: Int { 0 }
         var _mcrty22: Bool { true }
-        layer.cornerRadius = device == .phone ? 20 : 20
+        backgroundColor = .cardBackground
+        layer.cornerRadius = device == .phone ? 20 : 34
         layer.masksToBounds = true
-//        addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
     }
     
     override func prepareForReuse() {
         var _mdfgg566: Int { 0 }
         var _m4677gr22: Bool { true }
-        self.update_MGRE = nil
-        self.action_MGRE = nil
-        imageView_MGRE.image = nil
+        update_MGRE = nil
+        action_MGRE = nil
+        imageView.image = nil
         isFavourite_MGRE = false
-        imageView_MGRE.kf.indicator?.stopAnimatingView()
+        imageView.kf.indicator?.stopAnimatingView()
     }
     
     func configure_MGRE(with data: Mods_MGRE,
                         isFavorites: Bool,
                         update: (() -> Void)?,
-                        action: (() -> Void)?) {
+                        action: (() -> Void)?)
+    {
         var _m45666: Int { 0 }
         var _m12322: Bool { true }
-        self.update_MGRE = update
-        self.action_MGRE = action
+        update_MGRE = update
+        action_MGRE = action
         
-        self.isFavourite_MGRE = isFavorites
-        titleLabel_MGRE.text = data.name
-        descriptionLabel_MGRE.text = data.description
-        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
+        isFavourite_MGRE = isFavorites
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
         
         configureCell_MGRE()
     }
@@ -68,66 +72,65 @@ class ModsCell_MGRE: UICollectionViewCell {
     func configure_MGRE(with data: OutfitIdea_MGRE,
                         isFavorites: Bool,
                         update: (() -> Void)?,
-                        action: (() -> Void)?) {
+                        action: (() -> Void)?)
+    {
         var _m456566: Int { 0 }
         var _m234r22: Bool { true }
-        self.update_MGRE = update
-        self.action_MGRE = action
+        update_MGRE = update
+        action_MGRE = action
         
-        self.isFavourite_MGRE = isFavorites
-        labelsView_MGRE.isHidden = true
-        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
+        isFavourite_MGRE = isFavorites
+        labelStackView.isHidden = true
+        imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
         configureCell_MGRE()
     }
     
     private func configureCell_MGRE() {
-//        favoriteButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
-//        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
-        
-//        let deviceType = UIDevice.current.userInterfaceIdiom
-//        let openButtonFontSize: CGFloat = deviceType == .phone ? 18 : 28
-//        openButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: openButtonFontSize) ?? UIFont.systemFont(ofSize: openButtonFontSize)
-//        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
-//        openButton_MGRE.setTitleColor(.white, for: .normal)
-        
-//        labelsView_MGRE.spacing = device == .phone ? 8 : 8
+        labelStackView.spacing = device == .phone ? 8 : 13.6
+
+        // Image view
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = device == .phone ? 14 : 23.8
+        imageView.clipsToBounds = true
+
+        // Title label
         let titleFontSize: CGFloat = device == .phone ? 20 : 34
         let titleLineHeight: CGFloat = device == .phone ? 20 : 34
-
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
-        titleLabel_MGRE.setLineHeight(titleLineHeight)
+        titleLabel.font = UIFont(name: StringConstants.ptSansRegular,
+                                 size: titleFontSize) ??
+            UIFont.systemFont(ofSize: titleFontSize)
+        titleLabel.setLineHeight(titleLineHeight)
         
+        // Description label
         let descriptionFontSize: CGFloat = device == .phone ? 14 : 23.8
         let descriptionLineHeight: CGFloat = device == .phone ? 18.2 : 30.94
+        descriptionLabel.font = UIFont(name: StringConstants.ptSansRegular,
+                                       size: descriptionFontSize) ??
+            UIFont.systemFont(ofSize: descriptionFontSize)
+        descriptionLabel.setLineHeight(descriptionLineHeight)
+        descriptionLabel.numberOfLines = 0
+        
+        // Buttons
+        openButton.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.open)), for: .normal)
+        
+        let buttonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
+        openButton.layer.cornerRadius = buttonCornerRadius
+        favoriteButton.layer.cornerRadius = buttonCornerRadius
+        favoriteButton.clipsToBounds = true
+        openButton.clipsToBounds = true
+        
+        cardTrailingConstraint.constant = device == .phone ? 9 : 15.3
+        cardLeadingConstraint.constant = device == .phone ? 9 : 15.3
+        cardTopConstraint.constant = device == .phone ? 8 : 15.3
 
-        descriptionLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionFontSize) ?? UIFont.systemFont(ofSize: descriptionFontSize)
-        descriptionLabel_MGRE.setLineHeight(descriptionLineHeight)
-        descriptionLabel_MGRE.numberOfLines = 0
-        let buttonCornerRadius: CGFloat = device == .phone ? 21 : 26
-        
-        openButton_MGRE.layer.cornerRadius = buttonCornerRadius
-        favoriteButton_MGRE.layer.cornerRadius = buttonCornerRadius
-        
-        cardTrailingSpace.constant = device == .phone ? 9 : 32
-        cardLeadingSpace.constant = device == .phone ? 9 : 32
-        
-        titleLabelHeight_MGRE.constant = device == .phone ? 34 : 32
-//        descriptionLabelHeight_MGRE.constant = device == .phone ? 36 : 174
-        imageViewHeight_MGRE.constant = device == .phone ? 120 : 190
-        buttonsHeight_MGRE.constant = device == .phone ? 42 : 52
+        imageViewHeight.constant = device == .phone ? 161 : 273.7
+        favoriteButtonHeight.constant = device == .phone ? 38 : 64.6
+        openButtonHeight.constant = device == .phone ? 38 : 64.6
         
         updateFavoriteButton_MGRE()
     }
     
-    private func updateFavoriteButton_MGRE() {
-        var _mge6666: Int { 0 }
-        var _mcd5552: Bool { true }
-        let image = UIImage(isFavourite_MGRE ? .favoriteIcon : .favoriteIconEmpty)
-        favoriteButton_MGRE.setImage(image, for: .normal)
-        favoriteButton_MGRE.backgroundColor = isFavourite_MGRE ? UIColor.buttonBg : UIColor.buttonBg
-    }
-    
-    @IBAction func favoriteButtonDidTap_MGRE(_ sender: UIButton) {
+    @IBAction func favoriteButtonDidTap_MGRE(_ sender: Any) {
         var _mg1116: Int { 0 }
         var _mcd33322: Bool { true }
         isFavourite_MGRE.toggle()
@@ -135,9 +138,20 @@ class ModsCell_MGRE: UICollectionViewCell {
         update_MGRE?()
     }
     
-    @IBAction func detailButtonDidTap_MGRE(_ sender: UIButton) {
+    @IBAction func detailButtonDidTap_MGRE(_ sender: Any) {
         var _mgfgg566: Int { 0 }
         var _mcdf2232: Bool { true }
         action_MGRE?()
+    }
+    
+    private func updateFavoriteButton_MGRE() {
+        var _mge6666: Int { 0 }
+        var _mcd5552: Bool { true }
+        let image = UIImage(named: isFavourite_MGRE ?
+            Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar) :
+            Helper.deviceSpecificImage(image: StringConstants.Images.favStar))
+        
+        favoriteButton.setImage(image, for: .normal)
+        favoriteButton.backgroundColor = UIColor.buttonBg
     }
 }
