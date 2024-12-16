@@ -132,6 +132,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         }
         navigationView_MGRE.rightButtonAction_MGRE = { [weak self] in
             self?.searchBar_MGRE.isHidden = false
+            self?.navigationView_MGRE.isHidden = true
             self?.searchBar_MGRE.searchTextField_MGRE.becomeFirstResponder()
         }
     }
@@ -186,6 +187,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         searchBar_MGRE.dismiss_MGRE = { [weak self] in
             guard let self else { return }
             self.searchBar_MGRE.isHidden = true
+            self.navigationView_MGRE.isHidden = false
             self.searchText_MGRE = nil
             self.applyFilters_MGRE()
             self.applySnapshot_MGRE(for: self.modelType_MGRE)

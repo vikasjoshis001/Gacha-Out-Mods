@@ -19,6 +19,11 @@ class SearchBar_MGRE: UIView {
     @IBOutlet private weak var resultViewHeight_MGRE: NSLayoutConstraint!
     @IBOutlet private weak var rightIndentConstraint_MGRE: NSLayoutConstraint!
     @IBOutlet private weak var leftIndentConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet weak var searchIconHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchIconImageView: UIImageView!
+    @IBOutlet weak var searchIconLeadingConstraint: NSLayoutConstraint!
+    
+    private let device = Helper.getDeviceType()
     
     var textDidChange_MGRE: ((String?) -> Void)?
     var results_MGRE: [String] = []
@@ -37,25 +42,35 @@ class SearchBar_MGRE: UIView {
     }
     
     private func setupViews_MGRE() {
-        searchView_MGRE.addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
         resultView_MGRE.addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
         
         searchTextField_MGRE.addTarget(self, action: #selector(textFieldDidChange_MGRE), for: .editingChanged)
+        searchView_MGRE.layer.borderWidth = device == .phone ? 1 : 1.7
+        searchView_MGRE.layer.borderColor = UIColor.black.cgColor
         configureLayout_MGRE()
         configureTableView_MGRE()
     }
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        let fontSize: CGFloat = deviceType == .phone ? 22 : 28
-        searchTextField_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 33 : 180
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 32 : 180
+        searchIconLeadingConstraint.constant = deviceType == .phone ? 4 : 6.8
+        
+        let fontSize: CGFloat = deviceType == .phone ? 14 : 23.8
+        let lineHeight: CGFloat = deviceType == .phone ? 18.2 : 30.94
+        searchTextField_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        searchTextField_MGRE.setLineHeight(lineHeight)
+        
+        searchIconImageView.image = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.search))
+        searchIconHeightConstraint.constant = deviceType == .phone ? 20 : 34
+        
         bottomViewHeight_MGRE.constant = deviceType == .phone ? 58 : 97
-        searchViewHeight_MGRE.constant = deviceType == .phone ? 45 : 62
+        searchViewHeight_MGRE.constant = deviceType == .phone ? 25 : 42.5
+        searchView_MGRE.layer.cornerRadius = deviceType == .phone ? 12.5 : 21.3
+
         resultView_MGRE.layer.cornerRadius = 18
         resultView_MGRE.layer.masksToBounds = true
-        searchView_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 29
         resultViewHeight_MGRE.constant = 0
     }
     
