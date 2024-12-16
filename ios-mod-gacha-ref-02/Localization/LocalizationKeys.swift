@@ -13,7 +13,8 @@ class LocalizationKeys {
     // MARK: - Common
     static var ok: String { return "ok".localized() }
     static var download: String { return "download".localized() }
-    
+    static var open: String { return "open".localized() }
+
     // MARK: - LaunchScreen
     static var waitALittleBit: String { return "wait_a_little_bit".localized() }
     static var noInternetConnection: String { return "no_internet_connection".localized() }

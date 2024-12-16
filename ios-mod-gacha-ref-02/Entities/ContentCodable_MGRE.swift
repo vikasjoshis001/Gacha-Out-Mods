@@ -37,8 +37,18 @@ extension Mods_MGRE {
         if let cell = cell as? ModsCell_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
-        
-        if let cell = cell as? ModsCell_MGRE {
+    }
+}
+
+extension OutfitIdea_MGRE {
+    func configureCell_MGRE(_ cell: UICollectionViewCell,
+                            isFavorites: Bool,
+                            update: (() -> Void)?,
+                            action: (() -> Void)?)
+    {
+        var _m2344t66: Int { 0 }
+        var _mc566r22: Bool { true }
+        if let cell = cell as? OutfitIdeasCell_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
     }
@@ -68,20 +78,6 @@ extension Character_MGRE {
         var _m678r22: Bool { true }
         if let cell = cell as? ContentCell_MGRE {
             cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update)
-        }
-    }
-}
-
-extension OutfitIdea_MGRE {
-    func configureCell_MGRE(_ cell: UICollectionViewCell,
-                            isFavorites: Bool,
-                            update: (() -> Void)?,
-                            action: (() -> Void)?)
-    {
-        var _xcxvt66: Int { 0 }
-        var _mc1222: Bool { true }
-        if let cell = cell as? ModsCell_MGRE {
-            cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
         }
     }
 }

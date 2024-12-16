@@ -14,12 +14,20 @@ extension UICollectionView_MGRE {
         registerNib_MGRE(for: ContentCell_MGRE.self)
         registerNib_MGRE(for: WallpaperCell_MGRE.self)
         registerNib_MGRE(for: ModsCell_MGRE.self)
-        registerNib_MGRE(for: ModsCell_MGRE.self)
+    }
+    
+    func registerWithoutXib_MGRE() {
+        registerNibWithoutXib_MGRE(for: OutfitIdeasCell_MGRE.self)
     }
     
     func registerNib_MGRE(for cellClass: UICollectionViewCell.Type?) {
         guard let cellClass = cellClass else { return }
         register(cellClass.nib_MGRE, forCellWithReuseIdentifier: String(describing: cellClass))
+    }
+    
+    func registerNibWithoutXib_MGRE(for cellClass: UICollectionViewCell.Type?) {
+        guard let cellClass = cellClass else { return }
+        register(cellClass.self, forCellWithReuseIdentifier: String(describing: cellClass))
     }
     
     func registerClass_MGRE(for cellClass: UICollectionViewCell.Type?) {

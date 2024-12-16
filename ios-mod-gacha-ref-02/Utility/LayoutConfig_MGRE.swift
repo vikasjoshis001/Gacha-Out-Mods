@@ -67,7 +67,7 @@ extension NSCollectionLayoutSection_MGRE {
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth,
-                                       itemHeight: 298,
+                                       itemHeight: 350,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 25.5,

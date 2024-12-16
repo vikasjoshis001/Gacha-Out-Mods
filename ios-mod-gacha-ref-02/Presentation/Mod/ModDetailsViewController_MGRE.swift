@@ -87,11 +87,23 @@ class ModDetailsViewController_MGRE: UIViewController {
         setupViews()
         configureSubviews_MGRE()
     }
+    
+    private func getImageContainerHeight() -> CGFloat {
+        guard let modelType = modelType_MGRE else { return 0 }
+        switch modelType {
+            case .mods_mgre:
+                return device == .phone ? 276 : 469
+            case .outfitIdeas_mgre:
+                return device == .phone ? 444 : 754.8
+            default:
+                return device == .phone ? 276 : 469
+        }
+    }
         
     private func setupViews() {
         // config
         let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 29 : 180
-        let imageContainerHeight: CGFloat = device == .phone ? 276 : 469
+        let imageContainerHeight: CGFloat = getImageContainerHeight()
         let favButtonTrailingAnchor: CGFloat = device == .phone ? 5 : 8.5
         let favButtonHeight: CGFloat = device == .phone ? 38 : 64.6
 
@@ -187,19 +199,16 @@ class ModDetailsViewController_MGRE: UIViewController {
                 navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.text = model.name
             descriptionLabel.text = model.description
-            let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.image)", for: .mods_mgre)
         case .outfitIdeas_mgre(let model):
             navigationView_MGRE.build_MGRE(with: "Outfit idea", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.isHidden = true
             descriptionLabel.isHidden = true
-            let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(model.image)", for: .outfitIdeas_mgre)
         case .characters_mgre(let model):
             navigationView_MGRE.build_MGRE(with: "Character", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.isHidden = true
             descriptionLabel.isHidden = true
-            let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.characters_mgre)\(model.image)", for: .characters_mgre)
         }
         updateFavoriteButton_MGRE()

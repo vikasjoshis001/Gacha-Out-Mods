@@ -17,6 +17,7 @@
 		C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */; };
 		C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83EB4ED2D01A1B100A84447 /* Helper.swift */; };
 		C85FB4592D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FB4582D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift */; };
+		C85FB45C2D10351D00FD9910 /* OutfitIdeasCell_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FB45B2D10351D00FD9910 /* OutfitIdeasCell_MGRE.swift */; };
 		C865E40F2D0A290000BD1118 /* EditorContents_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */; };
 		C86A81C52D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */; };
 		C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */; };
@@ -133,6 +134,7 @@
 		C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBar_MGRE.swift; sourceTree = "<group>"; };
 		C83EB4ED2D01A1B100A84447 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		C85FB4582D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetailsViewController_MGRE.swift; sourceTree = "<group>"; };
+		C85FB45B2D10351D00FD9910 /* OutfitIdeasCell_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitIdeasCell_MGRE.swift; sourceTree = "<group>"; };
 		C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContents_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersListCodable_MGRE.swift; sourceTree = "<group>"; };
@@ -252,6 +254,14 @@
 				C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */,
 			);
 			path = RoundProgressBar;
+			sourceTree = "<group>";
+		};
+		C85FB45A2D1034D200FD9910 /* OutfitIdeaCell */ = {
+			isa = PBXGroup;
+			children = (
+				C85FB45B2D10351D00FD9910 /* OutfitIdeasCell_MGRE.swift */,
+			);
+			path = OutfitIdeaCell;
 			sourceTree = "<group>";
 		};
 		C86A81C32D08AE0A004B3AC3 /* Models */ = {
@@ -508,6 +518,7 @@
 				FE94C3B52AF831F500B9B5C4 /* ContentCell */,
 				FE94C3B42AF831EA00B9B5C4 /* WallpaperCell */,
 				FE94C3B32AF831DB00B9B5C4 /* ModCell */,
+				C85FB45A2D1034D200FD9910 /* OutfitIdeaCell */,
 				FE94C3B22AF831BF00B9B5C4 /* MenuCell */,
 			);
 			path = Views;
@@ -729,6 +740,7 @@
 				FE94C3C72AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift in Sources */,
 				FEBB861F2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift in Sources */,
 				FE9554EB2B014315000DFF12 /* ContentCharacterCell_MGRE.swift in Sources */,
+				C85FB45C2D10351D00FD9910 /* OutfitIdeasCell_MGRE.swift in Sources */,
 				FEBB861C2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift in Sources */,
 				C837ABEF2D00A8020079F5A9 /* String+Extension_MGRE.swift in Sources */,
 				FE4C8F912B0254C2000E3DD1 /* DropDownCell_MGRE.swift in Sources */,

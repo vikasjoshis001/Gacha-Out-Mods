@@ -120,7 +120,6 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func configureNavigationView_MGRE() {
         if modelType_MGRE == .wallpapers_mgre ||
             modelType_MGRE == .collections_mgre ||
-            modelType_MGRE == .outfitIdeas_mgre ||
             modelType_MGRE == .characters_mgre
         {
             navigationView_MGRE.build_MGRE(with: navTitle_MGRE, rightIcon: nil)
@@ -216,6 +215,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         collectionView_MGRE.keyboardDismissMode = .interactive
         collectionView_MGRE.collectionViewLayout = UICollectionViewCompositionalLayout(section: generateSectionLayout_MGRE())
         collectionView_MGRE.registerAllNibs_MGRE()
+        collectionView_MGRE.registerWithoutXib_MGRE()
         collectionView_MGRE.delegate = self
     }
     
