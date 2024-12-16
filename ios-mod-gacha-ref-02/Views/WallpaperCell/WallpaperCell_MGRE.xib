@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,23 +18,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="111" height="186"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2j-5i-f6h">
-                        <rect key="frame" x="0.0" y="0.0" width="111" height="186"/>
-                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="a7R-Px-5Lh">
+                        <rect key="frame" x="8" y="8" width="95" height="170"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2j-5i-f6h">
+                                <rect key="frame" x="0.0" y="0.0" width="95" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="357" id="VFd-Q4-8vp"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="background_GM"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="C2j-5i-f6h" secondAttribute="trailing" id="0Je-a3-CVc"/>
-                <constraint firstItem="C2j-5i-f6h" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="c5p-HX-sJW"/>
-                <constraint firstItem="C2j-5i-f6h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tow-Rk-jac"/>
-                <constraint firstAttribute="bottom" secondItem="C2j-5i-f6h" secondAttribute="bottom" id="twW-Bn-6lu"/>
+                <constraint firstItem="a7R-Px-5Lh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="4bs-UW-TWz"/>
+                <constraint firstAttribute="bottom" secondItem="a7R-Px-5Lh" secondAttribute="bottom" constant="8" id="L9k-WQ-4ZW"/>
+                <constraint firstItem="a7R-Px-5Lh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="dIi-KA-ecJ"/>
+                <constraint firstAttribute="trailing" secondItem="a7R-Px-5Lh" secondAttribute="trailing" constant="8" id="zma-Ts-N6t"/>
             </constraints>
             <connections>
+                <outlet property="imageViewBottomConstraint" destination="L9k-WQ-4ZW" id="syi-6N-6BU"/>
+                <outlet property="imageViewLeadingConstraint" destination="4bs-UW-TWz" id="Q7S-n1-YYk"/>
+                <outlet property="imageViewTopConstraint" destination="dIi-KA-ecJ" id="puR-Xp-QJU"/>
+                <outlet property="imageViewTrailingConstraint" destination="zma-Ts-N6t" id="5xW-J3-vpQ"/>
                 <outlet property="imageView_MGRE" destination="C2j-5i-f6h" id="cAx-Mw-4si"/>
             </connections>
-            <point key="canvasLocation" x="107.63358778625954" y="19.718309859154932"/>
+            <point key="canvasLocation" x="-175" y="-89"/>
         </collectionViewCell>
     </objects>
     <resources>
