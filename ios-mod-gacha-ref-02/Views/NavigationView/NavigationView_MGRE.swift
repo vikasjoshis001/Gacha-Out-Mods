@@ -43,9 +43,9 @@ class NavigationView_MGRE: UIView {
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
                 
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 180
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 180
-        viewHeight_MGRE.constant = deviceType == .phone ? 47 : 79.9
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 180
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 180
+        viewHeight_MGRE.constant = deviceType == .phone ? 47 : 80
         
         titleHeight_MGRE.constant = deviceType == .phone ? 47 : 80
         leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 80
@@ -61,7 +61,7 @@ class NavigationView_MGRE: UIView {
         undoButtonBottomView_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
         
         let fontSize: CGFloat = deviceType == .phone ? 18 : 24
-        let font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        let font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         undoButton_MGRE.titleLabel?.font = font
         let width = UILabel.widthForLabel(text: "Reset changes", font: font)
         undoButtonWidth_MGRE.constant = width

@@ -66,12 +66,12 @@ class CharacterListViewController_MGRE: UIViewController {
         leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 32 : 40
         
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        addNewButton_MGRE.titleLabel?.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        addNewButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         addNewButtonHeight_MGRE.constant = deviceType == .phone ? 58 : 72
         addNewButton_MGRE.layer.cornerRadius = deviceType == .phone ? 29 : 36
         
         let emptyLabelFontSize: CGFloat = deviceType == .phone ? 24 : 32
-        emptyLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: emptyLabelFontSize)!
+        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)!
         emptyLabel_MGRE.text = "You haven't created any\ncharacters yet"
     }
     

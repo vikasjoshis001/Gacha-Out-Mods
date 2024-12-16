@@ -103,7 +103,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         let deviceType = UIDevice.current.userInterfaceIdiom
         navBarHeight_MGRE.constant = deviceType == .phone ? 58 : 97
         let contentLabelFontSize: CGFloat = deviceType == .phone ? 18 : 32
-        contentLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: contentLabelFontSize)!
+        contentLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: contentLabelFontSize)!
         leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
         contentCollectionHeight_MGRE.constant = deviceType == .phone ? 92 : 138
     }

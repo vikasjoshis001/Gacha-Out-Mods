@@ -53,8 +53,8 @@ class SearchBar_MGRE: UIView {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 33 : 180
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 32 : 180
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 32 : 180
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 33 : 180
         searchIconLeadingConstraint.constant = deviceType == .phone ? 4 : 6.8
         
         let fontSize: CGFloat = deviceType == .phone ? 14 : 23.8

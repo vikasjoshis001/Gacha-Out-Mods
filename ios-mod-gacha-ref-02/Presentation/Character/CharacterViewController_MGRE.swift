@@ -32,7 +32,7 @@ class CharacterViewController_MGRE: UIViewController {
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        downloadButton_MGRE.titleLabel?.font =  UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        downloadButton_MGRE.titleLabel?.font =  UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         addNewButtonHeight_MGRE.constant = deviceType == .phone ? 58 : 72
         downloadButton_MGRE.layer.cornerRadius = deviceType == .phone ? 30 : 40
         navBarHeight_MGRE.constant = deviceType == .phone ? 58 : 97

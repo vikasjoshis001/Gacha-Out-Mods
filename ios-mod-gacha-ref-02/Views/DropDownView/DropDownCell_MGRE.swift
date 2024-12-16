@@ -20,7 +20,7 @@ class DropDownCell_MGRE: UITableViewCell {
         selectionStyle = .none
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 18 : 28
-        titleLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
     }
     
     public func buildCell_MGRE(with category: String, titleColor: UIColor = .white) {

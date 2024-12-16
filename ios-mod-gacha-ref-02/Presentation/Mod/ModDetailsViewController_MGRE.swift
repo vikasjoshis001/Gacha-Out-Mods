@@ -96,7 +96,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         
     private func setupViews() {
         // config
-        let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 29 : 180
+        let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 0 : 180
         let imageContainerHeight: CGFloat = getImageContainerHeight()
         let favButtonTrailingAnchor: CGFloat = device == .phone ? 5 : 8.5
         let favButtonHeight: CGFloat = device == .phone ? 38 : 64.6

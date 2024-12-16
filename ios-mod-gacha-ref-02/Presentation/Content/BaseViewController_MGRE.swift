@@ -109,7 +109,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func configureSubviews_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        emptyLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
 
         configureNavigationView_MGRE()
         configureCollectionView_MGRE()

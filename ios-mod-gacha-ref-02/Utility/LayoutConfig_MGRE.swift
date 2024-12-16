@@ -18,7 +18,7 @@ struct LayoutConfig_MGRE {
     let sectionInsets: UIEdgeInsets
     
     static let defaultPhoneInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    static let defaultPadInsets = UIEdgeInsets(top: 0, left: 85, bottom: 0, right: 85)
+    static let defaultPadInsets = UIEdgeInsets(top: 0, left: 226, bottom: 0, right: 226)
     
     static func getItemWidth(with columns: Int, horizontalSpacing: CGFloat, sectionInsets: UIEdgeInsets) -> CGFloat {
         let totalSpacing = CGFloat(columns - 1) * horizontalSpacing + sectionInsets.left + sectionInsets.right
@@ -75,9 +75,6 @@ extension NSCollectionLayoutSection_MGRE {
                                        verticalSpacing: 25.5,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.wallpapers_mgre, .phone):
-//            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
-//                                                           horizontalSpacing: 19,
-//                                                           sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             config = LayoutConfig_MGRE(itemWidth: 143,
                                        itemHeight: 210,
                                        columns: 2,
@@ -85,7 +82,7 @@ extension NSCollectionLayoutSection_MGRE {
                                        verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
         case (.wallpapers_mgre, .pad):
-                config = LayoutConfig_MGRE(itemWidth: 243.1,
+            config = LayoutConfig_MGRE(itemWidth: 243.1,
                                        itemHeight: 357,
                                        columns: 2,
                                        horizontalSpacing: 32.3,
@@ -115,7 +112,7 @@ extension NSCollectionLayoutSection_MGRE {
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
                 
         case (.collections_mgre, .pad):
-                config = LayoutConfig_MGRE(itemWidth: 243.1,
+            config = LayoutConfig_MGRE(itemWidth: 243.1,
                                        itemHeight: 357,
                                        columns: 2,
                                        horizontalSpacing: 32.3,

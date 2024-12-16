@@ -43,7 +43,7 @@ class DropDownView_MGRE: UIView {
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 18 : 28
-        categoryLabel_MGRE.font = UIFont(name: "BakbakOne-Regular", size: fontSize)!
+        categoryLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
         categoryLabelHeight_MGRE.constant = deviceType == .phone ? 48 : 63
         tableView_MGRE.isHidden = !isOpen_MGRE
         imageView_MGRE.image = isOpen_MGRE ? UIImage(.chevronTopIcon) : UIImage(.chevronBottomIcon)
