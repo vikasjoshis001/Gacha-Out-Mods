@@ -266,19 +266,26 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     }
     
     func applySnapshot_MGRE(for contentType: ContentType_MGRE) {
+        let deviceType = UIDevice.current.userInterfaceIdiom
         var snapshot = Snapshot_MGRE()
         snapshot.appendSections([.zero])
 
         if data_MGRE.isEmpty {
             emptyLabel_MGRE.isHidden = false
             if let searchText = searchText_MGRE, !searchText.isEmpty {
-                emptyLabel_MGRE.text = "We didn’t find anything"
+                emptyLabel_MGRE.text = "the search has no any results"
             } else {
                 emptyLabel_MGRE.text = "You don’t have characters"
             }
         } else {
             emptyLabel_MGRE.isHidden = true
         }
+        
+        let emptyLabelFontSize: CGFloat = deviceType == .phone ? 19.1 : 32.48
+        let emptyLabelLineHeight: CGFloat = deviceType == .phone ? 23.88 : 40.6
+
+        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)
+        emptyLabel_MGRE.setLineHeight(emptyLabelLineHeight)
         
         switch contentType {
         case .mods_mgre: snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })
