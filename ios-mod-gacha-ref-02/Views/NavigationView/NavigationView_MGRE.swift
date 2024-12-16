@@ -47,9 +47,9 @@ class NavigationView_MGRE: UIView {
         leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 180
         viewHeight_MGRE.constant = deviceType == .phone ? 47 : 79.9
         
-        titleHeight_MGRE.constant = deviceType == .phone ? 47 : 51
-        leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
-        rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
+        titleHeight_MGRE.constant = deviceType == .phone ? 47 : 80
+        leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 80
+        rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 80
         
         leftButton_MGRE.imageView?.contentMode = .scaleAspectFill
         rightButton_MGRE.imageView?.contentMode = .scaleAspectFill

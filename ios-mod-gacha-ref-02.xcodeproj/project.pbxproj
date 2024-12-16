@@ -24,6 +24,7 @@
 		C86A81C92D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */; };
 		C86A81CB2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81CA2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift */; };
 		C86A81CD2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81CC2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift */; };
+		C8C65AAD2D107DAB0056712B /* WallpaperNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C65AAC2D107DAB0056712B /* WallpaperNewViewController.swift */; };
 		C8CA8C902D0F429200A3A2F7 /* ModsCell_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8C8E2D0F429200A3A2F7 /* ModsCell_MGRE.swift */; };
 		C8CA8C912D0F429200A3A2F7 /* ModsCell_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CA8C8F2D0F429200A3A2F7 /* ModsCell_MGRE.xib */; };
 		C8D441872D022A6F00ABB77B /* IpadMenuViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D441862D022A6F00ABB77B /* IpadMenuViewController_MGRE.xib */; };
@@ -141,6 +142,7 @@
 		C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81CA2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitIdeasListCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81CC2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListCodable_MGRE.swift; sourceTree = "<group>"; };
+		C8C65AAC2D107DAB0056712B /* WallpaperNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperNewViewController.swift; sourceTree = "<group>"; };
 		C8CA8C8E2D0F429200A3A2F7 /* ModsCell_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsCell_MGRE.swift; sourceTree = "<group>"; };
 		C8CA8C8F2D0F429200A3A2F7 /* ModsCell_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModsCell_MGRE.xib; sourceTree = "<group>"; };
 		C8D441852D022A6F00ABB77B /* IpadMenuViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpadMenuViewController_MGRE.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 			children = (
 				FEBB861A2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift */,
 				FEBB861B2AFABE8B0059C153 /* WallpaperViewController_MGRE.xib */,
+				C8C65AAC2D107DAB0056712B /* WallpaperNewViewController.swift */,
 			);
 			path = Wallpaper;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				C86A81C92D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift in Sources */,
 				C837ABED2D00A7B00079F5A9 /* LocalizationKeys.swift in Sources */,
 				C837ABE32D0099D80079F5A9 /* UIHelper.swift in Sources */,
+				C8C65AAD2D107DAB0056712B /* WallpaperNewViewController.swift in Sources */,
 				FE94C3C72AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift in Sources */,
 				FEBB861F2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift in Sources */,
 				FE9554EB2B014315000DFF12 /* ContentCharacterCell_MGRE.swift in Sources */,

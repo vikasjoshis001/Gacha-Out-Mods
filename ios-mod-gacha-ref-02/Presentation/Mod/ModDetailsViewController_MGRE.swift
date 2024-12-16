@@ -15,12 +15,6 @@ class ModDetailsViewController_MGRE: UIViewController {
         case outfitIdeas_mgre(OutfitIdea_MGRE)
         case characters_mgre(Character_MGRE)
     }
-
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
         
     private let imageView: UIImageView = {
         let imageView = UIImageView()

@@ -26,6 +26,9 @@ struct StringConstants {
         static let favFilledStar = "favFilledStar"
         static let open = "open"
         static let back = "back"
+        static let fullScreen = "fullScreen"
+        static let share = "share"
+        static let download = "download"
     }
     
     struct Ipad {
