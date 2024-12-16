@@ -308,7 +308,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         case .mods_mgre:
             guard let model = data_MGRE[index] as? Mods_MGRE else { return }
             let isFavorites = favorites_MGRE.contains(model.favId)
-            let modDetailsVC = ModeDetailNew()
+            let modDetailsVC = ModDetailsViewController_MGRE()
             modDetailsVC.isFavourite_MGRE = isFavorites
             modDetailsVC.modelType_MGRE = .mods_mgre(model)
             vc = modDetailsVC
@@ -322,14 +322,14 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         case .characters_mgre:
             guard let model = data_MGRE[index] as? Character_MGRE else { return }
             let isFavorites = favorites_MGRE.contains(model.favId)
-            let charactersVC = ModeDetailNew.loadFromNib_MGRE()
+            let charactersVC = ModDetailsViewController_MGRE()
             charactersVC.isFavourite_MGRE = isFavorites
             charactersVC.modelType_MGRE = .characters_mgre(model)
             vc = charactersVC
         case .outfitIdeas_mgre:
             guard let model = data_MGRE[index] as? OutfitIdea_MGRE else { return }
             let isFavorites = favorites_MGRE.contains(model.favId)
-            let modDetailsVC = ModeDetailNew.loadFromNib_MGRE()
+            let modDetailsVC = ModDetailsViewController_MGRE()
             modDetailsVC.isFavourite_MGRE = isFavorites
             modDetailsVC.modelType_MGRE = .outfitIdeas_mgre(model)
             vc = modDetailsVC

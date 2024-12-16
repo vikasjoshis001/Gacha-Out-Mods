@@ -16,7 +16,7 @@
 		C837ABF12D00AC300079F5A9 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF02D00AC300079F5A9 /* Typography.swift */; };
 		C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */; };
 		C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83EB4ED2D01A1B100A84447 /* Helper.swift */; };
-		C85FB4592D1011EC00FD9910 /* ModeDetailNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */; };
+		C85FB4592D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FB4582D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift */; };
 		C865E40F2D0A290000BD1118 /* EditorContents_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */; };
 		C86A81C52D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */; };
 		C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */; };
@@ -92,8 +92,6 @@
 		FEB5A06C2AFE497A00424791 /* UILabel+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB5A06B2AFE497A00424791 /* UILabel+Extension_MGRE.swift */; };
 		FEB5A0702AFE519F00424791 /* SearchBar_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEB5A06E2AFE519F00424791 /* SearchBar_MGRE.xib */; };
 		FEB5A0712AFE519F00424791 /* SearchBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB5A06F2AFE519F00424791 /* SearchBar_MGRE.swift */; };
-		FEBB86182AFABE780059C153 /* ModDetailsViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEBB86162AFABE780059C153 /* ModDetailsViewController_MGRE.xib */; };
-		FEBB86192AFABE780059C153 /* ModDetailsViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBB86172AFABE780059C153 /* ModDetailsViewController_MGRE.swift */; };
 		FEBB861C2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBB861A2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift */; };
 		FEBB861D2AFABE8B0059C153 /* WallpaperViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEBB861B2AFABE8B0059C153 /* WallpaperViewController_MGRE.xib */; };
 		FEBB861F2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBB861E2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift */; };
@@ -134,7 +132,7 @@
 		C837ABF02D00AC300079F5A9 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBar_MGRE.swift; sourceTree = "<group>"; };
 		C83EB4ED2D01A1B100A84447 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeDetailNew.swift; sourceTree = "<group>"; };
+		C85FB4582D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetailsViewController_MGRE.swift; sourceTree = "<group>"; };
 		C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContents_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersListCodable_MGRE.swift; sourceTree = "<group>"; };
@@ -211,8 +209,6 @@
 		FEB5A06B2AFE497A00424791 /* UILabel+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension_MGRE.swift"; sourceTree = "<group>"; };
 		FEB5A06E2AFE519F00424791 /* SearchBar_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBar_MGRE.xib; sourceTree = "<group>"; };
 		FEB5A06F2AFE519F00424791 /* SearchBar_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar_MGRE.swift; sourceTree = "<group>"; };
-		FEBB86162AFABE780059C153 /* ModDetailsViewController_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModDetailsViewController_MGRE.xib; sourceTree = "<group>"; };
-		FEBB86172AFABE780059C153 /* ModDetailsViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModDetailsViewController_MGRE.swift; sourceTree = "<group>"; };
 		FEBB861A2AFABE8B0059C153 /* WallpaperViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperViewController_MGRE.swift; sourceTree = "<group>"; };
 		FEBB861B2AFABE8B0059C153 /* WallpaperViewController_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallpaperViewController_MGRE.xib; sourceTree = "<group>"; };
 		FEBB861E2AFAC15B0059C153 /* UIViewController+Extensions_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions_MGRE.swift"; sourceTree = "<group>"; };
@@ -585,9 +581,7 @@
 		FEBB86142AFABE440059C153 /* Mod */ = {
 			isa = PBXGroup;
 			children = (
-				FEBB86172AFABE780059C153 /* ModDetailsViewController_MGRE.swift */,
-				C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */,
-				FEBB86162AFABE780059C153 /* ModDetailsViewController_MGRE.xib */,
+				C85FB4582D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift */,
 			);
 			path = Mod;
 			sourceTree = "<group>";
@@ -688,7 +682,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEBB86182AFABE780059C153 /* ModDetailsViewController_MGRE.xib in Resources */,
 				FE9554D32AFE7B7F000DFF12 /* ScanViewController_MGRE.xib in Resources */,
 				FEBB86252AFAC1F20059C153 /* Alert_MGRE.xib in Resources */,
 				FE9554DE2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.xib in Resources */,
@@ -770,7 +763,6 @@
 				FE4C8F8E2B02542D000E3DD1 /* UITableViewCell+Extension_MGRE.swift in Sources */,
 				FEBB86262AFAC1F20059C153 /* AlertController_MGRE.swift in Sources */,
 				FEBB86372AFC10B20059C153 /* BaseContainer_MGRE.swift in Sources */,
-				FEBB86192AFABE780059C153 /* ModDetailsViewController_MGRE.swift in Sources */,
 				FEB5A0632AFE44E000424791 /* FilterView_MGRE.swift in Sources */,
 				FE96E8AB2AF45E6B0070BCD2 /* EditorContentModel_MGRE.swift in Sources */,
 				FE4DB2B52AF7BBB900E0C59D /* UIResponder+Extension_MGRE.swift in Sources */,
@@ -784,7 +776,7 @@
 				FEBB86282AFAC7440059C153 /* UIView+Extension_MGRE.swift in Sources */,
 				C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */,
 				C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */,
-				C85FB4592D1011EC00FD9910 /* ModeDetailNew.swift in Sources */,
+				C85FB4592D1011EC00FD9910 /* ModDetailsViewController_MGRE.swift in Sources */,
 				FEBB86242AFAC1F20059C153 /* Alert_MGRE.swift in Sources */,
 				FE94C3A62AF8231300B9B5C4 /* InternetManager_MGRE.swift in Sources */,
 				C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */,
