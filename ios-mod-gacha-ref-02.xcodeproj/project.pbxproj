@@ -16,6 +16,7 @@
 		C837ABF12D00AC300079F5A9 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF02D00AC300079F5A9 /* Typography.swift */; };
 		C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */; };
 		C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83EB4ED2D01A1B100A84447 /* Helper.swift */; };
+		C85FB4592D1011EC00FD9910 /* ModeDetailNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */; };
 		C865E40F2D0A290000BD1118 /* EditorContents_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */; };
 		C86A81C52D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */; };
 		C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */; };
@@ -133,6 +134,7 @@
 		C837ABF02D00AC300079F5A9 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C837ABF32D00C0450079F5A9 /* RoundProgressBar_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBar_MGRE.swift; sourceTree = "<group>"; };
 		C83EB4ED2D01A1B100A84447 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeDetailNew.swift; sourceTree = "<group>"; };
 		C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContents_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C42D08AE2D004B3AC3 /* ModsResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81C62D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersListCodable_MGRE.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				FEBB86172AFABE780059C153 /* ModDetailsViewController_MGRE.swift */,
+				C85FB4582D1011EC00FD9910 /* ModeDetailNew.swift */,
 				FEBB86162AFABE780059C153 /* ModDetailsViewController_MGRE.xib */,
 			);
 			path = Mod;
@@ -781,6 +784,7 @@
 				FEBB86282AFAC7440059C153 /* UIView+Extension_MGRE.swift in Sources */,
 				C83EB4EE2D01A1B100A84447 /* Helper.swift in Sources */,
 				C86A81C72D08AECB004B3AC3 /* WallpapersListCodable_MGRE.swift in Sources */,
+				C85FB4592D1011EC00FD9910 /* ModeDetailNew.swift in Sources */,
 				FEBB86242AFAC1F20059C153 /* Alert_MGRE.swift in Sources */,
 				FE94C3A62AF8231300B9B5C4 /* InternetManager_MGRE.swift in Sources */,
 				C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */,

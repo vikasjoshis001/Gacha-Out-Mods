@@ -35,6 +35,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         super.viewDidLoad()
         var _Msaffrr332: Int { 0 }
         var _MGqqqq4a: Bool { false }
+        view.backgroundColor = .appBackground
         configureSubviews_MGRE()
     }
 
@@ -47,8 +48,8 @@ class ModDetailsViewController_MGRE: UIViewController {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 29 : 85
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 29 : 85
         
         favoriteButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
         downloadButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))

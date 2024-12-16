@@ -8,6 +8,7 @@
 
 // MARK: - Common
 "ok" = "Ok";
+"download" = "Download";
 
 // MARK: - LaunchScreen
 "wait_a_little_bit" = "Wait a little bit...";
