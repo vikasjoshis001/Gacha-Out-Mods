@@ -25,6 +25,7 @@ struct StringConstants {
         static let favStar = "favStar"
         static let favFilledStar = "favFilledStar"
         static let open = "open"
+        static let back = "back"
     }
     
     struct Ipad {
@@ -34,6 +35,7 @@ struct StringConstants {
         static let favStarIpad = "favStarIpad"
         static let favFilledStarIpad = "favFilledStarIpad"
         static let openIpad = "openIpad"
+        static let backIpad = "backIpad"
     }
     
     // MARK: - Font

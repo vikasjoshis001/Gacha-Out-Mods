@@ -181,21 +181,22 @@ class ModDetailsViewController_MGRE: UIViewController {
         navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
+        let backIcon = Helper.deviceSpecificImage(image: StringConstants.Images.back)
         switch modelType {
         case .mods_mgre(let model):
-            navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(.backChevronIcon), rightIcon: nil)
+                navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.text = model.name
             descriptionLabel.text = model.description
             let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.image)", for: .mods_mgre)
         case .outfitIdeas_mgre(let model):
-            navigationView_MGRE.build_MGRE(with: "Outfit idea", leftIcon: UIImage(.backChevronIcon), rightIcon: nil)
+            navigationView_MGRE.build_MGRE(with: "Outfit idea", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.isHidden = true
             descriptionLabel.isHidden = true
             let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
             imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(model.image)", for: .outfitIdeas_mgre)
         case .characters_mgre(let model):
-            navigationView_MGRE.build_MGRE(with: "Character", leftIcon: UIImage(.backChevronIcon), rightIcon: nil)
+            navigationView_MGRE.build_MGRE(with: "Character", leftIcon: UIImage(named: backIcon), rightIcon: nil)
             titleLabel.isHidden = true
             descriptionLabel.isHidden = true
             let width = UIScreen.main.bounds.width - (deviceType == .phone ? 36 : 101)
