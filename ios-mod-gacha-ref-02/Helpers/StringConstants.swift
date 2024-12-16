@@ -22,6 +22,18 @@ struct StringConstants {
         // Icons
         static let menu = "menu"
         static let search = "search"
+        static let favStar = "favStar"
+        static let favFilledStar = "favFilledStar"
+        static let open = "open"
+    }
+    
+    struct Ipad {
+        // Icons
+        static let menuIpad = "menuIpad"
+        static let searchIpad = "searchIpad"
+        static let favStarIpad = "favStarIpad"
+        static let favFilledStarIpad = "favFilledStarIpad"
+        static let openIpad = "openIpad"
     }
     
     // MARK: - Font

@@ -195,8 +195,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func configureCollectionView_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
 
-        var rightConstraint: CGFloat = deviceType == .phone ? 0 : 175
-        var leftConstraint: CGFloat = deviceType == .phone ? 0 : 175
+        var rightConstraint: CGFloat = deviceType == .phone ? 0 : 90
+        var leftConstraint: CGFloat = deviceType == .phone ? 0 : 90
     
         if modelType_MGRE == .mods_mgre || modelType_MGRE == .outfitIdeas_mgre {
             rightConstraint += 20
@@ -209,6 +209,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         rightIdentationCollectionView.constant = rightConstraint
         leftIdentationCollectionView.constant = leftConstraint
         
+        collectionView_MGRE.showsVerticalScrollIndicator = false
+        collectionView_MGRE.showsHorizontalScrollIndicator = false
         collectionView_MGRE.keyboardDismissMode = .interactive
         collectionView_MGRE.collectionViewLayout = UICollectionViewCompositionalLayout(section: generateSectionLayout_MGRE())
         collectionView_MGRE.registerAllNibs_MGRE()

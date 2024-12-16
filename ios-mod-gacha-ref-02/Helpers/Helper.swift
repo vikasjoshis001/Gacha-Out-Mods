@@ -21,4 +21,11 @@ struct Helper {
             return UUID().uuidString
         }
     }
+    
+    static func deviceSpecificImage(image: String) -> String {
+        let device = getDeviceType()
+        let ipadString = "Ipad"
+        
+        return device == .phone ? image : "\(image)\(ipadString)"
+    }
 }

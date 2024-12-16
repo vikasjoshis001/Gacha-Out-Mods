@@ -47,7 +47,7 @@ extension NSCollectionLayoutSection_MGRE {
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth, 
-                                       itemHeight: 508,
+                                       itemHeight: 435,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 25.5,
@@ -127,7 +127,7 @@ extension NSCollectionLayoutSection_MGRE {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                      leading: config.horizontalSpacing / 2,
-                                                     bottom: config.verticalSpacing,
+                                                     bottom: 0,
                                                      trailing: config.horizontalSpacing / 2)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

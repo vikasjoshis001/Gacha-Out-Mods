@@ -90,7 +90,7 @@ class ModsCell_MGRE: UICollectionViewCell {
 //        openButton_MGRE.addShadow_MGRE(with: UIColor(red: 1, green: 0.702, blue: 0.433, alpha: 1))
 //        openButton_MGRE.setTitleColor(.white, for: .normal)
         
-        labelsView_MGRE.spacing = device == .phone ? 8 : 8
+//        labelsView_MGRE.spacing = device == .phone ? 8 : 8
         let titleFontSize: CGFloat = device == .phone ? 20 : 34
         let titleLineHeight: CGFloat = device == .phone ? 20 : 34
 

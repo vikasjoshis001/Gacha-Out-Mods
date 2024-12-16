@@ -7,21 +7,22 @@
 
 import UIKit
 
+// MARK: - NavigationView_MGRE
+
 class NavigationView_MGRE: UIView {
-    
-    @IBOutlet private weak var titleLabel_MGRE: UILabel!
-    @IBOutlet private weak var titleView_MGRE: UIView!
-    @IBOutlet private weak var leftButton_MGRE: UIButton!
-    @IBOutlet private weak var rightButton_MGRE: UIButton!
-    @IBOutlet private weak var undoButton_MGRE: UIButton!
-    @IBOutlet private weak var undoButtonWidth_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var undoButtonBottomView_MGRE: UIView!
-    @IBOutlet private weak var rightIndentConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var leftIndentConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var leftButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var rightButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var titleHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet private weak var viewHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet private var titleLabel_MGRE: UILabel!
+    @IBOutlet private var titleView_MGRE: UIView!
+    @IBOutlet private var leftButton_MGRE: UIButton!
+    @IBOutlet private var rightButton_MGRE: UIButton!
+    @IBOutlet private var undoButton_MGRE: UIButton!
+    @IBOutlet private var undoButtonWidth_MGRE: NSLayoutConstraint!
+    @IBOutlet private var undoButtonBottomView_MGRE: UIView!
+    @IBOutlet private var rightIndentConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet private var leftIndentConstraint_MGRE: NSLayoutConstraint!
+    @IBOutlet private var leftButtonHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet private var rightButtonHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet private var titleHeight_MGRE: NSLayoutConstraint!
+    @IBOutlet private var viewHeight_MGRE: NSLayoutConstraint!
     
     var leftButtonAction_MGRE: (()->())?
     var rightButtonAction_MGRE: (()->())?
@@ -42,14 +43,17 @@ class NavigationView_MGRE: UIView {
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
                 
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 260
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 266
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 180
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 41 : 180
         viewHeight_MGRE.constant = deviceType == .phone ? 47 : 79.9
         
         titleHeight_MGRE.constant = deviceType == .phone ? 47 : 51
         leftButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
         rightButtonHeight_MGRE.constant = deviceType == .phone ? 47 : 51
         
+        leftButton_MGRE.imageView?.contentMode = .scaleAspectFill
+        rightButton_MGRE.imageView?.contentMode = .scaleAspectFill
+
         let titleFontSize: CGFloat = deviceType == .phone ? 30 : 51
         let lineHeight: CGFloat = deviceType == .phone ? 38.85 : 66.05
         titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
@@ -68,9 +72,10 @@ class NavigationView_MGRE: UIView {
     }
     
     func build_MGRE(with title: String,
-                    leftIcon: UIImage? = UIImage(named: StringConstants.Images.menu),
-                    rightIcon: UIImage? = UIImage(named: StringConstants.Images.search),
-                    isEditor: Bool = false) {
+                    leftIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.menu)),
+                    rightIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.search)),
+                    isEditor: Bool = false)
+    {
         titleLabel_MGRE.text = title
         titleLabel_MGRE.textColor = .blackText
         
@@ -117,7 +122,7 @@ class NavigationView_MGRE: UIView {
 typealias UILabel_MGN = UILabel
 
 extension UILabel_MGN {
-    static func widthForLabel(text: String, font: UIFont) -> CGFloat {
+    static func widthForLabel(text: String, font: UIFont)->CGFloat {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: CGFloat.greatestFiniteMagnitude, height: 0))
         label.font = font
         label.text = text

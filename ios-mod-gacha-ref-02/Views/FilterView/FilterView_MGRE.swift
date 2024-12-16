@@ -35,8 +35,8 @@ class FilterView_MGRE: UIView {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 237
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 237
+        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 27 : 157
+        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 24 : 157
         collectionViewHeight_MGRE.constant = deviceType == .phone ? 38 : 64.6
     }
     

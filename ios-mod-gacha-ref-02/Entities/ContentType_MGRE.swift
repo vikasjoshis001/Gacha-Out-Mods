@@ -30,7 +30,7 @@ enum ContentType_MGRE: Int, CaseIterable {
     
     var cellClass_MGRE: UICollectionViewCell.Type? {
         switch self {
-        case .mods_mgre:            return ModsCell_MGRE.self
+        case .mods_mgre:            return ModsCellNew.self
         case .outfitIdeas_mgre:     return ModsCell_MGRE.self
         case .characters_mgre:      return ContentCell_MGRE.self
         case .collections_mgre:     return ContentCell_MGRE.self

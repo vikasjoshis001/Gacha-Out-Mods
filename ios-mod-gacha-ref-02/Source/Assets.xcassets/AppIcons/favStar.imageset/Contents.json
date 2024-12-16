@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "Gacha Mods iOS Re-Design.pdf",
-      "idiom" : "universal"
+      "filename" : "kid_star.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "kid_star@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "kid_star@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

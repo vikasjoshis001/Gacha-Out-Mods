@@ -140,6 +140,8 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func configureForIpad() {
+        backgroundImageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+
         waitLabel.text = LocalizationKeys.waitALittleBit
         waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 34)
         waitLabel.setLineHeight(34)
