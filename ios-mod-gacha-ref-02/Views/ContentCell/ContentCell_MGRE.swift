@@ -12,17 +12,26 @@ class ContentCell_MGRE: UICollectionViewCell {
 
     @IBOutlet private weak var imageView_MGRE: UIImageView!
     
+    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    
+    
     private(set) var isFavourite_MGRE: Bool = false
     
     var update_MGRE: (() -> Void)?
+    
+    private let device = Helper.getDeviceType()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         var _mgsdf: Int { 0 }
         var _m12334: Bool { true }
-        layer.cornerRadius = 36
+        backgroundColor = .cardBackground
+        layer.cornerRadius = device == .phone ? 20 : 34
         layer.masksToBounds = true
-        addShadow_MGRE(with: UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1))
+        configureCell()
     }
 
     override func prepareForReuse() {
@@ -54,5 +63,21 @@ class ContentCell_MGRE: UICollectionViewCell {
         
         imageView_MGRE.contentMode = .scaleAspectFill
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.characters_mgre)\(data.image)", for: .wallpapers_mgre)
+    }
+    
+    func configureCell() {
+        if device == .phone {
+            imageView_MGRE.layer.cornerRadius = 14
+            imageViewTrailingConstraint.constant = 9
+            imageViewLeadingConstraint.constant = 9
+            imageViewTopConstraint.constant = 9
+            imageViewBottomConstraint.constant = 9
+        } else {
+            imageView_MGRE.layer.cornerRadius = 23.8
+            imageViewTrailingConstraint.constant = 15
+            imageViewLeadingConstraint.constant = 15
+            imageViewTopConstraint.constant = 15
+            imageViewBottomConstraint.constant = 15
+        }
     }
 }

@@ -118,14 +118,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     }
     
     func configureNavigationView_MGRE() {
-        if modelType_MGRE == .wallpapers_mgre ||
-            modelType_MGRE == .collections_mgre ||
-            modelType_MGRE == .characters_mgre
-        {
-            navigationView_MGRE.build_MGRE(with: navTitle_MGRE, rightIcon: nil)
-        } else {
-            navigationView_MGRE.build_MGRE(with: navTitle_MGRE)
-        }
+        navigationView_MGRE.build_MGRE(with: navTitle_MGRE)
+
         navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.toggleMenuAction_MGRE?()
         }

@@ -95,8 +95,8 @@ class ModDetailsViewController_MGRE: UIViewController {
                 return device == .phone ? 276 : 469
             case .outfitIdeas_mgre:
                 return device == .phone ? 444 : 754.8
-            default:
-                return device == .phone ? 276 : 469
+            case .characters_mgre:
+                return device == .phone ? 444 : 754.8
         }
     }
         
@@ -188,7 +188,6 @@ class ModDetailsViewController_MGRE: UIViewController {
     }
     
     func configureSubviews_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
         guard let modelType = modelType_MGRE else { return }
         navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popViewController(animated: true)

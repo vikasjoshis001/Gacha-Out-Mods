@@ -93,22 +93,22 @@ extension NSCollectionLayoutSection_MGRE {
                                        verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.characters_mgre, .phone), (.collections_mgre, .phone):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
-                                                           horizontalSpacing: 0,
-                                                           sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
-                                       itemHeight: itemWidth*0.83,
+//            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+//                                                           horizontalSpacing: 0,
+//                                                           sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
+            config = LayoutConfig_MGRE(itemWidth: 316,
+                                       itemHeight: 210,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             
         case (.characters_mgre, .pad), (.collections_mgre, .pad):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
-                                                           horizontalSpacing: 0,
-                                                           sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
-                                       itemHeight: itemWidth*0.76,
+//            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
+//                                                           horizontalSpacing: 0,
+//                                                           sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
+            config = LayoutConfig_MGRE(itemWidth: 538,
+                                       itemHeight: 358,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 23.8,
