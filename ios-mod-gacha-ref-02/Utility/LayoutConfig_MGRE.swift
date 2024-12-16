@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - LayoutConfig_MGRE
+
 struct LayoutConfig_MGRE {
     let itemWidth: CGFloat
     let itemHeight: CGFloat
@@ -33,10 +35,10 @@ extension NSCollectionLayoutSection_MGRE {
         let deviceType = UIDevice.current.userInterfaceIdiom
         switch (modelType, deviceType) {
         case (.mods_mgre, .phone):
-            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1, 
+            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
+            config = LayoutConfig_MGRE(itemWidth: itemWidth,
                                        itemHeight: 278,
                                        columns: 1,
                                        horizontalSpacing: 0,
@@ -46,7 +48,7 @@ extension NSCollectionLayoutSection_MGRE {
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
+            config = LayoutConfig_MGRE(itemWidth: itemWidth,
                                        itemHeight: 435,
                                        columns: 1,
                                        horizontalSpacing: 0,
@@ -76,8 +78,8 @@ extension NSCollectionLayoutSection_MGRE {
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
                                                            horizontalSpacing: 19,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
-                                       itemHeight: itemWidth*1.67,
+            config = LayoutConfig_MGRE(itemWidth: itemWidth,
+                                       itemHeight: itemWidth * 1.67,
                                        columns: 2,
                                        horizontalSpacing: 19,
                                        verticalSpacing: 14,
@@ -86,16 +88,13 @@ extension NSCollectionLayoutSection_MGRE {
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 2,
                                                            horizontalSpacing: 32.3,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
-            config = LayoutConfig_MGRE(itemWidth: itemWidth, 
-                                       itemHeight: itemWidth*1.87,
+            config = LayoutConfig_MGRE(itemWidth: itemWidth,
+                                       itemHeight: itemWidth * 1.87,
                                        columns: 2,
                                        horizontalSpacing: 32.3,
                                        verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
-        case (.characters_mgre, .phone), (.collections_mgre, .phone):
-//            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
-//                                                           horizontalSpacing: 0,
-//                                                           sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
+        case (.characters_mgre, .phone):
             config = LayoutConfig_MGRE(itemWidth: 316,
                                        itemHeight: 210,
                                        columns: 1,
@@ -103,14 +102,26 @@ extension NSCollectionLayoutSection_MGRE {
                                        verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             
-        case (.characters_mgre, .pad), (.collections_mgre, .pad):
-//            let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
-//                                                           horizontalSpacing: 0,
-//                                                           sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
+        case (.characters_mgre, .pad):
             config = LayoutConfig_MGRE(itemWidth: 538,
                                        itemHeight: 358,
                                        columns: 1,
                                        horizontalSpacing: 0,
+                                       verticalSpacing: 23.8,
+                                       sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
+        case (.collections_mgre, .phone):
+            config = LayoutConfig_MGRE(itemWidth: 143,
+                                       itemHeight: 210,
+                                       columns: 2,
+                                       horizontalSpacing: 19,
+                                       verticalSpacing: 14,
+                                       sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
+                
+        case (.collections_mgre, .pad):
+                config = LayoutConfig_MGRE(itemWidth: 243.1,
+                                       itemHeight: 357,
+                                       columns: 2,
+                                       horizontalSpacing: 32.3,
                                        verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         default:
@@ -126,9 +137,9 @@ extension NSCollectionLayoutSection_MGRE {
                                               heightDimension: .absolute(totalItemHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                     leading: config.horizontalSpacing / 2,
+                                                     leading: 0,
                                                      bottom: 0,
-                                                     trailing: config.horizontalSpacing / 2)
+                                                     trailing: 0)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .absolute(totalItemHeight))

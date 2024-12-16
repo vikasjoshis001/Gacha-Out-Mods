@@ -237,6 +237,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             } action: { [weak self] in
                 self?.pushTo_MGRE(contentType: self?.modelType_MGRE ?? .mods_mgre, index: indexPath.item)
             }
+            
             return cell
         }
     }
