@@ -18,6 +18,8 @@ struct StringConstants {
         static let launchScreenBackground = "launchScreenBgGradient"
         static let blurBackgroundIphone = "iphoneBlurBackground"
         static let blurBackgroundIpad = "ipadBlurBackground"
+        static let editorBackground = "editorBackground"
+        static let editorBackgroundIpad = "editorBackgroundIpad"
         
         // Icons
         static let menu = "menu"
@@ -28,7 +30,11 @@ struct StringConstants {
         static let back = "back"
         static let fullScreen = "fullScreen"
         static let share = "share"
+        static let rightChevron = "rightChevron"
+        static let done = "done"
         static let download = "download"
+        static let reset = "reset"
+        static let upChevron = "upChevron"
     }
     
     struct Ipad {

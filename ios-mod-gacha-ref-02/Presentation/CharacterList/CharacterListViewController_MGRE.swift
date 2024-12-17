@@ -40,6 +40,7 @@ class CharacterListViewController_MGRE: UIViewController {
         super.viewDidLoad()
         var _ecvbyss: Int { 0 }
         var _wetgt: Bool { true }
+        
         loadCharacters_MGRE()
         loadContent_MGRE()
         configureLayout_MGRE()
@@ -55,15 +56,23 @@ class CharacterListViewController_MGRE: UIViewController {
     
     private func configureLayout_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
+        
+        let buttonHeight: CGFloat = deviceType == .phone ? 38 : 64.6
+        let buttonCornerRadius: CGFloat = deviceType == .phone ? 14 : 23.4
+        
+        leftButtonHeight_MGRE.constant = buttonHeight
+        leftButton_MGRE.layer.cornerRadius = buttonCornerRadius
+        leftButton_MGRE.setImage(UIImage(named: StringConstants.Images.back), for: .normal)
+
+        rightButtonHeight_MGRE.constant = buttonHeight
+        rightButton_MGRE.layer.cornerRadius = buttonCornerRadius
+        rightButton_MGRE.setImage(UIImage(named: StringConstants.Images.rightChevron), for: .normal)
+        
         rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
         leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
         topConstraint_MGRE.constant = deviceType == .phone ? 58 : 97
-        leftButtonHeight_MGRE.constant = deviceType == .phone ? 64 : 80
-        rightButtonHeight_MGRE.constant = deviceType == .phone ? 64 : 80
-        addNewButtonTopConstraint_MGRE.constant = deviceType == .phone ? -16 : -43
         
-        rightButton_MGRE.layer.cornerRadius = deviceType == .phone ? 32 : 40
-        leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 32 : 40
+        addNewButtonTopConstraint_MGRE.constant = deviceType == .phone ? -16 : -43
         
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
         addNewButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!

@@ -18,7 +18,7 @@ struct LayoutConfig_MGRE {
     let sectionInsets: UIEdgeInsets
     
     static let defaultPhoneInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    static let defaultPadInsets = UIEdgeInsets(top: 0, left: 226, bottom: 0, right: 226)
+    static let defaultPadInsets = UIEdgeInsets(top: 0, left: 85, bottom: 0, right: 85)
     
     static func getItemWidth(with columns: Int, horizontalSpacing: CGFloat, sectionInsets: UIEdgeInsets) -> CGFloat {
         let totalSpacing = CGFloat(columns - 1) * horizontalSpacing + sectionInsets.left + sectionInsets.right

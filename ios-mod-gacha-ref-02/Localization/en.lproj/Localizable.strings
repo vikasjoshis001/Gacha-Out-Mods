@@ -29,3 +29,7 @@
 "new_MGRE" = "New";
 "favourites_MGRE" = "Favorites";
 "top_MGRE" = "Top";
+
+// MARK: - Editor
+"create_new_character" = "Create new character";
+"empty_characters_msg" = "You haven't created any\ncharacters yet";

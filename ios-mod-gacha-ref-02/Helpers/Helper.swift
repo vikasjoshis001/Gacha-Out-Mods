@@ -28,4 +28,12 @@ struct Helper {
         
         return device == .phone ? image : "\(image)\(ipadString)"
     }
+    
+    static func getBottomInset() -> CGFloat {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            return window.safeAreaInsets.bottom
+        }
+        return 0
+    }
 }

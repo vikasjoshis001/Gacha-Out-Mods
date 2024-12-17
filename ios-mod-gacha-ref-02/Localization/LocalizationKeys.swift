@@ -31,6 +31,9 @@ class LocalizationKeys {
     // MARK: - NavBar
     static var all_MGRE: String { return "all_MGRE".localized() }
     static var new_MGRE: String { return "new_MGRE".localized() }
-//    static var favourites_MGRE: String { return "favourites_MGRE".localized() }
     static var top_MGRE: String { return "top_MGRE".localized() }
+    
+    // MARK: - Editor
+    static var createNewCharacter_MGRE: String { return "create_new_character".localized() }
+    static var emptyCharactersMsg: String { return "empty_characters_msg".localized() }
 }
