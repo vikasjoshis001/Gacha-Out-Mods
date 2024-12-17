@@ -1,64 +1,125 @@
 //
 //  CharacterViewController_MGRE.swift
-//  ios-mod-gacha
+//  ios-mod-gacha-ref-02
 //
-//  Created by Systems
+//  Created by Vikas Joshi on 18/12/24.
 //
 
-import UIKit
 import Photos
+import UIKit
 
 class CharacterViewController_MGRE: UIViewController {
+    private let backgroundImageView_MGRE: UIImageView = {
+        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.isUserInteractionEnabled = true
+        return backgroundImageView
+    }()
+    
+    var characterImageView_MGRE: UIImageView = {
+        let characterImageView_MGRE = UIImageView()
+        characterImageView_MGRE.contentMode = .scaleAspectFill
+        characterImageView_MGRE.translatesAutoresizingMaskIntoConstraints = false
+        characterImageView_MGRE.isUserInteractionEnabled = true // Enable user interaction
+        return characterImageView_MGRE
+    }()
 
-    @IBOutlet weak var imageView_MGRE: UIImageView!
-    @IBOutlet weak var downloadButton_MGRE: UIButton!
-    @IBOutlet private weak var navigationView_MGRE: NavigationView_MGRE!
-    @IBOutlet weak var navBarHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var addNewButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var rightIndentConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet weak var leftIndentConstraint_MGRE: NSLayoutConstraint!
+    private let downloadButton_MGRE = CharacterViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.download)
+
+    let navigationView = NavigationView_MGRE()
     
-    var image_MGRE: UIImage?
-    
+    private let device = Helper.getDeviceType()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        var _mdmmm: Int { 0 }
-        var _m3nnn: Bool { true }
-        configureLayout_MGRE()
+        setupViewHierarchy()
+        configureLayout()
+        configureView()
         configureNavigationView_MGRE()
-        configureSubviews_MGRE()
+    }
+
+    private static func makeActionButton_MGRE(image: String? = nil, title: String? = nil) -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = .buttonBg
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        if let image = image {
+            button.setImage(UIImage(named: Helper.deviceSpecificImage(image: image)), for: .normal)
+        } else if let title = title {
+            button.setTitle(title, for: .normal)
+        }
+        return button
     }
     
-    private func configureLayout_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        downloadButton_MGRE.titleLabel?.font =  UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        addNewButtonHeight_MGRE.constant = deviceType == .phone ? 58 : 72
-        downloadButton_MGRE.layer.cornerRadius = deviceType == .phone ? 30 : 40
-        navBarHeight_MGRE.constant = deviceType == .phone ? 58 : 97
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
+    private func setupViewHierarchy() {
+        view.addSubview(backgroundImageView_MGRE)
+        
+        backgroundImageView_MGRE.addSubview(navigationView)
+        backgroundImageView_MGRE.addSubview(characterImageView_MGRE)
+        backgroundImageView_MGRE.addSubview(downloadButton_MGRE)
     }
     
-    private func configureSubviews_MGRE() {
-        var _mdbbb: Int { 0 }
-        var _mvvv: Bool { true }
-        imageView_MGRE.image = image_MGRE
+    private func configureView() {
+        downloadButton_MGRE.addTarget(self, action: #selector(downloadButtonDidTapped(_:)), for: .touchUpInside)
+        
+        let downloadButtonFontSize: CGFloat = device == .phone ? 20 : 34
+        let downloadButtonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
+
+        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: downloadButtonFontSize)
+        downloadButton_MGRE.setTitleColor(.black, for: .normal)
+        downloadButton_MGRE.layer.cornerRadius = downloadButtonCornerRadius
+    }
+    
+    private func configureLayout() {
+        let characterImageViewHeight: CGFloat = device == .phone ? 531 : 918
+        let characterImageViewWidth: CGFloat = device == .phone ? 309 : 535.5
+        
+        let downloadButtonHeight: CGFloat = device == .phone ? 38 : 64.6
+        let downloadButtonWidth: CGFloat = device == .phone ? 224 : 380
+        
+        let bottomInset = Helper.getBottomInset()
+        let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
+        let downloadButtonBottom: CGFloat = device == .phone ? -iphoneBottomConstraints : -40
+        
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                
+            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            characterImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            characterImageView_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            characterImageView_MGRE.heightAnchor.constraint(equalToConstant: characterImageViewHeight),
+            characterImageView_MGRE.widthAnchor.constraint(equalToConstant: characterImageViewWidth),
+                
+            // Left and right buttons size
+            downloadButton_MGRE.heightAnchor.constraint(equalToConstant: downloadButtonHeight),
+            downloadButton_MGRE.widthAnchor.constraint(equalToConstant: downloadButtonWidth),
+            downloadButton_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            downloadButton_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: downloadButtonBottom)
+        ])
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView_MGRE.build_MGRE(with: "",
+        navigationView.build_MGRE(with: "Editor",
                                   leftIcon: UIImage(.backChevronIcon),
                                   rightIcon: nil)
-        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
+        navigationView.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
     }
     
-    @IBAction func downloadButtonDidTap(_ sender: UIButton) {
+    @objc func downloadButtonDidTapped(_ sender: UIButton) {
         var _mdzzz: Int { 0 }
         var _maaa: Bool { true }
-        save_MGRE(image: imageView_MGRE.image)
+        save_MGRE(image: characterImageView_MGRE.image)
     }
     
     func save_MGRE(image: UIImage?) {

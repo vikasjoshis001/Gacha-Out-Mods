@@ -400,8 +400,8 @@ class CharacterEditorViewController_MGRE: UIViewController {
             addNewCharAction_MGRE?(savedCharacter)
            
             // Show character details screen
-            let detailsViewController = CharacterViewController_MGRE.loadFromNib_MGRE()
-            detailsViewController.image_MGRE = completeCharacterImage
+            let detailsViewController = CharacterViewController_MGRE()
+            detailsViewController.characterImageView_MGRE.image = completeCharacterImage
             navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }
