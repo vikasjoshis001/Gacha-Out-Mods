@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - SplashViewController_MGRE
+
 class SplashViewController_MGRE: UIViewController {
     // MARK: - UI Components
     
@@ -53,6 +55,27 @@ class SplashViewController_MGRE: UIViewController {
         return stackView
     }()
     
+    // Add loading tasks management
+    private enum LoadingTask: CaseIterable {
+        case checkingInternet
+        case initializingDatabase
+        case loadingContent
+        case preparingApp
+            
+        var weight: Float {
+            switch self {
+            case .checkingInternet: return 0.1
+            case .initializingDatabase: return 0.3
+            case .loadingContent: return 0.4
+            case .preparingApp: return 0.2
+            }
+        }
+    }
+        
+    private var currentTaskIndex = 0
+    private var currentProgress: Float = 0
+    private let loadingTasks = LoadingTask.allCases
+    
     // MARK: - Properties
     
     private let animationDuration: TimeInterval = 2.0
@@ -67,15 +90,8 @@ class SplashViewController_MGRE: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
-            setupBlurBackground()
-            DBManager_MGRE().showInternetError_MGRE()
-        } else {
-            startLoadingAnimation()
-//            configureDeviceSpecificUI()
-        }
-        
         configureUI()
+        startActualLoading()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,12 +124,12 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func setupBlurBackground() {
-        if isDevicePhone {
-            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIphone)
-        } else {
-            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIpad)
-        }
-        
+//        if isDevicePhone {
+//            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIphone)
+//        } else {
+//            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIpad)
+//        }
+//
 //        progressBar.isHidden = true
     }
     
@@ -177,42 +193,14 @@ class SplashViewController_MGRE: UIViewController {
             // Horizontal Stack View Constraints
             horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             horizontalStackView.heightAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
-            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(horizontalStackViewBottom)),
+            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -horizontalStackViewBottom),
             
             // Progress Bar Constraints
             progressBar.widthAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
             progressBar.heightAnchor.constraint(equalTo: progressBar.widthAnchor)
         ])
     }
-    
-    // MARK: - Animation
-    
-    private func startLoadingAnimation() {
-        animateProgress(progressBar: progressBar, duration: animationDuration) { [weak self] in
-            self?.navigateToApp()
-        }
-    }
-    
-    private func animateProgress(progressBar: RoundProgressBar_MGRE, duration: TimeInterval, completion: @escaping () -> Void) {
-        let stepInterval = 0.05
-        let animationSteps = Int(duration / stepInterval)
-        let progressIncrement = 1.0 / CGFloat(animationSteps)
-        var progress: CGFloat = 0.0
         
-        timer = Timer.scheduledTimer(withTimeInterval: stepInterval, repeats: true) { [weak self] timer in
-            guard let _ = self else { return }
-            progress += progressIncrement
-            progressBar.progress = progress
-            
-            if progress > 1.0 {
-                timer.invalidate()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    completion()
-                }
-            }
-        }
-    }
-    
     // MARK: - Navigation
     
     private func navigateToApp() {
@@ -227,5 +215,115 @@ class SplashViewController_MGRE: UIViewController {
         mainWindow.rootViewController = BaseContainer_MGRE()
         mainWindow.makeKeyAndVisible()
         onDismiss?()
+    }
+    
+    // MARK: - App Loading
+    
+    private func startActualLoading() {
+        if !InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
+            setupBlurBackground()
+            DBManager_MGRE().showInternetError_MGRE()
+            return
+        }
+            
+        executeNextTask()
+    }
+        
+    private func executeNextTask() {
+        guard currentTaskIndex < loadingTasks.count else {
+            navigateToApp()
+            return
+        }
+            
+        let task = loadingTasks[currentTaskIndex]
+            
+        switch task {
+        case .checkingInternet:
+            performInternetCheck()
+        case .initializingDatabase:
+            initializeDatabase()
+        case .loadingContent:
+            loadInitialContent()
+        case .preparingApp:
+            prepareAppContent()
+        }
+    }
+        
+    private func updateProgress(for task: LoadingTask, progress: Float) {
+        var totalProgress: Float = 0
+            
+        // Add completed tasks progress
+        for index in 0 ..< currentTaskIndex {
+            totalProgress += loadingTasks[index].weight
+        }
+            
+        // Add current task progress
+        totalProgress += task.weight * progress
+            
+        // Update UI on main thread
+        DispatchQueue.main.async { [weak self] in
+            self?.progressBar.progress = CGFloat(totalProgress)
+        }
+    }
+        
+    private func completeCurrentTask() {
+        currentTaskIndex += 1
+        executeNextTask()
+    }
+        
+    // Actual loading tasks
+    private func performInternetCheck() {
+        updateProgress(for: .checkingInternet, progress: 0.5)
+            
+        // Simulate network check
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.updateProgress(for: .checkingInternet, progress: 1.0)
+            self?.completeCurrentTask()
+        }
+    }
+        
+    private func initializeDatabase() {
+        // Update progress as database initialization progresses
+        DBManager_MGRE.shared.initialize { [weak self] progress in
+            self?.updateProgress(for: .initializingDatabase, progress: progress)
+        } completion: { [weak self] in
+            self?.completeCurrentTask()
+        }
+    }
+        
+    private func loadInitialContent() {
+        // Load initial content with progress
+        ContentManager_MGRE().loadInitialContent { [weak self] progress in
+            self?.updateProgress(for: .loadingContent, progress: progress)
+        } completion: { [weak self] in
+            self?.completeCurrentTask()
+        }
+    }
+        
+    private func prepareAppContent() {
+        updateProgress(for: .preparingApp, progress: 0.5)
+            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.updateProgress(for: .preparingApp, progress: 1.0)
+            self?.completeCurrentTask()
+        }
+    }
+}
+
+extension DBManager_MGRE {
+    func initialize(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            progress(1.0)
+            completion()
+        }
+    }
+}
+
+extension ContentManager_MGRE {
+    func loadInitialContent(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            progress(1.0)
+            completion()
+        }
     }
 }
