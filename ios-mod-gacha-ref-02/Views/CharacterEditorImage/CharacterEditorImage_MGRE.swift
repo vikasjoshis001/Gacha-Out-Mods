@@ -35,9 +35,18 @@ final class CharacterEditorImage_MGRE: UIView {
 
     func setupImageView_MGRE() -> UIImageView {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
-        imageView.scaleEqualSuperView_MGRE()
-        imageView.contentMode = .scaleAspectFit
+        
+        // Set imageView to fill the container
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        imageView.contentMode = .scaleAspectFill
         self.imageView = imageView
         return imageView
     }

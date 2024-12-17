@@ -35,6 +35,7 @@ struct StringConstants {
         static let download = "download"
         static let reset = "reset"
         static let upChevron = "upChevron"
+        static let downChevron = "downChevron"
     }
     
     struct Ipad {

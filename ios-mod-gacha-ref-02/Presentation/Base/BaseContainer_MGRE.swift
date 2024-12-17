@@ -157,7 +157,7 @@ class BaseContainer_MGRE: UIViewController {
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .editor_MGRE:
-            let vc = CharacterListNewViewController()
+            let vc = CharacterListViewController_MGRE()
             vc.toggleMenuAction_MGRE = { [weak self] in self?.toggleMenu_MGRE() }
             switchToViewController(vc)
         case .favorites_MGRE:
