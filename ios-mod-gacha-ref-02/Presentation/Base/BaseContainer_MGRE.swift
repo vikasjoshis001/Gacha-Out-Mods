@@ -41,7 +41,7 @@ class BaseContainer_MGRE: UIViewController {
         
         // Dimming view
         dimmingView_MGRE = UIView(frame: view.bounds)
-        dimmingView_MGRE.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        dimmingView_MGRE.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         dimmingView_MGRE.alpha = 0.0
         view.addSubview(dimmingView_MGRE)
         
