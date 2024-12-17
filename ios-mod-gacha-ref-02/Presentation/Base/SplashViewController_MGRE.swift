@@ -11,9 +11,6 @@ import UIKit
 
 class SplashViewController_MGRE: UIViewController {
     // MARK: - UI Components
-    
-    private var blurView: UIVisualEffectView!
-    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -123,16 +120,6 @@ class SplashViewController_MGRE: UIViewController {
         configureDeviceSpecificUI()
     }
     
-    private func setupBlurBackground() {
-//        if isDevicePhone {
-//            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIphone)
-//        } else {
-//            backgroundImageView.image = UIImage(named: StringConstants.Images.blurBackgroundIpad)
-//        }
-//
-//        progressBar.isHidden = true
-    }
-    
     private func configureDeviceSpecificUI() {
         if isDevicePhone {
             configureForPhone()
@@ -221,7 +208,6 @@ class SplashViewController_MGRE: UIViewController {
     
     private func startActualLoading() {
         if !InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
-            setupBlurBackground()
             DBManager_MGRE().showInternetError_MGRE()
             return
         }
