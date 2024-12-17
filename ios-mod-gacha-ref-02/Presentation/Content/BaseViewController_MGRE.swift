@@ -19,23 +19,23 @@ extension Filter_MGRE {
     var localizedTitle: String {
         switch self {
         case .wallpapers_mgre:
-            return LocalizationKeys.wallpapers_MGRE
+            return LocalizationKeys.wallpapers
         case .mods_mgre:
-            return LocalizationKeys.mods_MGRE
+            return LocalizationKeys.mods
         case .characters_mgre:
-            return LocalizationKeys.characters_MGRE
+            return LocalizationKeys.characters
         case .collections_mgre:
-            return LocalizationKeys.collections_MGRE
+            return LocalizationKeys.collections
         case .outfitIdea_mgre:
-            return LocalizationKeys.outfitIdeas_MGRE
+            return LocalizationKeys.outfitIdeas
         case .all_mgre:
-            return LocalizationKeys.all_MGRE
+            return LocalizationKeys.all
         case .new_mgre:
-            return LocalizationKeys.new_MGRE
+            return LocalizationKeys.new
         case .favourites_mgre:
-            return LocalizationKeys.favorites_MGRE
+            return LocalizationKeys.favorites
         case .top_mgre:
-            return LocalizationKeys.top_MGRE
+            return LocalizationKeys.top
         }
     }
 }
@@ -76,7 +76,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         if isFavoriteMode_MGRE {
             return [.mods_mgre, .outfitIdea_mgre, .characters_mgre, .collections_mgre, .wallpapers_mgre]
         } else {
-            return [.all_mgre, .new_mgre, .favourites_mgre, .top_mgre]
+            return [.new_mgre, .favourites_mgre, .all_mgre, .top_mgre]
         }
     }
 

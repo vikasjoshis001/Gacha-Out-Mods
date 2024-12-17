@@ -19,7 +19,7 @@
 "favorites_MGRE" = "पसंदीदा";
 
 // MARK: - NavBar
-"all_mgre" = "All";
-"new_mgre" = "New";
-//"favourites_mgre" = "Favorites";
-"top_mgre" = "Top";
+"all" = "All";
+"new" = "New";
+//"favourites" = "Favorites";
+"top" = "Top";

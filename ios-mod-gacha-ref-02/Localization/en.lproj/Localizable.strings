@@ -18,19 +18,19 @@
 "no_internet_connection" = "No internet connection!";
 
 // MARK: - MenuBar
-"wallpapers_MGRE" = "Wallpapers";
-"mods_MGRE" = "Mods";
-"characters_MGRE" = "Characters";
-"collections_MGRE" = "Collections";
-"editor_MGRE" = "Editor";
-"outfitIdeas_MGRE" = "Outfit ideas";
-"favorites_MGRE" = "Favorites";
+"wallpapers" = "Wallpapers";
+"mods" = "Mods";
+"characters" = "Characters";
+"collections" = "Collections";
+"editor" = "Editor";
+"outfitIdeas" = "Outfit ideas";
+"favorites" = "Favorites";
 
 // MARK: - NavBar
-"all_MGRE" = "All";
-"new_MGRE" = "New";
-"favourites_MGRE" = "Favorites";
-"top_MGRE" = "Top";
+"all" = "All";
+"new" = "New";
+"favourites" = "Favorites";
+"top" = "Top";
 
 // MARK: - Editor
 "create_new_character" = "Create new character";
