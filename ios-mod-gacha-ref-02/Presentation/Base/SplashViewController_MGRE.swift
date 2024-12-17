@@ -154,6 +154,11 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func applyConstraints() {
+        let bottomInsets = Helper.getBottomInset()
+        let horizontalStackViewBottomIphone: CGFloat = bottomInsets == 0 ? 34 : 0
+        
+        let horizontalStackViewBottom: CGFloat = isDevicePhone ? horizontalStackViewBottomIphone : 122
+
         NSLayoutConstraint.activate([
             // Background Image Constraints
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -172,7 +177,7 @@ class SplashViewController_MGRE: UIViewController {
             // Horizontal Stack View Constraints
             horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             horizontalStackView.heightAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
-            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: isDevicePhone ? -64 : -173),
+            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(horizontalStackViewBottom)),
             
             // Progress Bar Constraints
             progressBar.widthAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),

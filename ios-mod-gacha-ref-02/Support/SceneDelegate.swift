@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         Self.shared = self
         
         let window = UIWindow(windowScene: windowScene)
+        window.backgroundColor = .appBackground
         window.overrideUserInterfaceStyle = .light
         self.window = window
         
