@@ -14,18 +14,29 @@ class ContentCharacterCell_MGRE: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            layer.borderWidth = isSelected ? 2 : 0
-            layer.borderColor = isSelected ? UIColor.buttonBg.cgColor : UIColor.clear.cgColor
+            setupView()
         }
     }
     
+    let device = Helper.getDeviceType()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = 20
-        layer.borderWidth = 0
-        layer.borderColor = UIColor.clear.cgColor
+        setupView()
         layer.masksToBounds = true
-        backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
+    }
+    
+    private func setupView() {
+        let deviceBorderWidth: CGFloat = device == .phone ? 1 : 1.7
+        let borderWidth: CGFloat = !isSelected ? deviceBorderWidth : 0
+        let borderColor: CGColor = !isSelected ? UIColor.buttonBg.cgColor : UIColor.clear.cgColor
+        let cellBackgroundColor: UIColor = isSelected ? .buttonBg : .clear
+        let borderRadius: CGFloat = device == .phone ? 14 : 23.8
+        
+        layer.borderWidth = borderWidth
+        layer.borderColor = borderColor
+        layer.cornerRadius = borderRadius
+        backgroundColor = cellBackgroundColor
     }
     
     override func prepareForReuse() {

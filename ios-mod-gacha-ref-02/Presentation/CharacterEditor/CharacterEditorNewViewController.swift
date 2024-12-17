@@ -94,14 +94,14 @@ class CharacterEditorNewViewController: UIViewController {
     // MARK: - Private methods
 
     private func configureCell() {
-        buttonsStackView.spacing = device == .phone ? 63 : 63
+        buttonsStackView.spacing = device == .phone ? 63 : 107.1
         let buttonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
         resetButton_MGRE.layer.cornerRadius = buttonCornerRadius
         doneButton_MGRE.layer.cornerRadius = buttonCornerRadius
         dropDownView_MGRE.layer.cornerRadius = buttonCornerRadius
         
         bottomView.backgroundColor = .appBackground
-        bottomView.layer.cornerRadius = device == .phone ? 20 : 20
+        bottomView.layer.cornerRadius = device == .phone ? 20 : 34
     }
 
     private func initializeViews() {
@@ -170,13 +170,20 @@ class CharacterEditorNewViewController: UIViewController {
     }
     
     private func configureLayout() {
-        let bottomViewHeight: CGFloat = device == .phone ? 106 : 106
+        let bottomViewHeight: CGFloat = device == .phone ? 130 : 204
         let buttonStackViewHeight: CGFloat = device == .phone ? 38 : 64.6
-        let buttonStackViewBottomConstraint: CGFloat = device == .phone ? 8 : 64.6
-        let characterImageViewHeight: CGFloat = device == .phone ? 531 : 531
-        let characterImageViewWidth: CGFloat = device == .phone ? 309 : 309
-        let dropdownViewHeight: CGFloat = device == .phone ? 150 : 139
+        let buttonStackViewBottomConstraint: CGFloat = device == .phone ? 8 : 13.4
+        let characterImageViewWidth: CGFloat = device == .phone ? 309 : 535.5
+        let dropdownViewHeight: CGFloat = device == .phone ? 150 : 236.3
         
+        let characterImagePadding: CGFloat = device == .phone ? 8 : 24
+        
+        let availableHeight = view.bounds.height -
+            navigationView.frame.maxY -
+            buttonsStackView.frame.height
+
+        let characterImageViewHeight = availableHeight * 0.6
+
         NSLayoutConstraint.activate([
             backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -198,7 +205,7 @@ class CharacterEditorNewViewController: UIViewController {
             contentCollectionView_MGRE.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
             contentCollectionView_MGRE.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor),
             
-            characterImageView_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            characterImageView_MGRE.bottomAnchor.constraint(greaterThanOrEqualTo: buttonsStackView.topAnchor, constant: -characterImagePadding),
             characterImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             characterImageView_MGRE.widthAnchor.constraint(equalToConstant: characterImageViewWidth),
             characterImageView_MGRE.heightAnchor.constraint(equalToConstant: characterImageViewHeight),
