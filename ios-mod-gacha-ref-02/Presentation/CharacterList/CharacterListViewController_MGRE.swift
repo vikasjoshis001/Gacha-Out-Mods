@@ -1,50 +1,89 @@
 //
-//  CharacterListViewController_MGRE.swift
-//  ios-mod-gacha
+//  CharacterListNewViewController.swift
+//  ios-mod-gacha-ref-02
 //
-//  Created by Systems
+//  Created by Vikas Joshi on 17/12/24.
 //
 
 import UIKit
 
-// MARK: - CharacterListViewController_MGRE
+// MARK: - CharacterListNewViewController
 
-class CharacterListViewController_MGRE: UIViewController {
-    // MARK: - Properties
+class CharacterListNewViewController: UIViewController {
+    private let backgroundImageView_MGRE: UIImageView = {
+        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.isUserInteractionEnabled = true
+        return backgroundImageView
+    }()
+    
+    private let characterImageView_MGRE: UIImageView = {
+        let characterImageView_MGRE = UIImageView()
+        characterImageView_MGRE.contentMode = .scaleAspectFill
+        characterImageView_MGRE.translatesAutoresizingMaskIntoConstraints = false
+        characterImageView_MGRE.isUserInteractionEnabled = true // Enable user interaction
+        return characterImageView_MGRE
+    }()
+    
+    private let rightLeftButtonsStackView_MGRE: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.masksToBounds = true
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    private let bottomButtonsStackView_MGRE: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.isUserInteractionEnabled = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.masksToBounds = true
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    private let emptyLabel_MGRE: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let rightButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.rightChevron)
 
-    @IBOutlet private var navigationView_MGRE: NavigationView_MGRE!
-    @IBOutlet var imageView_MGRE: UIImageView!
-    @IBOutlet var leftButton_MGRE: UIButton!
-    @IBOutlet var rightButton_MGRE: UIButton!
-    @IBOutlet var addNewButton_MGRE: UIButton!
-    @IBOutlet var emptyLabel_MGRE: UILabel!
-    @IBOutlet var addNewButtonTopConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet var addNewButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet var leftButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet var rightButtonHeight_MGRE: NSLayoutConstraint!
-    @IBOutlet var rightIndentConstraint_MGRE: NSLayoutConstraint!
-    @IBOutlet var leftIndentConstraint_MGRE: NSLayoutConstraint!
+    private let leftButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.back)
     
-    @IBOutlet var topConstraint_MGRE: NSLayoutConstraint!
+    private let deleteButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.download)
     
+    private let createNewCharacterButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
+    
+    let navigationView = NavigationView_MGRE()
     private var dropbox_MGRE: DBManager_MGRE { .shared }
     private var editorContentSet_MGRE: EditorContentSet_MGRE?
     private var characters_MGRE: [CharacterPreview_MGRE] = []
     private var currentPage_MGRE = 0
+    private let device = Helper.getDeviceType()
     
     var toggleMenuAction_MGRE: (() -> Void)?
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        var _ecvbyss: Int { 0 }
-        var _wetgt: Bool { true }
-        
+        setupViewHierarchy()
+        configureCell()
+        configureLayout()
+        configureNavigationView_MGRE()
+        addActionToButtons()
         loadCharacters_MGRE()
         loadContent_MGRE()
-        configureLayout_MGRE()
-        configureNavigationView_MGRE()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,57 +91,144 @@ class CharacterListViewController_MGRE: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    // MARK: - Functions
-    
-    private func configureLayout_MGRE() {
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        
-        let buttonHeight: CGFloat = deviceType == .phone ? 38 : 64.6
-        let buttonCornerRadius: CGFloat = deviceType == .phone ? 14 : 23.4
-        
-        leftButtonHeight_MGRE.constant = buttonHeight
-        leftButton_MGRE.layer.cornerRadius = buttonCornerRadius
-        leftButton_MGRE.setImage(UIImage(named: StringConstants.Images.back), for: .normal)
+    // MARK: - Private Methods
 
-        rightButtonHeight_MGRE.constant = buttonHeight
-        rightButton_MGRE.layer.cornerRadius = buttonCornerRadius
-        rightButton_MGRE.setImage(UIImage(named: StringConstants.Images.rightChevron), for: .normal)
+    private static func makeActionButton_MGRE(image: String? = nil, title: String? = nil) -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = .buttonBg
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        if let image = image {
+            button.setImage(UIImage(named: Helper.deviceSpecificImage(image: image)), for: .normal)
+        } else if let title = title {
+            button.setTitle(title, for: .normal)
+        }
+        return button
+    }
+    
+    private func addActionToButtons() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        characterImageView_MGRE.addGestureRecognizer(tapGesture)
+                
+        leftButton_MGRE.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
+        rightButton_MGRE.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+        deleteButton_MGRE.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
+        createNewCharacterButton_MGRE.addTarget(self, action: #selector(createNewCharacterButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    private func setupViewHierarchy() {
+        view.addSubview(backgroundImageView_MGRE)
+                
+        backgroundImageView_MGRE.addSubview(navigationView)
+        backgroundImageView_MGRE.addSubview(rightLeftButtonsStackView_MGRE)
+        backgroundImageView_MGRE.addSubview(bottomButtonsStackView_MGRE)
         
-        rightIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        leftIndentConstraint_MGRE.constant = deviceType == .phone ? 20 : 85
-        topConstraint_MGRE.constant = deviceType == .phone ? 58 : 97
+        rightLeftButtonsStackView_MGRE.addArrangedSubview(leftButton_MGRE)
+        rightLeftButtonsStackView_MGRE.addArrangedSubview(characterImageView_MGRE)
+        rightLeftButtonsStackView_MGRE.addArrangedSubview(emptyLabel_MGRE)
+        rightLeftButtonsStackView_MGRE.addArrangedSubview(rightButton_MGRE)
         
-        addNewButtonTopConstraint_MGRE.constant = deviceType == .phone ? -16 : -43
+        bottomButtonsStackView_MGRE.addArrangedSubview(createNewCharacterButton_MGRE)
+        bottomButtonsStackView_MGRE.addArrangedSubview(deleteButton_MGRE)
+    }
+    
+    private func configureCell() {
+        bottomButtonsStackView_MGRE.spacing = device == .phone ? 13 : 22.1
         
-        let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        addNewButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        addNewButtonHeight_MGRE.constant = deviceType == .phone ? 58 : 72
-        addNewButton_MGRE.layer.cornerRadius = deviceType == .phone ? 29 : 36
+        let buttonsCornerRadius: CGFloat = device == .phone ? 14 : 23.8
+        rightButton_MGRE.layer.cornerRadius = buttonsCornerRadius
+        leftButton_MGRE.layer.cornerRadius = buttonsCornerRadius
+        deleteButton_MGRE.layer.cornerRadius = buttonsCornerRadius
+        createNewCharacterButton_MGRE.layer.cornerRadius = buttonsCornerRadius
         
-        let emptyLabelFontSize: CGFloat = deviceType == .phone ? 24 : 32
-        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)!
-        emptyLabel_MGRE.text = "You haven't created any\ncharacters yet"
+        let emptyLabelFontSize: CGFloat = device == .phone ? 19.1 : 32.48
+        let emptyLabelLineHeight: CGFloat = device == .phone ? 23.88 : 40.6
+        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)
+        emptyLabel_MGRE.setLineHeight(emptyLabelLineHeight)
+        emptyLabel_MGRE.text = LocalizationKeys.emptyCharactersMsg
+        
+        let createNewButtonTitleFontSize: CGFloat = device == .phone ? 20 : 34
+        createNewCharacterButton_MGRE.titleLabel?.font =
+            UIFont(name: StringConstants.ptSansRegular,
+                   size: createNewButtonTitleFontSize)
+        createNewCharacterButton_MGRE.setTitleColor(.black, for: .normal)
+    }
+    
+    private func configureLayout() {
+        let buttonHeight: CGFloat = device == .phone ? 38 : 64.6
+        let bottomInset = Helper.getBottomInset()
+        let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
+
+        let rightLeftButtonsLeading: CGFloat = device == .phone ? 19 : 81
+        let createCharacterButtonWidth: CGFloat = device == .phone ? 224 : 380.8
+
+//        let bottomButtonsLeading: CGFloat = device == .phone ? 50 : 278
+        let bottomButtonsBottom: CGFloat = device == .phone ? -iphoneBottomConstraints : -40
+        let characterImageHeight: CGFloat = device == .phone ? 531 : 918
+        let characterImageWidth: CGFloat = device == .phone ? 309 : 535.5
+
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                
+            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                
+            rightLeftButtonsStackView_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            rightLeftButtonsStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightLeftButtonsLeading),
+            rightLeftButtonsStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightLeftButtonsLeading),
+                
+            // Character image size
+            characterImageView_MGRE.heightAnchor.constraint(equalToConstant: characterImageHeight),
+            characterImageView_MGRE.widthAnchor.constraint(equalToConstant: characterImageWidth),
+                
+            // Left and right buttons size
+            rightButton_MGRE.heightAnchor.constraint(equalTo: leftButton_MGRE.heightAnchor),
+            rightButton_MGRE.widthAnchor.constraint(equalTo: leftButton_MGRE.widthAnchor),
+            
+            leftButton_MGRE.heightAnchor.constraint(equalToConstant: buttonHeight),
+            leftButton_MGRE.widthAnchor.constraint(equalToConstant: buttonHeight),
+            
+            emptyLabel_MGRE.centerXAnchor.constraint(equalTo: rightLeftButtonsStackView_MGRE.centerXAnchor),
+            emptyLabel_MGRE.centerYAnchor.constraint(equalTo: rightLeftButtonsStackView_MGRE.centerYAnchor),
+            
+            bottomButtonsStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomButtonsBottom),
+            bottomButtonsStackView_MGRE.centerXAnchor.constraint(equalTo: backgroundImageView_MGRE.centerXAnchor),
+//            bottomButtonsStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: bottomButtonsLeading),
+//            bottomButtonsStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -bottomButtonsLeading),
+                    
+            createNewCharacterButton_MGRE.heightAnchor.constraint(equalToConstant: buttonHeight),
+            createNewCharacterButton_MGRE.widthAnchor.constraint(equalToConstant: createCharacterButtonWidth),
+
+            deleteButton_MGRE.heightAnchor.constraint(equalToConstant: buttonHeight),
+            deleteButton_MGRE.widthAnchor.constraint(equalToConstant: buttonHeight)
+        ])
     }
     
     private func updateCharImageView_MGRE() {
-        navigationView_MGRE.build_MGRE(with: "Editor", rightIcon: characters_MGRE.isEmpty ? nil : UIImage(.deleteIcon))
+        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
         
         if characters_MGRE.indices.contains(currentPage_MGRE) {
-            imageView_MGRE.image = characters_MGRE[currentPage_MGRE].image
+            characterImageView_MGRE.image = characters_MGRE[currentPage_MGRE].image
         } else {
-            imageView_MGRE.image = nil
+            characterImageView_MGRE.image = nil
         }
         
         if characters_MGRE.isEmpty {
             leftButton_MGRE.isHidden = true
             rightButton_MGRE.isHidden = true
         } else {
-            leftButton_MGRE.isHidden = currentPage_MGRE == 0 ? true : false
-            rightButton_MGRE.isHidden = currentPage_MGRE >= characters_MGRE.count-1 ? true : false
+            leftButton_MGRE.alpha = currentPage_MGRE == 0 ? 0 : 1
+            rightButton_MGRE.alpha = currentPage_MGRE >= characters_MGRE.count-1 ? 0 : 1
         }
     }
     
-    @IBAction func imageTapped_MGRE(_ sender: UIButton) {
+    @objc private func imageTapped(_ gesture: UITapGestureRecognizer) {
         guard let editorContentSet = editorContentSet_MGRE,
               characters_MGRE.indices.contains(currentPage_MGRE) else { return }
         let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
@@ -114,7 +240,7 @@ class CharacterListViewController_MGRE: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func addNewButtonDidTap_MGRE(_ sender: UIButton) {
+    @objc private func createNewCharacterButtonTapped(_ sender: UIButton) {
         guard let editorContentSet = editorContentSet_MGRE else { return }
         showProgressView_MGRE()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
@@ -140,7 +266,7 @@ class CharacterListViewController_MGRE: UIViewController {
         updateCharImageView_MGRE()
     }
     
-    private func deleteButtonDidTap_MGRE() {
+    @objc private func deleteButtonDidTapped() {
         guard !characters_MGRE.isEmpty else { return }
         let alertData = AlertData_MGRE(with: "ARE YOU CERTAIN?",
                                        subtitle: "You want to erase your character?",
@@ -163,29 +289,26 @@ class CharacterListViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView_MGRE.build_MGRE(with: "Editor", rightIcon: characters_MGRE.isEmpty ? nil : UIImage(.deleteIcon))
-        navigationView_MGRE.rightButtonAction_MGRE = { [weak self] in
-            self?.deleteButtonDidTap_MGRE()
-        }
-        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
+        navigationView.build_MGRE(with: "Editor", rightIcon: characters_MGRE.isEmpty ? nil : UIImage(.deleteIcon))
+        navigationView.leftButtonAction_MGRE = { [weak self] in
             self?.toggleMenuAction_MGRE?()
         }
     }
     
-    @IBAction func leftButtonDidTap_MGRE(_ sender: UIButton) {
+    @objc private func leftButtonTapped() {
         guard currentPage_MGRE > 0 else { return }
         currentPage_MGRE -= 1
         updateCharImageView_MGRE()
     }
     
-    @IBAction func rightButtonDidTap_MGRE(_ sender: UIButton) {
+    @objc private func rightButtonTapped() {
         guard currentPage_MGRE < characters_MGRE.count-1 else { return }
         currentPage_MGRE += 1
         updateCharImageView_MGRE()
     }
 }
 
-extension CharacterListViewController_MGRE {
+extension CharacterListNewViewController {
     func loadCharacters_MGRE() {
         characters_MGRE = dropbox_MGRE.contentManager.fetchCharacters_MGRE()
         emptyLabel_MGRE.isHidden = !characters_MGRE.isEmpty

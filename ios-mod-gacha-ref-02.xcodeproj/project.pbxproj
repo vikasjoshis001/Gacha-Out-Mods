@@ -24,7 +24,7 @@
 		C86A81C92D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */; };
 		C86A81CB2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81CA2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift */; };
 		C86A81CD2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A81CC2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift */; };
-		C8934D722D11287E00AB9B38 /* CharacterListNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8934D712D11287E00AB9B38 /* CharacterListNewViewController.swift */; };
+		C8934D722D11287E00AB9B38 /* CharacterListViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8934D712D11287E00AB9B38 /* CharacterListViewController_MGRE.swift */; };
 		C8C65AAD2D107DAB0056712B /* WallpaperViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C65AAC2D107DAB0056712B /* WallpaperViewController_MGRE.swift */; };
 		C8CA8C902D0F429200A3A2F7 /* ModsCell_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8C8E2D0F429200A3A2F7 /* ModsCell_MGRE.swift */; };
 		C8CA8C912D0F429200A3A2F7 /* ModsCell_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CA8C8F2D0F429200A3A2F7 /* ModsCell_MGRE.xib */; };
@@ -64,8 +64,6 @@
 		FE94C3C72AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94C3C62AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift */; };
 		FE9554D22AFE7B7F000DFF12 /* ScanViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9554D02AFE7B7F000DFF12 /* ScanViewController_MGRE.swift */; };
 		FE9554D32AFE7B7F000DFF12 /* ScanViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE9554D12AFE7B7F000DFF12 /* ScanViewController_MGRE.xib */; };
-		FE9554D92AFE7DD4000DFF12 /* CharacterListViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE9554D72AFE7DD4000DFF12 /* CharacterListViewController_MGRE.xib */; };
-		FE9554DA2AFE7DD5000DFF12 /* CharacterListViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9554D82AFE7DD4000DFF12 /* CharacterListViewController_MGRE.swift */; };
 		FE9554DD2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9554DB2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.swift */; };
 		FE9554DE2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE9554DC2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.xib */; };
 		FE9554E12AFE7DEC000DFF12 /* CharacterViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9554DF2AFE7DEC000DFF12 /* CharacterViewController_MGRE.swift */; };
@@ -141,7 +139,7 @@
 		C86A81C82D08C19A004B3AC3 /* CharactersResponseCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersResponseCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81CA2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitIdeasListCodable_MGRE.swift; sourceTree = "<group>"; };
 		C86A81CC2D08CAF6004B3AC3 /* CollectionsListCodable_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsListCodable_MGRE.swift; sourceTree = "<group>"; };
-		C8934D712D11287E00AB9B38 /* CharacterListNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListNewViewController.swift; sourceTree = "<group>"; };
+		C8934D712D11287E00AB9B38 /* CharacterListViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController_MGRE.swift; sourceTree = "<group>"; };
 		C8C65AAC2D107DAB0056712B /* WallpaperViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewController_MGRE.swift; sourceTree = "<group>"; };
 		C8CA8C8E2D0F429200A3A2F7 /* ModsCell_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModsCell_MGRE.swift; sourceTree = "<group>"; };
 		C8CA8C8F2D0F429200A3A2F7 /* ModsCell_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModsCell_MGRE.xib; sourceTree = "<group>"; };
@@ -180,8 +178,6 @@
 		FE94C3C62AF8E7C600B9B5C4 /* LayoutConfig_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConfig_MGRE.swift; sourceTree = "<group>"; };
 		FE9554D02AFE7B7F000DFF12 /* ScanViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController_MGRE.swift; sourceTree = "<group>"; };
 		FE9554D12AFE7B7F000DFF12 /* ScanViewController_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanViewController_MGRE.xib; sourceTree = "<group>"; };
-		FE9554D72AFE7DD4000DFF12 /* CharacterListViewController_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterListViewController_MGRE.xib; sourceTree = "<group>"; };
-		FE9554D82AFE7DD4000DFF12 /* CharacterListViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListViewController_MGRE.swift; sourceTree = "<group>"; };
 		FE9554DB2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterEditorViewController_MGRE.swift; sourceTree = "<group>"; };
 		FE9554DC2AFE7DE0000DFF12 /* CharacterEditorViewController_MGRE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterEditorViewController_MGRE.xib; sourceTree = "<group>"; };
 		FE9554DF2AFE7DEC000DFF12 /* CharacterViewController_MGRE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterViewController_MGRE.swift; sourceTree = "<group>"; };
@@ -367,9 +363,7 @@
 		FE9554D42AFE7D99000DFF12 /* CharacterList */ = {
 			isa = PBXGroup;
 			children = (
-				FE9554D82AFE7DD4000DFF12 /* CharacterListViewController_MGRE.swift */,
-				FE9554D72AFE7DD4000DFF12 /* CharacterListViewController_MGRE.xib */,
-				C8934D712D11287E00AB9B38 /* CharacterListNewViewController.swift */,
+				C8934D712D11287E00AB9B38 /* CharacterListViewController_MGRE.swift */,
 			);
 			path = CharacterList;
 			sourceTree = "<group>";
@@ -709,7 +703,6 @@
 				FE96E8B92AF4E0A80070BCD2 /* MenuViewController_MGRE.xib in Resources */,
 				FE4C8F922B0254C2000E3DD1 /* DropDownCell_MGRE.xib in Resources */,
 				C8CA8C912D0F429200A3A2F7 /* ModsCell_MGRE.xib in Resources */,
-				FE9554D92AFE7DD4000DFF12 /* CharacterListViewController_MGRE.xib in Resources */,
 				FEB5A0652AFE44EA00424791 /* FilterView_MGRE.xib in Resources */,
 				FE96E8BB2AF4E6EF0070BCD2 /* BakbakOne-Regular.ttf in Resources */,
 				FE96E8BD2AF4E7110070BCD2 /* SF-Pro-Display-Regular.otf in Resources */,
@@ -755,7 +748,7 @@
 				FE94C3AF2AF82E3100B9B5C4 /* ContentCodable_MGRE.swift in Sources */,
 				C86A81CB2D08C56C004B3AC3 /* OutfitIdeasListCodable_MGRE.swift in Sources */,
 				FE94C3AC2AF8248B00B9B5C4 /* UIWindow+Extension_MGRE.swift in Sources */,
-				C8934D722D11287E00AB9B38 /* CharacterListNewViewController.swift in Sources */,
+				C8934D722D11287E00AB9B38 /* CharacterListViewController_MGRE.swift in Sources */,
 				FE94C3A22AF81F2600B9B5C4 /* NetworkManager_MGRE.swift in Sources */,
 				C8CA8C902D0F429200A3A2F7 /* ModsCell_MGRE.swift in Sources */,
 				FE94C3A82AF823AD00B9B5C4 /* Configurations_MGRE.swift in Sources */,
@@ -794,7 +787,6 @@
 				C837ABF42D00C0450079F5A9 /* RoundProgressBar_MGRE.swift in Sources */,
 				FE94C3882AF81C1800B9B5C4 /* Constants_MGRE.swift in Sources */,
 				FE96E8AF2AF462880070BCD2 /* CharacterPreview_MGRE.swift in Sources */,
-				FE9554DA2AFE7DD5000DFF12 /* CharacterListViewController_MGRE.swift in Sources */,
 				FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */,
 				C837ABE72D00A0E40079F5A9 /* StringConstants.swift in Sources */,
 				FE9554D22AFE7B7F000DFF12 /* ScanViewController_MGRE.swift in Sources */,
