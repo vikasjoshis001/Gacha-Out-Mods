@@ -65,6 +65,13 @@ class ModDetailsViewController_MGRE: UIViewController {
         return stackView
     }()
     
+    private let spacerView: UIView = {
+        let view = UIView()
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return view
+    }()
+    
     private let navigationView_MGRE = NavigationView_MGRE()
     
     let device = Helper.getDeviceType()
@@ -96,7 +103,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         
     private func setupViews() {
         // config
-        let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 0 : 180
+        let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 29 : 180
         let imageContainerHeight: CGFloat = getImageContainerHeight()
         let favButtonTrailingAnchor: CGFloat = device == .phone ? 5 : 8.5
         let favButtonHeight: CGFloat = device == .phone ? 38 : 64.6
@@ -148,7 +155,8 @@ class ModDetailsViewController_MGRE: UIViewController {
         verticalStackView.addArrangedSubview(downloadButton)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(descriptionLabel)
-            
+        verticalStackView.addArrangedSubview(spacerView)
+
         // Set constraints
         NSLayoutConstraint.activate([
             // Navigation View
@@ -160,6 +168,7 @@ class ModDetailsViewController_MGRE: UIViewController {
             verticalStackView.topAnchor.constraint(equalTo: navigationView_MGRE.bottomAnchor, constant: 6),
             verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: verticalStackViewLeadingAnchor),
             verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -verticalStackViewLeadingAnchor),
+            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Helper.getBottomConstraint())),
                 
             // Image container constraints
             imageContainer.heightAnchor.constraint(equalToConstant: imageContainerHeight),

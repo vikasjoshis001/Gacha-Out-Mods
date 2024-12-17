@@ -39,7 +39,7 @@ extension NSCollectionLayoutSection_MGRE {
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth,
-                                       itemHeight: 278,
+                                       itemHeight: 269,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 15,

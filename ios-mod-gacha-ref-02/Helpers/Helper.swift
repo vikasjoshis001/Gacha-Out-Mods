@@ -36,4 +36,17 @@ struct Helper {
         }
         return 0
     }
+    
+    static func getBottomConstraint() -> CGFloat {
+        let device = getDeviceType()
+        if device == .phone {
+            let bottomInset = getBottomInset()
+            if bottomInset == 0 {
+                return 34
+            } else {
+                return 0
+            }
+        }
+        return 79.5
+    }
 }
