@@ -259,7 +259,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         var _MGfgawg4a: Bool { false }
         switch modelType_MGRE {
         case .mods_mgre(let model):
-            let filePath = model.filePath
+                let filePath = "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.filePath)"
             saveFile_MGRE(with: filePath)
         case .outfitIdeas_mgre, .characters_mgre:
             save_MGRE(image: imageView.image)
