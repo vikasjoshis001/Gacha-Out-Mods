@@ -1,5 +1,5 @@
 //
-//  CharacterListNewViewController.swift
+//  CharacterListViewController_MGRE.swift
 //  ios-mod-gacha-ref-02
 //
 //  Created by Vikas Joshi on 17/12/24.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - CharacterListNewViewController
+// MARK: - CharacterListViewController_MGRE
 
-class CharacterListNewViewController: UIViewController {
+class CharacterListViewController_MGRE: UIViewController {
     private let backgroundImageView_MGRE: UIImageView = {
         let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
         backgroundImageView.contentMode = .scaleAspectFill
@@ -56,13 +56,13 @@ class CharacterListNewViewController: UIViewController {
         return label
     }()
     
-    private let rightButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.rightChevron)
+    private let rightButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.rightChevron)
 
-    private let leftButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.back)
+    private let leftButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.back)
     
-    private let deleteButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(image: StringConstants.Images.download)
+    private let deleteButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.download)
     
-    private let createNewCharacterButton_MGRE = CharacterListNewViewController.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
+    private let createNewCharacterButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
     
     let navigationView = NavigationView_MGRE()
     private var dropbox_MGRE: DBManager_MGRE { .shared }
@@ -231,7 +231,8 @@ class CharacterListNewViewController: UIViewController {
     @objc private func imageTapped(_ gesture: UITapGestureRecognizer) {
         guard let editorContentSet = editorContentSet_MGRE,
               characters_MGRE.indices.contains(currentPage_MGRE) else { return }
-        let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
+//        let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
+        let vc = CharacterEditorNewViewController()
         vc.editorContentSet_MGRE = editorContentSet
         vc.characterPreview_MGRE = characters_MGRE[currentPage_MGRE]
         vc.addNewCharAction_MGRE = { [weak self] character in
@@ -245,7 +246,8 @@ class CharacterListNewViewController: UIViewController {
         showProgressView_MGRE()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.removeProgressView_MGRE()
-            let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
+//            let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
+            let vc = CharacterEditorNewViewController()
             vc.editorContentSet_MGRE = editorContentSet
             vc.addNewCharAction_MGRE = { [weak self] character in
                 self?.add_MGRE(character: character)
@@ -308,7 +310,7 @@ class CharacterListNewViewController: UIViewController {
     }
 }
 
-extension CharacterListNewViewController {
+extension CharacterListViewController_MGRE {
     func loadCharacters_MGRE() {
         characters_MGRE = dropbox_MGRE.contentManager.fetchCharacters_MGRE()
         emptyLabel_MGRE.isHidden = !characters_MGRE.isEmpty
