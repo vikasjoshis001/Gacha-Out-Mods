@@ -14,6 +14,8 @@ class LocalizationKeys {
     static var ok: String { return "ok".localized() }
     static var download: String { return "download".localized() }
     static var open: String { return "open".localized() }
+    static var yes: String { return "yes".localized() }
+    static var no: String { return "no".localized() }
 
     // MARK: - LaunchScreen
     static var waitALittleBit: String { return "wait_a_little_bit".localized() }
@@ -36,4 +38,5 @@ class LocalizationKeys {
     // MARK: - Editor
     static var createNewCharacter_MGRE: String { return "create_new_character".localized() }
     static var emptyCharactersMsg: String { return "empty_characters_msg".localized() }
+    static var cancelAllSettings: String { return "cancel_all_settings".localized() }
 }

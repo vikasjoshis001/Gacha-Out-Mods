@@ -10,6 +10,8 @@
 "ok" = "Ok";
 "download" = "Download";
 "open" = "Open";
+"yes" = "Yes";
+"no" = "No";
 
 // MARK: - LaunchScreen
 "wait_a_little_bit" = "Wait a little bit...";
@@ -33,3 +35,4 @@
 // MARK: - Editor
 "create_new_character" = "Create new character";
 "empty_characters_msg" = "You haven't created any\ncharacters yet";
+"cancel_all_settings" = "Cancel all\nsettings?";

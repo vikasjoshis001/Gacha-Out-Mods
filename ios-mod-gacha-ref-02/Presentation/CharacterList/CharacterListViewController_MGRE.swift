@@ -22,7 +22,7 @@ class CharacterListViewController_MGRE: UIViewController {
         let characterImageView_MGRE = UIImageView()
         characterImageView_MGRE.contentMode = .scaleAspectFill
         characterImageView_MGRE.translatesAutoresizingMaskIntoConstraints = false
-        characterImageView_MGRE.isUserInteractionEnabled = true // Enable user interaction
+        characterImageView_MGRE.isUserInteractionEnabled = true
         return characterImageView_MGRE
     }()
     
@@ -162,7 +162,6 @@ class CharacterListViewController_MGRE: UIViewController {
         let rightLeftButtonsLeading: CGFloat = device == .phone ? 19 : 81
         let createCharacterButtonWidth: CGFloat = device == .phone ? 224 : 380.8
 
-//        let bottomButtonsLeading: CGFloat = device == .phone ? 50 : 278
         let bottomButtonsBottom: CGFloat = device == .phone ? -iphoneBottomConstraints : -40
         let characterImageHeight: CGFloat = device == .phone ? 531 : 918
         let characterImageWidth: CGFloat = device == .phone ? 309 : 535.5
@@ -199,8 +198,6 @@ class CharacterListViewController_MGRE: UIViewController {
             
             bottomButtonsStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomButtonsBottom),
             bottomButtonsStackView_MGRE.centerXAnchor.constraint(equalTo: backgroundImageView_MGRE.centerXAnchor),
-//            bottomButtonsStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: bottomButtonsLeading),
-//            bottomButtonsStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -bottomButtonsLeading),
                     
             createNewCharacterButton_MGRE.heightAnchor.constraint(equalToConstant: buttonHeight),
             createNewCharacterButton_MGRE.widthAnchor.constraint(equalToConstant: createCharacterButtonWidth),
@@ -268,14 +265,10 @@ class CharacterListViewController_MGRE: UIViewController {
     
     @objc private func deleteButtonDidTapped() {
         guard !characters_MGRE.isEmpty else { return }
-        let alertData = AlertData_MGRE(with: "ARE YOU CERTAIN?",
-                                       subtitle: "You want to erase your character?",
-                                       leftBtnText: "NO",
-                                       rightBtnText: "Delete")
-        { [weak self] in
+        showSettingsCancelPopup_MGRE(title: LocalizationKeys.cancelAllSettings, onYes: { [weak self] in
             self?.deleteCharacter_MGRE()
-        }
-        showAlert_MGRE(with: alertData)
+        },
+        onNo: nil)
     }
     
     private func deleteCharacter_MGRE() {

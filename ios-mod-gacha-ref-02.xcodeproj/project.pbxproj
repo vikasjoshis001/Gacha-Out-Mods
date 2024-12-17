@@ -34,6 +34,7 @@
 		C8D4418E2D023AA500ABB77B /* IpadMenuCell_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D4418B2D023AA500ABB77B /* IpadMenuCell_MGRE.swift */; };
 		C8DB441A2D119A79006335D3 /* CharacterEditorViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB44192D119A79006335D3 /* CharacterEditorViewController_MGRE.swift */; };
 		C8DB441C2D11FD29006335D3 /* CharacterViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB441B2D11FD29006335D3 /* CharacterViewController_MGRE.swift */; };
+		C8DB441F2D12062B006335D3 /* SettingsCancelView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -147,6 +148,7 @@
 		C8D4418C2D023AA500ABB77B /* IpadMenuCell_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IpadMenuCell_MGRE.xib; sourceTree = "<group>"; };
 		C8DB44192D119A79006335D3 /* CharacterEditorViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEditorViewController_MGRE.swift; sourceTree = "<group>"; };
 		C8DB441B2D11FD29006335D3 /* CharacterViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController_MGRE.swift; sourceTree = "<group>"; };
+		C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCancelView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -267,6 +269,14 @@
 				C865E40E2D0A290000BD1118 /* EditorContents_MGRE.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C8DB441D2D1205CF006335D3 /* SettingsCancelView_MGRE */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */,
+			);
+			path = SettingsCancelView_MGRE;
 			sourceTree = "<group>";
 		};
 		FE4C8F802B024E16000E3DD1 /* DropDownView */ = {
@@ -495,6 +505,7 @@
 		FE96E8A12AF457330070BCD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8DB441D2D1205CF006335D3 /* SettingsCancelView_MGRE */,
 				C837ABF22D00C01A0079F5A9 /* RoundProgressBar */,
 				FE4C8F802B024E16000E3DD1 /* DropDownView */,
 				FE9554E82B014305000DFF12 /* ContentCharacterCell */,
@@ -714,6 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8DB441F2D12062B006335D3 /* SettingsCancelView_MGRE.swift in Sources */,
 				C837ABF12D00AC300079F5A9 /* Typography.swift in Sources */,
 				FEBB862A2AFAC78F0059C153 /* Optional+Extension_MGRE.swift in Sources */,
 				FE4DB2B12AF7BB3D00E0C59D /* UICollectionView+Extension_MGRE.swift in Sources */,
