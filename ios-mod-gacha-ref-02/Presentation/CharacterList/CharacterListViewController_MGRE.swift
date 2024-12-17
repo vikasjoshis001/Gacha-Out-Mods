@@ -231,8 +231,7 @@ class CharacterListViewController_MGRE: UIViewController {
     @objc private func imageTapped(_ gesture: UITapGestureRecognizer) {
         guard let editorContentSet = editorContentSet_MGRE,
               characters_MGRE.indices.contains(currentPage_MGRE) else { return }
-//        let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
-        let vc = CharacterEditorNewViewController()
+        let vc = CharacterEditorViewController_MGRE()
         vc.editorContentSet_MGRE = editorContentSet
         vc.characterPreview_MGRE = characters_MGRE[currentPage_MGRE]
         vc.addNewCharAction_MGRE = { [weak self] character in
@@ -246,8 +245,7 @@ class CharacterListViewController_MGRE: UIViewController {
         showProgressView_MGRE()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.removeProgressView_MGRE()
-//            let vc = CharacterEditorViewController_MGRE.loadFromNib_MGRE()
-            let vc = CharacterEditorNewViewController()
+            let vc = CharacterEditorViewController_MGRE()
             vc.editorContentSet_MGRE = editorContentSet
             vc.addNewCharAction_MGRE = { [weak self] character in
                 self?.add_MGRE(character: character)
