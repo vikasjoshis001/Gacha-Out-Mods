@@ -91,18 +91,24 @@ extension NSCollectionLayoutSection_MGRE {
                                        verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.characters_mgre, .phone):
-            config = LayoutConfig_MGRE(itemWidth: 316,
-                                       itemHeight: 210,
-                                       columns: 1,
-                                       horizontalSpacing: 0,
+            let numberOfColumns: Int = isSearching ? 2 : 1
+            let itemWidthIphone: CGFloat = isSearching ? 159 : 333
+            let itemHorizontalSpacing: CGFloat = isSearching ? 19 : 0
+            config = LayoutConfig_MGRE(itemWidth: itemWidthIphone,
+                                       itemHeight: 226,
+                                       columns: numberOfColumns,
+                                       horizontalSpacing: itemHorizontalSpacing,
                                        verticalSpacing: 14,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             
         case (.characters_mgre, .pad):
-            config = LayoutConfig_MGRE(itemWidth: 538,
+            let numberOfColumns: Int = isSearching ? 2 : 1
+            let itemWidthIpad: CGFloat = isSearching ? 250 : 538
+            let itemHorizontalSpacing: CGFloat = isSearching ? 19 : 25
+            config = LayoutConfig_MGRE(itemWidth: itemWidthIpad,
                                        itemHeight: 358,
-                                       columns: 1,
-                                       horizontalSpacing: 0,
+                                       columns: numberOfColumns,
+                                       horizontalSpacing: itemHorizontalSpacing,
                                        verticalSpacing: 23.8,
                                        sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
         case (.collections_mgre, .phone):
