@@ -82,14 +82,19 @@ class DropDownView_MGRE: UIView {
     }
     
     private func getDownChevron() -> UIImage? {
-//        return UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.downChevron))
-        return UIImage(.chevronBottomIcon)
+        let chevronImage = UIImage(systemName: "chevron.down")
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .medium)
+        let resizedChevron = chevronImage?.withConfiguration(imageConfig)
+        
+        return resizedChevron
     }
     
     private func getUpChevron() -> UIImage? {
-//        return UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.upChevron))
-        return UIImage(.chevronTopIcon)
+        let chevronImage = UIImage(systemName: "chevron.up")
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .medium)
+        let resizedChevron = chevronImage?.withConfiguration(imageConfig)
 
+        return resizedChevron
     }
     
     private func updateView_MGRE() {
