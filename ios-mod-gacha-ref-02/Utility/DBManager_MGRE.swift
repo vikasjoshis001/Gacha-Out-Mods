@@ -184,28 +184,59 @@ extension DBManager_MGRE {
         }
     }
         
+//    func fetchImage_MGRE(for contentType: ContentType_MGRE,
+//                         imgPath: String,
+//                         completion: @escaping (Data?) -> Void)
+//    {
+//        var _MGRE71: Bool { false }
+//        var _MGRE81: Int { 0 }
+//        
+//        let fetchBlock: (DropboxClient) -> Void = { [weak self] client in
+//            
+//            guard let self = self else {
+//                completion(nil)
+//                return
+//            }
+//                
+//            let path = contentManager.getPath_MGRE(for: contentType, imgPath: imgPath)
+//            getFile_MGRE(client: client, with: path) { data in
+//                if let data = data {
+//                    completion(data)
+//                } else {
+//                    completion(nil)
+//                }
+//            }
+//        }
+//        
+//        if let client = client {
+//            fetchBlock(client)
+//        } else {
+//            connect_MGRE { client in
+//                guard let client = client else {
+//                    completion(nil)
+//                    return
+//                }
+//                fetchBlock(client)
+//            }
+//        }
+//    }
+    
     func fetchImage_MGRE(for contentType: ContentType_MGRE,
-                         imgPath: String,
-                         completion: @escaping (Data?) -> Void)
+                        imgPath: String,
+                        progressHandler: @escaping (Float) -> Void,
+                        completion: @escaping (Data?) -> Void)
     {
-        var _MGRE71: Bool { false }
-        var _MGRE81: Int { 0 }
-        
         let fetchBlock: (DropboxClient) -> Void = { [weak self] client in
-            
             guard let self = self else {
                 completion(nil)
                 return
             }
                 
             let path = contentManager.getPath_MGRE(for: contentType, imgPath: imgPath)
-            getFile_MGRE(client: client, with: path) { data in
-                if let data = data {
-                    completion(data)
-                } else {
-                    completion(nil)
-                }
-            }
+            _ = self.getFile_MGRE(client: client,
+                                 with: path,
+                                 progressHandler: progressHandler,
+                                 completion: completion)
         }
         
         if let client = client {
@@ -220,7 +251,6 @@ extension DBManager_MGRE {
             }
         }
     }
-    
     func fetchFile_MGRE(for contentType: ContentType_MGRE,
                         filePath: String,
                         requestCompletion: @escaping ((DownloadRequestMemory<Files.FileMetadataSerializer, Files.DownloadErrorSerializer>?) -> Void),

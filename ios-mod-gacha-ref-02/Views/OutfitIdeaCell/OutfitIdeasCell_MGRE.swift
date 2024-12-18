@@ -26,6 +26,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
     private let imageView_MGRE: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .imageCardBackground
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

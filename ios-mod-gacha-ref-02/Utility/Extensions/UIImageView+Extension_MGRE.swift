@@ -18,8 +18,11 @@ extension UIImageView_MGRE {
     ///
     /// - Parameter imgPath: Путь к изображению.
     
+    // MARK: - Associated Objects
+
     private static var currentImagePathKey: UInt8 = 0
     private static var imageLoadTaskKey: UInt8 = 1
+    private static var loadingContainerKey: UInt8 = 2
         
     private var currentImagePath: String? {
         get { return objc_getAssociatedObject(self, &UIImageView.currentImagePathKey) as? String }
@@ -31,32 +34,45 @@ extension UIImageView_MGRE {
         set { objc_setAssociatedObject(self, &UIImageView.imageLoadTaskKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
         
-    func cancelCurrentImageLoad() {
-        imageLoadTask?.cancel()
-        imageLoadTask = nil
-        currentImagePath = nil
+    private var loadingContainer: UIView? {
+        get { return objc_getAssociatedObject(self, &UIImageView.loadingContainerKey) as? UIView }
+        set { objc_setAssociatedObject(self, &UIImageView.loadingContainerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
+    // MARK: - Cache Manager
+
     class ImageCacheManager {
         static let shared = ImageCacheManager()
         private let cache = NSCache<NSString, UIImage>()
-        
+            
         func setImage(_ image: UIImage, forKey key: String) {
             cache.setObject(image, forKey: key as NSString)
         }
-        
+            
         func getImage(forKey key: String) -> UIImage? {
             return cache.object(forKey: key as NSString)
         }
-        
+            
         func removeImage(forKey key: String) {
             cache.removeObject(forKey: key as NSString)
         }
     }
+    
+    // MARK: - Image Loading
+
+    func cancelCurrentImageLoad() {
+        imageLoadTask?.cancel()
+        imageLoadTask = nil
+        currentImagePath = nil
+        loadingContainer?.removeFromSuperview()
+        loadingContainer = nil
+    }
 
     func add_MGRE(image imgPath: String, for contentType: ContentType_MGRE) {
-        imageLoadTask?.cancel()
+        // Cancel any existing load
+        cancelCurrentImageLoad()
             
+        // If the image path is the same, don't reload
         if currentImagePath == imgPath {
             return
         }
@@ -65,36 +81,76 @@ extension UIImageView_MGRE {
         image = nil
         currentImagePath = imgPath
             
+        // Setup loading container with progress view
+        let container = UIView(frame: bounds)
+        container.backgroundColor = .imageCardBackground
+        container.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(container)
+            
+        let progressView = CircularProgressView_MGRE.create(in: container)
+        loadingContainer = container
+            
         // Check cache first
         if let cachedImage = ImageCacheManager.shared.getImage(forKey: imgPath) {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, self.currentImagePath == imgPath else { return }
-                self.image = cachedImage
+                self.setFinalImage(cachedImage)
             }
             return
         }
             
         // Create new task for this request
         let task = DispatchWorkItem { [weak self] in
-            DBManager_MGRE.shared.fetchImage_MGRE(for: contentType, imgPath: imgPath) { [weak self] data in
-                guard let self = self,
-                      self.currentImagePath == imgPath,
-                      let data = data,
-                      let image = UIImage(data: data)
-                else {
-                    return
+            DBManager_MGRE.shared.fetchImage_MGRE(
+                for: contentType,
+                imgPath: imgPath,
+                progressHandler: { [weak self] progress in
+                    guard let self = self,
+                          let container = self.loadingContainer,
+                          self.currentImagePath == imgPath else { return }
+                        
+                    DispatchQueue.main.async {
+                        (container.subviews.first as? CircularProgressView_MGRE)?.updateProgress(progress / 100)
+                    }
+                },
+                completion: { [weak self] data in
+                    guard let self = self,
+                          self.currentImagePath == imgPath,
+                          let data = data,
+                          let image = UIImage(data: data)
+                    else {
+                        DispatchQueue.main.async {
+                            self?.loadingContainer?.removeFromSuperview()
+                            self?.loadingContainer = nil
+                        }
+                        return
+                    }
+                        
+                    // Cache the image
+                    ImageCacheManager.shared.setImage(image, forKey: imgPath)
+                        
+                    DispatchQueue.main.async {
+                        guard self.currentImagePath == imgPath else { return }
+                        self.setFinalImage(image)
+                    }
                 }
-                    
-                // Cache the image
-                ImageCacheManager.shared.setImage(image, forKey: imgPath)
-                DispatchQueue.main.async {
-                    guard self.currentImagePath == imgPath else { return }
-                    self.image = image
-                }
-            }
+            )
         }
+            
         imageLoadTask = task
         DispatchQueue.global(qos: .userInitiated).async(execute: task)
+    }
+        
+    private func setFinalImage(_ image: UIImage) {
+        UIView.transition(with: self,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              self.image = image
+                          }, completion: { _ in
+                              self.loadingContainer?.removeFromSuperview()
+                              self.loadingContainer = nil
+                          })
     }
 
     func addPDF_MGRE(image imgPath: String) {

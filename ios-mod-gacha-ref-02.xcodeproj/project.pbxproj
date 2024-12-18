@@ -35,6 +35,7 @@
 		C8DB441A2D119A79006335D3 /* CharacterEditorViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB44192D119A79006335D3 /* CharacterEditorViewController_MGRE.swift */; };
 		C8DB441C2D11FD29006335D3 /* CharacterViewController_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB441B2D11FD29006335D3 /* CharacterViewController_MGRE.swift */; };
 		C8DB441F2D12062B006335D3 /* SettingsCancelView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */; };
+		C8DB44222D121211006335D3 /* CircularProgressView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB44212D121211006335D3 /* CircularProgressView_MGRE.swift */; };
 		FE4C8F882B02500D000E3DD1 /* DropDownView_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */; };
 		FE4C8F8A2B025051000E3DD1 /* DropDownView_MGRE.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */; };
 		FE4C8F8C2B025401000E3DD1 /* UITableView+Extension_MGRE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */; };
@@ -149,6 +150,7 @@
 		C8DB44192D119A79006335D3 /* CharacterEditorViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEditorViewController_MGRE.swift; sourceTree = "<group>"; };
 		C8DB441B2D11FD29006335D3 /* CharacterViewController_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController_MGRE.swift; sourceTree = "<group>"; };
 		C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCancelView_MGRE.swift; sourceTree = "<group>"; };
+		C8DB44212D121211006335D3 /* CircularProgressView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F872B02500D000E3DD1 /* DropDownView_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView_MGRE.swift; sourceTree = "<group>"; };
 		FE4C8F892B025051000E3DD1 /* DropDownView_MGRE.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView_MGRE.xib; sourceTree = "<group>"; };
 		FE4C8F8B2B025401000E3DD1 /* UITableView+Extension_MGRE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension_MGRE.swift"; sourceTree = "<group>"; };
@@ -271,12 +273,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C8DB441D2D1205CF006335D3 /* SettingsCancelView_MGRE */ = {
+		C8DB441D2D1205CF006335D3 /* SettingsCancelView */ = {
 			isa = PBXGroup;
 			children = (
 				C8DB441E2D12062B006335D3 /* SettingsCancelView_MGRE.swift */,
 			);
-			path = SettingsCancelView_MGRE;
+			path = SettingsCancelView;
+			sourceTree = "<group>";
+		};
+		C8DB44202D1211F3006335D3 /* CircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB44212D121211006335D3 /* CircularProgressView_MGRE.swift */,
+			);
+			path = CircularProgressView;
 			sourceTree = "<group>";
 		};
 		FE4C8F802B024E16000E3DD1 /* DropDownView */ = {
@@ -505,7 +515,8 @@
 		FE96E8A12AF457330070BCD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C8DB441D2D1205CF006335D3 /* SettingsCancelView_MGRE */,
+				C8DB44202D1211F3006335D3 /* CircularProgressView */,
+				C8DB441D2D1205CF006335D3 /* SettingsCancelView */,
 				C837ABF22D00C01A0079F5A9 /* RoundProgressBar */,
 				FE4C8F802B024E16000E3DD1 /* DropDownView */,
 				FE9554E82B014305000DFF12 /* ContentCharacterCell */,
@@ -758,6 +769,7 @@
 				C8DB441C2D11FD29006335D3 /* CharacterViewController_MGRE.swift in Sources */,
 				FE94C3A82AF823AD00B9B5C4 /* Configurations_MGRE.swift in Sources */,
 				FE96E8A52AF458360070BCD2 /* MenuItem_MGRE.swift in Sources */,
+				C8DB44222D121211006335D3 /* CircularProgressView_MGRE.swift in Sources */,
 				FE94C3AA2AF8242400B9B5C4 /* NetworkMonitor_MGRE.swift in Sources */,
 				FE94C3C42AF8E3FE00B9B5C4 /* BaseViewController_MGRE.swift in Sources */,
 				FE96E8B22AF464AF0070BCD2 /* ContentCache_MGRE.xcdatamodeld in Sources */,

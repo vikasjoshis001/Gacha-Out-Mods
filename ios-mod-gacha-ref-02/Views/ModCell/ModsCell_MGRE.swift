@@ -42,7 +42,7 @@ class ModsCell_MGRE: UICollectionViewCell {
         layer.cornerRadius = device == .phone ? 20 : 34
         layer.masksToBounds = true
     }
-        
+
     override func prepareForReuse() {
         super.prepareForReuse()
         update_MGRE = nil
@@ -51,7 +51,7 @@ class ModsCell_MGRE: UICollectionViewCell {
         imageView.image = nil
         isFavourite_MGRE = false
     }
-        
+
     func configure_MGRE(with data: Mods_MGRE,
                         isFavorites: Bool,
                         update: (() -> Void)?,
@@ -59,13 +59,13 @@ class ModsCell_MGRE: UICollectionViewCell {
     {
         update_MGRE = update
         action_MGRE = action
-            
+
         isFavourite_MGRE = isFavorites
         titleLabel.text = data.name
         descriptionLabel.text = data.description
-            
+        imageView.backgroundColor = .imageCardBackground
         imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
-            
+
         configureCell_MGRE()
     }
     

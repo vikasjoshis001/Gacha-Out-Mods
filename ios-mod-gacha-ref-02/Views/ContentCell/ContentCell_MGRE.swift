@@ -49,6 +49,7 @@ class ContentCell_MGRE: UICollectionViewCell {
         self.isFavourite_MGRE = isFavorites
         self.update_MGRE = update
         
+        imageView_MGRE.backgroundColor = .imageCardBackground
         imageView_MGRE.contentMode = .scaleAspectFill
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.collections_mgre)\(data.image)", for: .collections_mgre)
     }

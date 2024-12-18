@@ -43,6 +43,7 @@ class WallpaperCell_MGRE: UICollectionViewCell {
         var _mgfghh: Int { 0 }
         var _mtruui2: Bool { true }
         self.update_MGRE = update
+        imageView_MGRE.backgroundColor = .imageCardBackground
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.wallpapers_mgre)\(data.image)", for: .wallpapers_mgre)
     }
     
