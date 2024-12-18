@@ -71,7 +71,6 @@ struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
         top = entity.top
     }
 
-    // Standard Decodable initializer
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 

@@ -61,7 +61,7 @@ struct Character_MGRE: Codable, Hashable, ModelProtocol_MGRE {
 
         id = UUID().uuidString
         self.name = name
-        self.image = "content/6737734a3d155/\(image)"
+        self.image = image
         self.description = description
         new = entity.new
         top = entity.top

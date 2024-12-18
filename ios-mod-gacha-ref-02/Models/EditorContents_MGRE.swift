@@ -68,11 +68,11 @@ struct EditorItems: Codable {
     let image: String
     
     enum CodingKeys: String, CodingKey {
-        case gender = "a8c20" // BodyType
+        case gender = "a8c20"
         case isPopular
         case isNew
-        case thumbnail = "_sqryzo-" // skinEditorImage
-        case image = "ab7bx" // skinEditorPreview
+        case thumbnail = "_sqryzo-"
+        case image = "ab7bx"
     }
     
     init(from decoder: Decoder) throws {

@@ -61,7 +61,7 @@ struct OutfitIdea_MGRE: Codable, Hashable, ModelProtocol_MGRE {
 
         id = UUID().uuidString
         self.name = name
-        self.image = "content/673773360eb16/\(image)"
+        self.image = image
         self.description = description
         new = entity.new
         top = entity.top

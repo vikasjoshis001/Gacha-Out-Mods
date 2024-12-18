@@ -58,7 +58,7 @@ struct Collections_MGRE: Codable, Hashable, ModelProtocol_MGRE {
 
         id = UUID().uuidString
         self.name = name
-        self.image = "content/673773184087f/\(image)"
+        self.image = image
         new = entity.new
         top = entity.top
     }

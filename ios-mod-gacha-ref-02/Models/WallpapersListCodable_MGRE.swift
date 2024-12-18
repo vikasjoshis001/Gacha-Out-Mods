@@ -48,7 +48,7 @@ struct Wallpaper_MGRE: Codable, Hashable, ModelProtocol_MGRE {
     init?(from entity: ContentEntity) {
         guard let image = entity.image else { return nil }
         self.id = UUID().uuidString
-        self.image = "content/6737731c09cad/\(image)"
+        self.image = image
         self.new = entity.new
         self.top = entity.top
     }
