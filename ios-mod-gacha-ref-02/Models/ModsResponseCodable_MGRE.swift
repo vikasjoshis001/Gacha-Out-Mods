@@ -29,7 +29,7 @@ struct ModsSection_MGRE: Codable {
 
 // MARK: - Mods_MGRE
 
-struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {
+struct Mods_MGRE: Codable, Hashable, ModelProtocol_MGRE {    
     static let type: ContentType_MGRE = .mods_mgre
 
     let id: String

@@ -40,6 +40,33 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         return button
     }()
     
+    private let labelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.masksToBounds = true
+        stackView.clipsToBounds = true
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.clipsToBounds = true
+        return label
+    }()
+        
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let favoriteButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
@@ -66,6 +93,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
     var action_MGRE: (() -> Void)?
     
     // MARK: - Lifecycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButtons()
@@ -128,8 +156,28 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         update_MGRE = update
         action_MGRE = action
         
+        labelStackView.isHidden = true
+        
         isFavourite_MGRE = isFavorites
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
+        
+        configureCell_MGRE()
+    }
+    
+    func configure_MGRE(with data: Mods_MGRE,
+                        isFavorites: Bool,
+                        update: (() -> Void)?,
+                        action: (() -> Void)?)
+    {
+        var _m45666: Int { 0 }
+        var _m12322: Bool { true }
+        update_MGRE = update
+        action_MGRE = action
+        
+        isFavourite_MGRE = isFavorites
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
         
         configureCell_MGRE()
     }
@@ -139,7 +187,11 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         contentView.addSubview(verticalStackView_MGRE)
         
         verticalStackView_MGRE.addArrangedSubview(imageView_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(labelStackView)
         verticalStackView_MGRE.addArrangedSubview(buttonStackView_MGRE)
+        
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(descriptionLabel)
         
         buttonStackView_MGRE.addArrangedSubview(openButton_MGRE)
         buttonStackView_MGRE.addArrangedSubview(favoriteButton_MGRE)
@@ -153,9 +205,8 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
                                                             bottom: verticalStackViewInsets,
                                                             right: verticalStackViewInsets)
         
-        verticalStackView_MGRE.spacing = device == .phone ? 12 : 15
-        
-        
+        verticalStackView_MGRE.spacing = device == .phone ? 7 : 12
+                
         // Configure image view
         let imageViewHeight: CGFloat = device == .phone ? 161 : 273.7
         imageView_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
@@ -174,6 +225,26 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         
         favoriteButton_MGRE.layer.cornerRadius = buttonCornerRadius
         
+        // Configure label stack view
+        let labelStackViewSpacing: CGFloat = device == .phone ? 0 : 13.6
+        labelStackView.spacing = labelStackViewSpacing
+        
+        // Configure title label
+        let titleLabelFontSize: CGFloat = device == .phone ? 20 : 34
+        titleLabel.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
+        titleLabel.numberOfLines = 1
+        titleLabel.textColor = .black
+        titleLabel.setLineHeight(titleLabelFontSize)
+        titleLabel.addHuggingProperties()
+
+        
+        // Configure description label
+        let descriptionLabelFontSize: CGFloat = device == .phone ? 14 : 23.8
+        let descriptionLabelLineHeight: CGFloat = device == .phone ? 14 : 30.82
+        descriptionLabel.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionLabelFontSize)
+        descriptionLabel.textColor = .black
+        descriptionLabel.setLineHeight(descriptionLabelLineHeight)
+        
         // Set up constraints
         NSLayoutConstraint.activate([
             // Vertical stack view constraints
@@ -182,9 +253,10 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
             verticalStackView_MGRE.topAnchor.constraint(equalTo: contentView.topAnchor),
             verticalStackView_MGRE.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
+
             // Image view height constraint
             imageView_MGRE.heightAnchor.constraint(equalToConstant: imageViewHeight),
-            
+                                    
             // Button constraints
             openButton_MGRE.heightAnchor.constraint(equalToConstant: buttonHeight),
 

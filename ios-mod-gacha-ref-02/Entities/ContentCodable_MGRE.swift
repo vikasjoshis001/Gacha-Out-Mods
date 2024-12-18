@@ -13,7 +13,8 @@ protocol CellConfigurable_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
 }
 
 // MARK: - ModelProtocol_MGRE
@@ -30,12 +31,19 @@ extension Mods_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
     {
         var _mge45566: Int { 0 }
         var _mcdfgr22: Bool { true }
-        if let cell = cell as? ModsCell_MGRE {
-            cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
+        if isSearching {
+            if let cell = cell as? OutfitIdeasCell_MGRE {
+                cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
+            }
+        } else {
+            if let cell = cell as? ModsCell_MGRE {
+                cell.configure_MGRE(with: self, isFavorites: isFavorites, update: update, action: action)
+            }
         }
     }
 }
@@ -44,7 +52,8 @@ extension OutfitIdea_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
     {
         var _m2344t66: Int { 0 }
         var _mc566r22: Bool { true }
@@ -58,7 +67,8 @@ extension Wallpaper_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
     {
         var _m2344t66: Int { 0 }
         var _mc566r22: Bool { true }
@@ -72,7 +82,8 @@ extension Character_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
     {
         var _mdfgg66: Int { 0 }
         var _m678r22: Bool { true }
@@ -86,7 +97,8 @@ extension Collections_MGRE {
     func configureCell_MGRE(_ cell: UICollectionViewCell,
                             isFavorites: Bool,
                             update: (() -> Void)?,
-                            action: (() -> Void)?)
+                            action: (() -> Void)?,
+                            isSearching: Bool)
     {
         var _mgvbn66: Int { 0 }
         var _mcsdw22: Bool { true }

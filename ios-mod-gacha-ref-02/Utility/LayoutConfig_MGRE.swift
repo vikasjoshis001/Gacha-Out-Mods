@@ -30,26 +30,28 @@ struct LayoutConfig_MGRE {
 typealias NSCollectionLayoutSection_MGRE = NSCollectionLayoutSection
 
 extension NSCollectionLayoutSection_MGRE {
-    static func generateLayout_MGRE(for modelType: ContentType_MGRE) -> NSCollectionLayoutSection {
+    static func generateLayout_MGRE(for modelType: ContentType_MGRE, isSearching: Bool) -> NSCollectionLayoutSection {
         let config: LayoutConfig_MGRE
         let deviceType = UIDevice.current.userInterfaceIdiom
         switch (modelType, deviceType) {
         case (.mods_mgre, .phone):
+            let itemHeightIphone: CGFloat = isSearching ? 342 : 269
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth,
-                                       itemHeight: 269,
+                                       itemHeight: itemHeightIphone,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 15,
                                        sectionInsets: LayoutConfig_MGRE.defaultPhoneInsets)
         case (.mods_mgre, .pad):
+            let itemHeightIpad: CGFloat = isSearching ? 581.4 : 435
             let itemWidth = LayoutConfig_MGRE.getItemWidth(with: 1,
                                                            horizontalSpacing: 0,
                                                            sectionInsets: LayoutConfig_MGRE.defaultPadInsets)
             config = LayoutConfig_MGRE(itemWidth: itemWidth,
-                                       itemHeight: 435,
+                                       itemHeight: itemHeightIpad,
                                        columns: 1,
                                        horizontalSpacing: 0,
                                        verticalSpacing: 25.5,

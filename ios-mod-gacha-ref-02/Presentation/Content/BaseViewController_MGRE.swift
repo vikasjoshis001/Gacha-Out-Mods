@@ -5,8 +5,8 @@
 //  Created by Systems
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 // MARK: - Filter_MGRE
 
@@ -71,6 +71,11 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     var allData_MGRE: [any ModelProtocol_MGRE] = []
     var data_MGRE: [any ModelProtocol_MGRE] = []
     var favorites_MGRE: [String] = []
+    private var isSearching: Bool = false {
+        didSet {
+            configureCollectionView_MGRE()
+        }
+    }
     
     var filters_MGRE: [Filter_MGRE] {
         if isFavoriteMode_MGRE {
@@ -165,6 +170,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         searchBar_MGRE.isHidden = true
         searchBar_MGRE.textDidChange_MGRE = { [weak self] text in
             guard let self else { return }
+            isSearching = true
             self.searchText_MGRE = text
             var results: [String] = []
             if let text = text, !text.isEmpty {
@@ -179,6 +185,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         }
         searchBar_MGRE.dismiss_MGRE = { [weak self] in
             guard let self else { return }
+            isSearching = false
             self.searchBar_MGRE.isHidden = true
             self.navigationView_MGRE.isHidden = false
             self.searchText_MGRE = nil
@@ -214,13 +221,18 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     }
     
     func generateSectionLayout_MGRE() -> NSCollectionLayoutSection {
-        NSCollectionLayoutSection.generateLayout_MGRE(for: modelType_MGRE)
+        NSCollectionLayoutSection.generateLayout_MGRE(for: modelType_MGRE, isSearching: isSearching)
     }
     
     func configureDataSource_MGRE() {
         dataSource_MGRE = DataSource_MGRE(collectionView: collectionView_MGRE) { [weak self] collectionView, indexPath, unifiedModel in
             guard let self, let cellClass = modelType_MGRE.cellClass_MGRE else { return UICollectionViewCell() }
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellClass.identifier_MGRE, for: indexPath)
+            var cellClassNew = cellClass
+            if cellClass == ModsCell_MGRE.self && isSearching {
+                cellClassNew = OutfitIdeasCell_MGRE.self
+            }
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellClassNew.identifier_MGRE, for: indexPath)
             
             let model: any ModelProtocol_MGRE
             switch unifiedModel {
@@ -232,12 +244,12 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             }
             
             let isFavorites = favorites_MGRE.contains(model.favId)
-            model.configureCell_MGRE(cell, isFavorites: isFavorites) { [weak self] in
+            model.configureCell_MGRE(cell, isFavorites: isFavorites, update: { [weak self] in
                 self?.updateFavorites_MGRE(with: model.favId)
-            } action: { [weak self] in
+            }, action: { [weak self] in
                 self?.pushTo_MGRE(contentType: self?.modelType_MGRE ?? .mods_mgre, index: indexPath.item)
-            }
-            
+            }, isSearching: isSearching)
+    
             return cell
         }
     }

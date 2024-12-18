@@ -49,6 +49,13 @@ extension UILabel_MGRE {
             
         attributedText = attributedString
     }
+    
+    func addHuggingProperties() {
+        self.setContentHuggingPriority(.required, for: .vertical)
+        self.setContentHuggingPriority(.required, for: .horizontal)
+        self.setContentCompressionResistancePriority(.required, for: .vertical)
+        self.setContentCompressionResistancePriority(.required, for: .horizontal)
+    }
 }
 
 extension UITextField_MGRE {
@@ -61,21 +68,21 @@ extension UITextField_MGRE {
     }
     
     func setLineHeight(_ lineHeight: CGFloat) {
-            let text = self.text ?? ""
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.minimumLineHeight = lineHeight
-            paragraphStyle.maximumLineHeight = lineHeight
+        let text = self.text ?? ""
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = lineHeight
+        paragraphStyle.maximumLineHeight = lineHeight
 
-            let attributedString = NSAttributedString(
-                string: text,
-                attributes: [
-                    .paragraphStyle: paragraphStyle,
-                    .baselineOffset: (lineHeight - (font?.lineHeight ?? 0)) / 4
-                ]
-            )
+        let attributedString = NSAttributedString(
+            string: text,
+            attributes: [
+                .paragraphStyle: paragraphStyle,
+                .baselineOffset: (lineHeight - (font?.lineHeight ?? 0)) / 4
+            ]
+        )
 
-            self.attributedText = attributedString
-        }
+        self.attributedText = attributedString
+    }
     
     func setLetterSpacing(_ spacing: CGFloat) {
         guard let text = text else { return }
@@ -91,4 +98,3 @@ extension UITextField_MGRE {
         attributedText = attributedString
     }
 }
-
