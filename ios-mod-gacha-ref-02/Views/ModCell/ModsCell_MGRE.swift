@@ -8,6 +8,8 @@
 import Kingfisher
 import UIKit
 
+// MARK: - ModsCell_MGRE
+
 class ModsCell_MGRE: UICollectionViewCell {
     @IBOutlet var cardStackView: UIStackView!
     @IBOutlet var imageStackView: UIStackView!
@@ -40,32 +42,30 @@ class ModsCell_MGRE: UICollectionViewCell {
         layer.cornerRadius = device == .phone ? 20 : 34
         layer.masksToBounds = true
     }
-    
+        
     override func prepareForReuse() {
-        var _mdfgg566: Int { 0 }
-        var _m4677gr22: Bool { true }
+        super.prepareForReuse()
         update_MGRE = nil
         action_MGRE = nil
+        imageView.cancelCurrentImageLoad()
         imageView.image = nil
         isFavourite_MGRE = false
-        imageView.kf.indicator?.stopAnimatingView()
     }
-    
+        
     func configure_MGRE(with data: Mods_MGRE,
                         isFavorites: Bool,
                         update: (() -> Void)?,
                         action: (() -> Void)?)
     {
-        var _m45666: Int { 0 }
-        var _m12322: Bool { true }
         update_MGRE = update
         action_MGRE = action
-        
+            
         isFavourite_MGRE = isFavorites
         titleLabel.text = data.name
         descriptionLabel.text = data.description
+            
         imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
-        
+            
         configureCell_MGRE()
     }
     

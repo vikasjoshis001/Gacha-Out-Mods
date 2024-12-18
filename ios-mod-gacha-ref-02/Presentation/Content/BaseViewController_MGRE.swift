@@ -231,6 +231,15 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             if cellClass == ModsCell_MGRE.self && isSearching {
                 cellClassNew = OutfitIdeasCell_MGRE.self
             }
+            
+            // Cancel any pending image loads for the reused cell
+            if let existingCell = collectionView.cellForItem(at: indexPath) {
+                if let modsCell = existingCell as? ModsCell_MGRE {
+                    modsCell.prepareForReuse()
+                } else if let outfitCell = existingCell as? OutfitIdeasCell_MGRE {
+                    outfitCell.prepareForReuse()
+                }
+            }
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellClassNew.identifier_MGRE, for: indexPath)
             
