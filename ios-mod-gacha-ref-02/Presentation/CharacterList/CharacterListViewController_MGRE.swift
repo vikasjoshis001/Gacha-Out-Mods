@@ -60,7 +60,7 @@ class CharacterListViewController_MGRE: UIViewController {
 
     private let leftButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.back)
     
-    private let deleteButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.download)
+    private let deleteButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.trash)
     
     private let createNewCharacterButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
     
