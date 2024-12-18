@@ -16,6 +16,7 @@ enum LocalizationKeys {
     static var open: String { return "open".localized() }
     static var yes: String { return "yes".localized() }
     static var no: String { return "no".localized() }
+    static var ready: String { return "ready".localized() }
 
     // MARK: - LaunchScreen
 

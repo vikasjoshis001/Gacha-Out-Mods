@@ -306,8 +306,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            let alertData = AlertData_MGRE(with: "Downloaded!")
-            showAlert_MGRE(with: alertData)
+            UIHelper.showReadyDialogue()
         }
     }
     
@@ -337,8 +336,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         activityVC.title = "Download Mod"
         activityVC.completionWithItemsHandler = { [weak self] activityType, completed, items, error in
             if completed {
-                let alertData = AlertData_MGRE(with: "Downloaded!")
-                self?.showAlert_MGRE(with: alertData)
+                UIHelper.showReadyDialogue()
             } else {
                 print("Действие отменено")
             }

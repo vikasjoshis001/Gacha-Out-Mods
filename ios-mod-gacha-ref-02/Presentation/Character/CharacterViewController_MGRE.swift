@@ -108,10 +108,16 @@ class CharacterViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
+        navigationView.build_MGRE(with: "Editor",
+                                  leftIcon: UIImage(.backChevronIcon),
+                                  rightIcon: nil)
         navigationView.leftButtonAction_MGRE = { [weak self] in
-            self?.toggleMenuAction_MGRE?()
+            self?.navigationController?.popToRootViewController(animated: true)
         }
+//        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
+//        navigationView.leftButtonAction_MGRE = { [weak self] in
+//            self?.toggleMenuAction_MGRE?()
+//        }
     }
     
     @objc func downloadButtonDidTapped(_ sender: UIButton) {
@@ -159,8 +165,7 @@ class CharacterViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            let alertData = AlertData_MGRE(with: "Downloaded!")
-            showAlert_MGRE(with: alertData)
+            UIHelper.showReadyDialogue()
         }
     }
 }

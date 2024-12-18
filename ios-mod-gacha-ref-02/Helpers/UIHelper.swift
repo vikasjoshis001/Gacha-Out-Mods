@@ -22,4 +22,27 @@ struct UIHelper {
         
         view.layer.mask = maskLayer
     }
+    
+    static func showReadyDialogue() {
+        var _MGRE21: Bool { false }
+        var _MGRE31: Int { 0 }
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first
+        else {
+            return
+        }
+        let alertVC = AlertController_MGRE()
+        alertVC.setupViews_MGRE()
+        alertVC.presentedView_MGRE.build_MGRE(with: AlertData_MGRE(
+            with: LocalizationKeys.ready,
+            rightBtnText: LocalizationKeys.ok))
+        
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .coverVertical
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            window.rootViewController?.present(alertVC, animated: true)
+        }
+    }
 }

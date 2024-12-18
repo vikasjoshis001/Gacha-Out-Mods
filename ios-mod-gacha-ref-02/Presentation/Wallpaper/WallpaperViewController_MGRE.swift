@@ -273,8 +273,7 @@ class WallpaperViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            let alertData = AlertData_MGRE(with: "Downloaded!")
-            showAlert_MGRE(with: alertData)
+            UIHelper.showReadyDialogue()
         }
     }
     

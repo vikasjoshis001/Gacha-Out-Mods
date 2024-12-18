@@ -12,6 +12,7 @@
 "open" = "Open";
 "yes" = "Yes";
 "no" = "No";
+"ready" = "Ready!";
 
 // MARK: - LaunchScreen
 "wait_a_little_bit" = "Wait a little bit...";
