@@ -208,8 +208,6 @@ class CharacterListViewController_MGRE: UIViewController {
     }
     
     private func updateCharImageView_MGRE() {
-        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
-        
         if characters_MGRE.indices.contains(currentPage_MGRE) {
             characterImageView_MGRE.image = characters_MGRE[currentPage_MGRE].image
         } else {
@@ -229,6 +227,7 @@ class CharacterListViewController_MGRE: UIViewController {
         guard let editorContentSet = editorContentSet_MGRE,
               characters_MGRE.indices.contains(currentPage_MGRE) else { return }
         let vc = CharacterEditorViewController_MGRE()
+        vc.toggleMenuAction_MGRE = self.toggleMenuAction_MGRE
         vc.editorContentSet_MGRE = editorContentSet
         vc.characterPreview_MGRE = characters_MGRE[currentPage_MGRE]
         vc.addNewCharAction_MGRE = { [weak self] character in
@@ -282,7 +281,7 @@ class CharacterListViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor", rightIcon: characters_MGRE.isEmpty ? nil : UIImage(.deleteIcon))
+        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
         navigationView.leftButtonAction_MGRE = { [weak self] in
             self?.toggleMenuAction_MGRE?()
         }

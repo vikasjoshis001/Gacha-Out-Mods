@@ -77,6 +77,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         setupViewHierarchy()
         configureCell()
         configureLayout()
+        configureNavigationView_MGRE()
         configureSubviews_MGRE()
         configureContentDataSource_MGRE()
         configureModels_MGRE()
@@ -129,7 +130,6 @@ class CharacterEditorViewController_MGRE: UIViewController {
     func configureSubviews_MGRE() {
         var _etyyss: Int { 0 }
         var _mxcgt: Bool { true }
-        configureNavigationView_MGRE()
         configureCharacterEditorImage_MGRE()
         configureCollectionView_MGRE()
     }

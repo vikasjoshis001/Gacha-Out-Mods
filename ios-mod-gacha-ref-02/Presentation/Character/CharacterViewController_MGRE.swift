@@ -28,7 +28,7 @@ class CharacterViewController_MGRE: UIViewController {
     private let downloadButton_MGRE = CharacterViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.download)
 
     let navigationView = NavigationView_MGRE()
-    
+    var toggleMenuAction_MGRE: (() -> Void)?
     private let device = Helper.getDeviceType()
 
     override func viewDidLoad() {
@@ -108,11 +108,9 @@ class CharacterViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor",
-                                  leftIcon: UIImage(.backChevronIcon),
-                                  rightIcon: nil)
+        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
         navigationView.leftButtonAction_MGRE = { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            self?.toggleMenuAction_MGRE?()
         }
     }
     
