@@ -22,7 +22,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         return backgroundImageView
     }()
     
-    private let buttonsStackView: UIStackView = {
+    private let buttonsStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -33,7 +33,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         return stackView
     }()
     
-    private let bottomView: UIView = {
+    private let bottomView_MGRE: UIView = {
         let view = UIView()
         view.backgroundColor = .appBackground
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         
     private var dropDownView_MGRE: DropDownView_MGRE!
     private var contentCollectionView_MGRE: UICollectionView!
-    private let navigationView = NavigationView_MGRE()
+    private let navigationView_MGRE = NavigationView_MGRE()
     private let device = Helper.getDeviceType()
     
     typealias ContentDataSource_MGRE = UICollectionViewDiffableDataSource<Int, EditorContentModel_MGRE>
@@ -73,15 +73,15 @@ class CharacterEditorViewController_MGRE: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeViews()
-        setupViewHierarchy()
-        configureCell()
-        configureLayout()
+        initializeViews_MGRE()
+        setupViewHierarchy_MGRE()
+        configureCell_MGRE()
+        configureLayout_MGRE()
         configureNavigationView_MGRE()
         configureSubviews_MGRE()
         configureContentDataSource_MGRE()
         configureModels_MGRE()
-        addActionsToButton()
+        addActionsToButton_MGRE()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,18 +94,18 @@ class CharacterEditorViewController_MGRE: UIViewController {
     
     // MARK: - Private methods
 
-    private func configureCell() {
-        buttonsStackView.spacing = device == .phone ? 63 : 107.1
+    private func configureCell_MGRE() {
+        buttonsStackView_MGRE.spacing = device == .phone ? 63 : 107.1
         let buttonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
         resetButton_MGRE.layer.cornerRadius = buttonCornerRadius
         doneButton_MGRE.layer.cornerRadius = buttonCornerRadius
         dropDownView_MGRE.layer.cornerRadius = buttonCornerRadius
         
-        bottomView.backgroundColor = .appBackground
-        bottomView.layer.cornerRadius = device == .phone ? 20 : 34
+        bottomView_MGRE.backgroundColor = .appBackground
+        bottomView_MGRE.layer.cornerRadius = device == .phone ? 20 : 34
     }
 
-    private func initializeViews() {
+    private func initializeViews_MGRE() {
         // Initialize CharacterEditorImage
         characterImageView_MGRE = CharacterEditorImage_MGRE()
         characterImageView_MGRE.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +124,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         contentCollectionView_MGRE.translatesAutoresizingMaskIntoConstraints = false
         
         // Initialize NavigationView
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
+        navigationView_MGRE.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configureSubviews_MGRE() {
@@ -134,7 +134,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         configureCollectionView_MGRE()
     }
     
-    func addActionsToButton() {
+    func addActionsToButton_MGRE() {
         resetButton_MGRE.addTarget(self, action: #selector(undoButtonDidTap_MGRE), for: .touchUpInside)
         doneButton_MGRE.addTarget(self, action: #selector(doneButtonDidTap_MGRE), for: .touchUpInside)
     }
@@ -152,24 +152,24 @@ class CharacterEditorViewController_MGRE: UIViewController {
         return button
     }
     
-    private func setupViewHierarchy() {
+    private func setupViewHierarchy_MGRE() {
         view.addSubview(backgroundImageView_MGRE)
         
-        backgroundImageView_MGRE.addSubview(navigationView)
+        backgroundImageView_MGRE.addSubview(navigationView_MGRE)
         backgroundImageView_MGRE.addSubview(characterImageView_MGRE)
-        backgroundImageView_MGRE.addSubview(buttonsStackView)
-        backgroundImageView_MGRE.addSubview(bottomView)
+        backgroundImageView_MGRE.addSubview(buttonsStackView_MGRE)
+        backgroundImageView_MGRE.addSubview(bottomView_MGRE)
         
-        buttonsStackView.addArrangedSubview(resetButton_MGRE)
-        buttonsStackView.addArrangedSubview(dropDownView_MGRE)
-        buttonsStackView.addArrangedSubview(doneButton_MGRE)
+        buttonsStackView_MGRE.addArrangedSubview(resetButton_MGRE)
+        buttonsStackView_MGRE.addArrangedSubview(dropDownView_MGRE)
+        buttonsStackView_MGRE.addArrangedSubview(doneButton_MGRE)
         
-        bottomView.addSubview(contentCollectionView_MGRE)
+        bottomView_MGRE.addSubview(contentCollectionView_MGRE)
         
         backgroundImageView_MGRE.bringSubviewToFront(dropDownView_MGRE)
     }
     
-    private func configureLayout() {
+    private func configureLayout_MGRE() {
         let bottomViewHeight: CGFloat = device == .phone ? 130 : 204
         let buttonStackViewHeight: CGFloat = device == .phone ? 38 : 64.6
         let buttonStackViewBottomConstraint: CGFloat = device == .phone ? 8 : 13.4
@@ -179,8 +179,8 @@ class CharacterEditorViewController_MGRE: UIViewController {
         let characterImagePadding: CGFloat = device == .phone ? 8 : 24
         
         let availableHeight = view.bounds.height -
-            navigationView.frame.maxY -
-            buttonsStackView.frame.height
+            navigationView_MGRE.frame.maxY -
+            buttonsStackView_MGRE.frame.height
 
         let characterImageViewHeight = availableHeight * 0.6
 
@@ -190,28 +190,28 @@ class CharacterEditorViewController_MGRE: UIViewController {
             backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationView_MGRE.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            bottomView.heightAnchor.constraint(equalToConstant: bottomViewHeight),
+            bottomView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomView_MGRE.heightAnchor.constraint(equalToConstant: bottomViewHeight),
 
             // Collection view constraints
-            contentCollectionView_MGRE.topAnchor.constraint(equalTo: bottomView.topAnchor),
-            contentCollectionView_MGRE.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
-            contentCollectionView_MGRE.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
-            contentCollectionView_MGRE.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor),
+            contentCollectionView_MGRE.topAnchor.constraint(equalTo: bottomView_MGRE.topAnchor),
+            contentCollectionView_MGRE.leadingAnchor.constraint(equalTo: bottomView_MGRE.leadingAnchor),
+            contentCollectionView_MGRE.trailingAnchor.constraint(equalTo: bottomView_MGRE.trailingAnchor),
+            contentCollectionView_MGRE.bottomAnchor.constraint(equalTo: bottomView_MGRE.bottomAnchor),
             
-            characterImageView_MGRE.bottomAnchor.constraint(greaterThanOrEqualTo: buttonsStackView.topAnchor, constant: -characterImagePadding),
+            characterImageView_MGRE.bottomAnchor.constraint(greaterThanOrEqualTo: buttonsStackView_MGRE.topAnchor, constant: -characterImagePadding),
             characterImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             characterImageView_MGRE.widthAnchor.constraint(equalToConstant: characterImageViewWidth),
             characterImageView_MGRE.heightAnchor.constraint(equalToConstant: characterImageViewHeight),
             
-            buttonsStackView.centerXAnchor.constraint(equalTo: backgroundImageView_MGRE.centerXAnchor),
-            buttonsStackView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -buttonStackViewBottomConstraint),
+            buttonsStackView_MGRE.centerXAnchor.constraint(equalTo: backgroundImageView_MGRE.centerXAnchor),
+            buttonsStackView_MGRE.bottomAnchor.constraint(equalTo: bottomView_MGRE.topAnchor, constant: -buttonStackViewBottomConstraint),
                     
             // Add these new constraints
             resetButton_MGRE.heightAnchor.constraint(equalToConstant: buttonStackViewHeight),
@@ -226,8 +226,8 @@ class CharacterEditorViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
-        navigationView.leftButtonAction_MGRE = { [weak self] in
+        navigationView_MGRE.build_MGRE(with: "Editor", rightIcon: nil)
+        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.toggleMenuAction_MGRE?()
         }
     }

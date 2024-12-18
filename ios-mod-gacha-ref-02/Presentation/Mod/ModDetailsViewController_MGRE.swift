@@ -16,7 +16,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         case characters_mgre(Character_MGRE)
     }
         
-    private let imageView: UIImageView = {
+    private let imageView_MGRE: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .imageCardBackground
@@ -25,7 +25,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         return imageView
     }()
         
-    private let favoriteButton: UIButton = {
+    private let favoriteButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
         button.clipsToBounds = true
@@ -33,7 +33,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         return button
     }()
         
-    private let downloadButton: UIButton = {
+    private let downloadButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
         button.clipsToBounds = true
@@ -41,20 +41,20 @@ class ModDetailsViewController_MGRE: UIViewController {
         return button
     }()
         
-    private let titleLabel: UILabel = {
+    private let titleLabel_MGRE: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
         
-    private let descriptionLabel: UILabel = {
+    private let descriptionLabel_MGRE: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
         
-    private let verticalStackView: UIStackView = {
+    private let verticalStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -66,7 +66,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         return stackView
     }()
     
-    private let spacerView: UIView = {
+    private let spacerView_MGRE: UIView = {
         let view = UIView()
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -83,14 +83,14 @@ class ModDetailsViewController_MGRE: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .appBackground
     
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-        downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
+        favoriteButton_MGRE.addTarget(self, action: #selector(favoriteButtonTapped_MGRE), for: .touchUpInside)
+        downloadButton_MGRE.addTarget(self, action: #selector(downloadButtonTapped_MGRE), for: .touchUpInside)
         
-        setupViews()
+        setupViews_MGRE()
         configureSubviews_MGRE()
     }
     
-    private func getImageContainerHeight() -> CGFloat {
+    private func getImageContainerHeight_MGRE() -> CGFloat {
         guard let modelType = modelType_MGRE else { return 0 }
         switch modelType {
             case .mods_mgre:
@@ -102,45 +102,45 @@ class ModDetailsViewController_MGRE: UIViewController {
         }
     }
         
-    private func setupViews() {
+    private func setupViews_MGRE() {
         // config
         let verticalStackViewLeadingAnchor: CGFloat = device == .phone ? 29 : 180
-        let imageContainerHeight: CGFloat = getImageContainerHeight()
+        let imageContainerHeight: CGFloat = getImageContainerHeight_MGRE()
         let favButtonTrailingAnchor: CGFloat = device == .phone ? 5 : 8.5
         let favButtonHeight: CGFloat = device == .phone ? 38 : 64.6
 
-        imageView.layer.cornerRadius = device == .phone ? 14 : 23.8
+        imageView_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
         
-        favoriteButton.layer.cornerRadius = device == .phone ? 14 : 23.8
-        favoriteButton.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favStar)), for: .normal)
+        favoriteButton_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
+        favoriteButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favStar)), for: .normal)
         
         let downloadButtonFontSize: CGFloat = device == .phone ? 20 : 34
-        downloadButton.layer.cornerRadius = device == .phone ? 14 : 23.8
-        downloadButton.setTitle(LocalizationKeys.download, for: .normal)
-        downloadButton.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: downloadButtonFontSize)
-        downloadButton.setTitleColor(.black, for: .normal)
+        downloadButton_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
+        downloadButton_MGRE.setTitle(LocalizationKeys.download, for: .normal)
+        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: downloadButtonFontSize)
+        downloadButton_MGRE.setTitleColor(.black, for: .normal)
         
         let titleLabelFontSize: CGFloat = device == .phone ? 20 : 34
-        titleLabel.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
-        titleLabel.textColor = .black
-        titleLabel.setLineHeight(titleLabelFontSize)
+        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
+        titleLabel_MGRE.textColor = .black
+        titleLabel_MGRE.setLineHeight(titleLabelFontSize)
         
         let descriptionLabelFontSize: CGFloat = device == .phone ? 14 : 23.8
         let descriptionLabelLineHeight: CGFloat = device == .phone ? 14 : 30.82
-        descriptionLabel.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionLabelFontSize)
-        descriptionLabel.textColor = .black
-        descriptionLabel.setLineHeight(descriptionLabelLineHeight)
+        descriptionLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionLabelFontSize)
+        descriptionLabel_MGRE.textColor = .black
+        descriptionLabel_MGRE.setLineHeight(descriptionLabelLineHeight)
         
         // Add views
         view.addSubview(navigationView_MGRE)
-        view.addSubview(verticalStackView)
+        view.addSubview(verticalStackView_MGRE)
 
         navigationView_MGRE.translatesAutoresizingMaskIntoConstraints = false
         
         let verticalStackViewInsets: CGFloat = device == .phone ? 8 : 14
-        verticalStackView.layer.cornerRadius = device == .phone ? 20 : 34
-        verticalStackView.backgroundColor = .cardBackground
-        verticalStackView.layoutMargins = UIEdgeInsets(top: verticalStackViewInsets,
+        verticalStackView_MGRE.layer.cornerRadius = device == .phone ? 20 : 34
+        verticalStackView_MGRE.backgroundColor = .cardBackground
+        verticalStackView_MGRE.layoutMargins = UIEdgeInsets(top: verticalStackViewInsets,
                                                        left: verticalStackViewInsets,
                                                        bottom: verticalStackViewInsets,
                                                        right: verticalStackViewInsets)
@@ -148,15 +148,15 @@ class ModDetailsViewController_MGRE: UIViewController {
         // Add image container
         let imageContainer = UIView()
         imageContainer.translatesAutoresizingMaskIntoConstraints = false
-        imageContainer.addSubview(imageView)
-        imageContainer.addSubview(favoriteButton)
+        imageContainer.addSubview(imageView_MGRE)
+        imageContainer.addSubview(favoriteButton_MGRE)
                     
         // Add to stack view
-        verticalStackView.addArrangedSubview(imageContainer)
-        verticalStackView.addArrangedSubview(downloadButton)
-        verticalStackView.addArrangedSubview(titleLabel)
-        verticalStackView.addArrangedSubview(descriptionLabel)
-        verticalStackView.addArrangedSubview(spacerView)
+        verticalStackView_MGRE.addArrangedSubview(imageContainer)
+        verticalStackView_MGRE.addArrangedSubview(downloadButton_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(titleLabel_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(descriptionLabel_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(spacerView_MGRE)
 
         // Set constraints
         NSLayoutConstraint.activate([
@@ -166,28 +166,28 @@ class ModDetailsViewController_MGRE: UIViewController {
             navigationView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             // Stack view constraints
-            verticalStackView.topAnchor.constraint(equalTo: navigationView_MGRE.bottomAnchor, constant: 6),
-            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: verticalStackViewLeadingAnchor),
-            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -verticalStackViewLeadingAnchor),
-            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Helper.getBottomConstraint())),
+            verticalStackView_MGRE.topAnchor.constraint(equalTo: navigationView_MGRE.bottomAnchor, constant: 6),
+            verticalStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: verticalStackViewLeadingAnchor),
+            verticalStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -verticalStackViewLeadingAnchor),
+            verticalStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Helper.getBottomConstraint())),
                 
             // Image container constraints
             imageContainer.heightAnchor.constraint(equalToConstant: imageContainerHeight),
             
             // Image view constraints
-            imageView.topAnchor.constraint(equalTo: imageContainer.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: imageContainer.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: imageContainer.bottomAnchor),
+            imageView_MGRE.topAnchor.constraint(equalTo: imageContainer.topAnchor),
+            imageView_MGRE.leadingAnchor.constraint(equalTo: imageContainer.leadingAnchor),
+            imageView_MGRE.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor),
+            imageView_MGRE.bottomAnchor.constraint(equalTo: imageContainer.bottomAnchor),
                 
             // Favorite button constraints
-            favoriteButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: favButtonTrailingAnchor),
-            favoriteButton.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: -favButtonTrailingAnchor),
-            favoriteButton.heightAnchor.constraint(equalToConstant: favButtonHeight),
-            favoriteButton.widthAnchor.constraint(equalToConstant: favButtonHeight),
+            favoriteButton_MGRE.topAnchor.constraint(equalTo: imageView_MGRE.topAnchor, constant: favButtonTrailingAnchor),
+            favoriteButton_MGRE.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: -favButtonTrailingAnchor),
+            favoriteButton_MGRE.heightAnchor.constraint(equalToConstant: favButtonHeight),
+            favoriteButton_MGRE.widthAnchor.constraint(equalToConstant: favButtonHeight),
                 
             // Download button constraints
-            downloadButton.heightAnchor.constraint(equalToConstant: favButtonHeight)
+            downloadButton_MGRE.heightAnchor.constraint(equalToConstant: favButtonHeight)
         ])
     }
     
@@ -200,19 +200,19 @@ class ModDetailsViewController_MGRE: UIViewController {
         switch modelType {
         case .mods_mgre(let model):
                 navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(named: backIcon), rightIcon: nil)
-            titleLabel.text = model.name
-            descriptionLabel.text = model.description
-            imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.image)", for: .mods_mgre)
+            titleLabel_MGRE.text = model.name
+            descriptionLabel_MGRE.text = model.description
+            imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.image)", for: .mods_mgre)
         case .outfitIdeas_mgre(let model):
             navigationView_MGRE.build_MGRE(with: "Outfit idea", leftIcon: UIImage(named: backIcon), rightIcon: nil)
-            titleLabel.isHidden = true
-            descriptionLabel.isHidden = true
-            imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(model.image)", for: .outfitIdeas_mgre)
+            titleLabel_MGRE.isHidden = true
+            descriptionLabel_MGRE.isHidden = true
+            imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(model.image)", for: .outfitIdeas_mgre)
         case .characters_mgre(let model):
             navigationView_MGRE.build_MGRE(with: "Character", leftIcon: UIImage(named: backIcon), rightIcon: nil)
-            titleLabel.isHidden = true
-            descriptionLabel.isHidden = true
-            imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.characters_mgre)\(model.image)", for: .characters_mgre)
+            titleLabel_MGRE.isHidden = true
+            descriptionLabel_MGRE.isHidden = true
+            imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.characters_mgre)\(model.image)", for: .characters_mgre)
         }
         updateFavoriteButton_MGRE()
     }
@@ -224,10 +224,10 @@ class ModDetailsViewController_MGRE: UIViewController {
         let favFilledStar = Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar)
 
         let image = UIImage(named: isFavourite_MGRE ? favFilledStar : favStar)
-        favoriteButton.setImage(image, for: .normal)
+        favoriteButton_MGRE.setImage(image, for: .normal)
     }
     
-    @objc func favoriteButtonTapped(_ sender: UIButton) {
+    @objc func favoriteButtonTapped_MGRE(_ sender: UIButton) {
         var _MGNXCe32: Int { 0 }
         var _Mae4a: Bool { false }
         isFavourite_MGRE.toggle()
@@ -255,7 +255,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         }
     }
     
-    @objc func downloadButtonTapped(_ sender: UIButton) {
+    @objc func downloadButtonTapped_MGRE(_ sender: UIButton) {
         var _MGNxzca2: Int { 0 }
         var _MGfgawg4a: Bool { false }
         switch modelType_MGRE {
@@ -263,7 +263,7 @@ class ModDetailsViewController_MGRE: UIViewController {
                 let filePath = "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(model.filePath)"
             saveFile_MGRE(with: filePath)
         case .outfitIdeas_mgre, .characters_mgre:
-            save_MGRE(image: imageView.image)
+            save_MGRE(image: imageView_MGRE.image)
         default: break
         }
     }

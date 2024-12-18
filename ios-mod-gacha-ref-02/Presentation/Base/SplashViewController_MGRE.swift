@@ -11,29 +11,29 @@ import UIKit
 
 class SplashViewController_MGRE: UIViewController {
     // MARK: - UI Components
-    private let backgroundImageView: UIImageView = {
+    private let backgroundImageView_MGRE: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let launchImageView: UIImageView = {
+    private let launchImageView_MGRE: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let waitLabel: UILabel = {
+    private let waitLabel_MGRE: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.blackText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let progressBar = RoundProgressBar_MGRE(frame: .zero)
+    private let progressBar_MGRE = RoundProgressBar_MGRE(frame: .zero)
     
-    private let horizontalStackView: UIStackView = {
+    private let horizontalStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -43,7 +43,7 @@ class SplashViewController_MGRE: UIViewController {
         return stackView
     }()
     
-    private let verticalStackView: UIStackView = {
+    private let verticalStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -53,7 +53,7 @@ class SplashViewController_MGRE: UIViewController {
     }()
     
     // Add loading tasks management
-    private enum LoadingTask: CaseIterable {
+    private enum LoadingTask_MGRE: CaseIterable {
         case checkingInternet
         case initializingDatabase
         case loadingContent
@@ -71,7 +71,7 @@ class SplashViewController_MGRE: UIViewController {
         
     private var currentTaskIndex = 0
     private var currentProgress: Float = 0
-    private let loadingTasks = LoadingTask.allCases
+    private let loadingTasks = LoadingTask_MGRE.allCases
     
     // MARK: - Properties
     
@@ -87,8 +87,8 @@ class SplashViewController_MGRE: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        startActualLoading()
+        configureUI_MGRE()
+        startActualLoading_MGRE()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,65 +98,65 @@ class SplashViewController_MGRE: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        applyConstraints()
+        applyConstraints_MGRE()
     }
     
     // MARK: - UI Configuration
     
-    private func configureUI() {
+    private func configureUI_MGRE() {
         // Add subviews
-        view.addSubview(backgroundImageView)
-        view.addSubview(verticalStackView)
-        view.sendSubviewToBack(backgroundImageView)
+        view.addSubview(backgroundImageView_MGRE)
+        view.addSubview(verticalStackView_MGRE)
+        view.sendSubviewToBack(backgroundImageView_MGRE)
         
         // Setup horizontal stack view
-        horizontalStackView.addArrangedSubview(waitLabel)
-        horizontalStackView.addArrangedSubview(progressBar)
+        horizontalStackView_MGRE.addArrangedSubview(waitLabel_MGRE)
+        horizontalStackView_MGRE.addArrangedSubview(progressBar_MGRE)
         
         // Setup vertical stack view
-        verticalStackView.addArrangedSubview(launchImageView)
-        verticalStackView.addArrangedSubview(horizontalStackView)
+        verticalStackView_MGRE.addArrangedSubview(launchImageView_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(horizontalStackView_MGRE)
         
-        configureDeviceSpecificUI()
+        configureDeviceSpecificUI_MGRE()
     }
     
-    private func configureDeviceSpecificUI() {
+    private func configureDeviceSpecificUI_MGRE() {
         if isDevicePhone {
-            configureForPhone()
+            configureForPhone_MGRE()
         } else {
-            configureForIpad()
+            configureForIpad_MGRE()
         }
     }
     
-    private func configureForPhone() {
-        backgroundImageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+    private func configureForPhone_MGRE() {
+        backgroundImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenBackground)
         
-        waitLabel.text = LocalizationKeys.waitALittleBit
-        waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 20)
-        waitLabel.setLineHeight(20)
+        waitLabel_MGRE.text = LocalizationKeys.waitALittleBit
+        waitLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: 20)
+        waitLabel_MGRE.setLineHeight(20)
         
-        launchImageView.image = UIImage(named: StringConstants.Images.launchScreen)
-        launchImageView.contentMode = .scaleAspectFill
+        launchImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreen)
+        launchImageView_MGRE.contentMode = .scaleAspectFill
         
-        verticalStackView.spacing = 138
-        horizontalStackView.spacing = 68
+        verticalStackView_MGRE.spacing = 138
+        horizontalStackView_MGRE.spacing = 68
     }
     
-    private func configureForIpad() {
-        backgroundImageView.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+    private func configureForIpad_MGRE() {
+        backgroundImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenBackground)
 
-        waitLabel.text = LocalizationKeys.waitALittleBit
-        waitLabel.font = UIFont(name: StringConstants.ptSansRegular, size: 34)
-        waitLabel.setLineHeight(34)
+        waitLabel_MGRE.text = LocalizationKeys.waitALittleBit
+        waitLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: 34)
+        waitLabel_MGRE.setLineHeight(34)
         
-        launchImageView.image = UIImage(named: StringConstants.Images.launchScreenIpad)
-        launchImageView.contentMode = .scaleAspectFit
+        launchImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenIpad)
+        launchImageView_MGRE.contentMode = .scaleAspectFit
 
-        verticalStackView.spacing = 90
-        horizontalStackView.spacing = 115.6
+        verticalStackView_MGRE.spacing = 90
+        horizontalStackView_MGRE.spacing = 115.6
     }
     
-    private func applyConstraints() {
+    private func applyConstraints_MGRE() {
         let bottomInsets = Helper.getBottomInset()
         let horizontalStackViewBottomIphone: CGFloat = bottomInsets == 0 ? 34 : 0
         
@@ -164,33 +164,33 @@ class SplashViewController_MGRE: UIViewController {
 
         NSLayoutConstraint.activate([
             // Background Image Constraints
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             // Vertical Stack View Constraints
-            verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: isDevicePhone ? 147 : 170.53),
+            verticalStackView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            verticalStackView_MGRE.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: isDevicePhone ? 147 : 170.53),
             
             // Launch Image Constraints
-            launchImageView.widthAnchor.constraint(equalToConstant: isDevicePhone ? 375 : 818),
-            launchImageView.heightAnchor.constraint(equalTo: launchImageView.widthAnchor),
+            launchImageView_MGRE.widthAnchor.constraint(equalToConstant: isDevicePhone ? 375 : 818),
+            launchImageView_MGRE.heightAnchor.constraint(equalTo: launchImageView_MGRE.widthAnchor),
             
             // Horizontal Stack View Constraints
-            horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            horizontalStackView.heightAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
-            horizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -horizontalStackViewBottom),
+            horizontalStackView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            horizontalStackView_MGRE.heightAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
+            horizontalStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -horizontalStackViewBottom),
             
             // Progress Bar Constraints
-            progressBar.widthAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
-            progressBar.heightAnchor.constraint(equalTo: progressBar.widthAnchor)
+            progressBar_MGRE.widthAnchor.constraint(equalToConstant: isDevicePhone ? 80 : 136),
+            progressBar_MGRE.heightAnchor.constraint(equalTo: progressBar_MGRE.widthAnchor)
         ])
     }
         
     // MARK: - Navigation
     
-    private func navigateToApp() {
+    private func navigateToApp_MGRE() {
         let window: UIWindow?
         if #available(iOS 15.0, *) {
             window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
@@ -206,18 +206,18 @@ class SplashViewController_MGRE: UIViewController {
     
     // MARK: - App Loading
     
-    private func startActualLoading() {
+    private func startActualLoading_MGRE() {
         if !InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() {
             DBManager_MGRE().showInternetError_MGRE()
             return
         }
             
-        executeNextTask()
+        executeNextTask_MGRE()
     }
         
-    private func executeNextTask() {
+    private func executeNextTask_MGRE() {
         guard currentTaskIndex < loadingTasks.count else {
-            navigateToApp()
+            navigateToApp_MGRE()
             return
         }
             
@@ -225,17 +225,17 @@ class SplashViewController_MGRE: UIViewController {
             
         switch task {
         case .checkingInternet:
-            performInternetCheck()
+            performInternetCheck_MGRE()
         case .initializingDatabase:
-            initializeDatabase()
+            initializeDatabase_MGRE()
         case .loadingContent:
-            loadInitialContent()
+            loadInitialContent_MGRE()
         case .preparingApp:
-            prepareAppContent()
+            prepareAppContent_MGRE()
         }
     }
         
-    private func updateProgress(for task: LoadingTask, progress: Float) {
+    private func updateProgress_MGRE(for task: LoadingTask_MGRE, progress: Float) {
         var totalProgress: Float = 0
             
         // Add completed tasks progress
@@ -248,56 +248,56 @@ class SplashViewController_MGRE: UIViewController {
             
         // Update UI on main thread
         DispatchQueue.main.async { [weak self] in
-            self?.progressBar.progress = CGFloat(totalProgress)
+            self?.progressBar_MGRE.progress = CGFloat(totalProgress)
         }
     }
         
-    private func completeCurrentTask() {
+    private func completeCurrentTask_MGRE() {
         currentTaskIndex += 1
-        executeNextTask()
+        executeNextTask_MGRE()
     }
         
     // Actual loading tasks
-    private func performInternetCheck() {
-        updateProgress(for: .checkingInternet, progress: 0.5)
+    private func performInternetCheck_MGRE() {
+        updateProgress_MGRE(for: .checkingInternet, progress: 0.5)
             
         // Simulate network check
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.updateProgress(for: .checkingInternet, progress: 1.0)
-            self?.completeCurrentTask()
+            self?.updateProgress_MGRE(for: .checkingInternet, progress: 1.0)
+            self?.completeCurrentTask_MGRE()
         }
     }
         
-    private func initializeDatabase() {
+    private func initializeDatabase_MGRE() {
         // Update progress as database initialization progresses
-        DBManager_MGRE.shared.initialize { [weak self] progress in
-            self?.updateProgress(for: .initializingDatabase, progress: progress)
+        DBManager_MGRE.shared.initialize_MGRE { [weak self] progress in
+            self?.updateProgress_MGRE(for: .initializingDatabase, progress: progress)
         } completion: { [weak self] in
-            self?.completeCurrentTask()
+            self?.completeCurrentTask_MGRE()
         }
     }
         
-    private func loadInitialContent() {
+    private func loadInitialContent_MGRE() {
         // Load initial content with progress
-        ContentManager_MGRE().loadInitialContent { [weak self] progress in
-            self?.updateProgress(for: .loadingContent, progress: progress)
+        ContentManager_MGRE().loadInitialContent_MGRE { [weak self] progress in
+            self?.updateProgress_MGRE(for: .loadingContent, progress: progress)
         } completion: { [weak self] in
-            self?.completeCurrentTask()
+            self?.completeCurrentTask_MGRE()
         }
     }
         
-    private func prepareAppContent() {
-        updateProgress(for: .preparingApp, progress: 0.5)
+    private func prepareAppContent_MGRE() {
+        updateProgress_MGRE(for: .preparingApp, progress: 0.5)
             
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.updateProgress(for: .preparingApp, progress: 1.0)
-            self?.completeCurrentTask()
+            self?.updateProgress_MGRE(for: .preparingApp, progress: 1.0)
+            self?.completeCurrentTask_MGRE()
         }
     }
 }
 
 extension DBManager_MGRE {
-    func initialize(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
+    func initialize_MGRE(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             progress(1.0)
             completion()
@@ -306,7 +306,7 @@ extension DBManager_MGRE {
 }
 
 extension ContentManager_MGRE {
-    func loadInitialContent(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
+    func loadInitialContent_MGRE(progress: @escaping (Float) -> Void, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             progress(1.0)
             completion()

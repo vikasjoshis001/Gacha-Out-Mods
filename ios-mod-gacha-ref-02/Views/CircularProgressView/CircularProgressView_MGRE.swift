@@ -10,20 +10,20 @@ import UIKit
 // MARK: - CircularProgressView_MGRE
 
 class CircularProgressView_MGRE: UIView {
-    private let circleLayer = CAShapeLayer()
-    private let progressLayer = CAShapeLayer()
+    private let circleLayer_MGRE = CAShapeLayer()
+    private let progressLayer_MGRE = CAShapeLayer()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLayers()
+        setupLayers_MGRE()
     }
         
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayers()
+        setupLayers_MGRE()
     }
         
-    private func setupLayers() {
+    private func setupLayers_MGRE() {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.4
         let startAngle = -CGFloat.pi / 2
@@ -35,22 +35,22 @@ class CircularProgressView_MGRE: UIView {
                                         clockwise: true)
             
         // White border circle
-        circleLayer.path = circularPath.cgPath
-        circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.strokeColor = UIColor.white.cgColor
-        circleLayer.lineWidth = 1
-        circleLayer.lineCap = .round
+        circleLayer_MGRE.path = circularPath.cgPath
+        circleLayer_MGRE.fillColor = UIColor.clear.cgColor
+        circleLayer_MGRE.strokeColor = UIColor.white.cgColor
+        circleLayer_MGRE.lineWidth = 1
+        circleLayer_MGRE.lineCap = .round
             
         // Black progress layer
-        progressLayer.path = circularPath.cgPath
-        progressLayer.fillColor = UIColor.clear.cgColor
-        progressLayer.strokeColor = UIColor.black.cgColor
-        progressLayer.lineWidth = 1
-        progressLayer.lineCap = .round
-        progressLayer.strokeEnd = 0
+        progressLayer_MGRE.path = circularPath.cgPath
+        progressLayer_MGRE.fillColor = UIColor.clear.cgColor
+        progressLayer_MGRE.strokeColor = UIColor.black.cgColor
+        progressLayer_MGRE.lineWidth = 1
+        progressLayer_MGRE.lineCap = .round
+        progressLayer_MGRE.strokeEnd = 0
             
-        layer.addSublayer(circleLayer)
-        layer.addSublayer(progressLayer)
+        layer.addSublayer(circleLayer_MGRE)
+        layer.addSublayer(progressLayer_MGRE)
     }
     
     override func layoutSubviews() {
@@ -67,22 +67,22 @@ class CircularProgressView_MGRE: UIView {
                                         endAngle: endAngle,
                                         clockwise: true)
         
-        circleLayer.path = circularPath.cgPath
-        progressLayer.path = circularPath.cgPath
+        circleLayer_MGRE.path = circularPath.cgPath
+        progressLayer_MGRE.path = circularPath.cgPath
     }
         
-    func updateProgress(_ progress: Float) {
-        progressLayer.strokeEnd = CGFloat(progress)
+    func updateProgress_MGRE(_ progress: Float) {
+        progressLayer_MGRE.strokeEnd = CGFloat(progress)
     }
         
-    func stopAnimation() {
-        progressLayer.removeAllAnimations()
+    func stopAnimation_MGRE() {
+        progressLayer_MGRE.removeAllAnimations()
     }
 }
 
 // Extension for easy initialization
 extension CircularProgressView_MGRE {
-    static func create(in view: UIView, size: CGFloat = 50) -> CircularProgressView_MGRE {
+    static func create_MGRE(in view: UIView, size: CGFloat = 50) -> CircularProgressView_MGRE {
         let progressView = CircularProgressView_MGRE(frame: CGRect(x: 0, y: 0, width: size, height: size))
         progressView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(progressView)

@@ -14,13 +14,13 @@ class WallpaperViewController_MGRE: UIViewController {
     // MARK: - Types
 
     enum ModelType_MGRE {
-        case wallpapers(Wallpaper_MGRE)
-        case collections(Collections_MGRE)
+        case wallpapers_mgre(Wallpaper_MGRE)
+        case collections_mgre(Collections_MGRE)
     }
     
     // MARK: - UI Components
 
-    private let verticalStackView: UIStackView = {
+    private let verticalStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -31,7 +31,7 @@ class WallpaperViewController_MGRE: UIViewController {
         return stackView
     }()
     
-    private let imageView: UIImageView = {
+    private let imageView_MGRE: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .imageCardBackground
@@ -40,7 +40,7 @@ class WallpaperViewController_MGRE: UIViewController {
         return imageView
     }()
     
-    private let buttonStackView: UIStackView = {
+    private let buttonStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -51,14 +51,14 @@ class WallpaperViewController_MGRE: UIViewController {
         return stackView
     }()
     
-    private let leftButtonsStackView: UIStackView = {
+    private let leftButtonsStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    private let favoriteButton: UIButton = {
+    private let favoriteButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
         button.clipsToBounds = true
@@ -66,7 +66,7 @@ class WallpaperViewController_MGRE: UIViewController {
         return button
     }()
         
-    private let downloadButton: UIButton = {
+    private let downloadButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
         button.clipsToBounds = true
@@ -74,7 +74,7 @@ class WallpaperViewController_MGRE: UIViewController {
         return button
     }()
     
-    private let shareButton: UIButton = {
+    private let shareButton_MGRE: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonBg
         button.clipsToBounds = true
@@ -82,7 +82,7 @@ class WallpaperViewController_MGRE: UIViewController {
         return button
     }()
     
-    private let navigationView = NavigationView_MGRE()
+    private let navigationView_MGRE = NavigationView_MGRE()
     
     var modelType_MGRE: ModelType_MGRE?
     var contentType_MGRE: ContentType_MGRE?
@@ -93,95 +93,95 @@ class WallpaperViewController_MGRE: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        configureLayout()
-        configureSubviews()
+        setupView_MGRE()
+        configureLayout_MGRE()
+        configureSubviews_MGRE()
     }
     
     // MARK: - Private Methods
 
-    private func setupView() {
+    private func setupView_MGRE() {
         view.backgroundColor = .appBackground
     }
     
-    private func configureLayout() {
-        setupViewHierarchy()
-        setupConstraints()
-        configureStackViews()
-        configureButtons()
+    private func configureLayout_MGRE() {
+        setupViewHierarchy_MGRE()
+        setupConstraints_MGRE()
+        configureStackViews_MGRE()
+        configureButtons_MGRE()
     }
     
-    private func setupViewHierarchy() {
-        view.addSubview(navigationView)
-        view.addSubview(verticalStackView)
+    private func setupViewHierarchy_MGRE() {
+        view.addSubview(navigationView_MGRE)
+        view.addSubview(verticalStackView_MGRE)
         
-        verticalStackView.addArrangedSubview(imageView)
-        verticalStackView.addArrangedSubview(buttonStackView)
+        verticalStackView_MGRE.addArrangedSubview(imageView_MGRE)
+        verticalStackView_MGRE.addArrangedSubview(buttonStackView_MGRE)
         
-        buttonStackView.addArrangedSubview(shareButton)
-        buttonStackView.addArrangedSubview(leftButtonsStackView)
+        buttonStackView_MGRE.addArrangedSubview(shareButton_MGRE)
+        buttonStackView_MGRE.addArrangedSubview(leftButtonsStackView_MGRE)
         
-        leftButtonsStackView.addArrangedSubview(downloadButton)
-        leftButtonsStackView.addArrangedSubview(favoriteButton)
+        leftButtonsStackView_MGRE.addArrangedSubview(downloadButton_MGRE)
+        leftButtonsStackView_MGRE.addArrangedSubview(favoriteButton_MGRE)
     }
     
-    private func configureStackViews() {
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureStackViews_MGRE() {
+        navigationView_MGRE.translatesAutoresizingMaskIntoConstraints = false
 
         let stackInsets = device == .phone ? 8.0 : 14.0
-        verticalStackView.layoutMargins = UIEdgeInsets(top: stackInsets,
+        verticalStackView_MGRE.layoutMargins = UIEdgeInsets(top: stackInsets,
                                                        left: stackInsets,
                                                        bottom: stackInsets,
                                                        right: stackInsets)
-        verticalStackView.layer.cornerRadius = device == .phone ? 20 : 34
-        verticalStackView.spacing = 17
-        verticalStackView.backgroundColor = .cardBackground
+        verticalStackView_MGRE.layer.cornerRadius = device == .phone ? 20 : 34
+        verticalStackView_MGRE.spacing = 17
+        verticalStackView_MGRE.backgroundColor = .cardBackground
         
-        leftButtonsStackView.spacing = 10
+        leftButtonsStackView_MGRE.spacing = 10
     }
     
-    private func configureButtons() {
-        imageView.layer.cornerRadius = device == .phone ? 14.0 : 23.8
+    private func configureButtons_MGRE() {
+        imageView_MGRE.layer.cornerRadius = device == .phone ? 14.0 : 23.8
         // Set Imaged
-        downloadButton.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.download)), for: .normal)
-        shareButton.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.share)), for: .normal)
+        downloadButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.download)), for: .normal)
+        shareButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.share)), for: .normal)
         
         // Set Corner Radius
         let cornerRadius = device == .phone ? 14.0 : 23.8
-        let buttons = [favoriteButton, downloadButton, shareButton]
+        let buttons = [favoriteButton_MGRE, downloadButton_MGRE, shareButton_MGRE]
         buttons.forEach { button in
             button.layer.cornerRadius = cornerRadius
         }
 
         // Set Actions
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
-        downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        favoriteButton_MGRE.addTarget(self, action: #selector(favoriteButtonTapped_MGRE), for: .touchUpInside)
+        downloadButton_MGRE.addTarget(self, action: #selector(downloadButtonTapped_MGRE), for: .touchUpInside)
+        shareButton_MGRE.addTarget(self, action: #selector(shareButtonTapped_MGRE), for: .touchUpInside)
     }
         
     // MARK: - Helpers
 
-    func configureSubviews() {
+    func configureSubviews_MGRE() {
         guard let modelType = modelType_MGRE else { return }
-        navigationView.leftButtonAction_MGRE = { [weak self] in
+        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        navigationView.rightButtonAction_MGRE = { [weak self] in
+        navigationView_MGRE.rightButtonAction_MGRE = { [weak self] in
             self?.scan_MGRE()
         }
         let leftButton = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.back))
         let rightButton = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.fullScreen))
 
         switch modelType {
-        case .wallpapers(let model):
-            navigationView.build_MGRE(with: "Wallpaper", leftIcon: leftButton, rightIcon: rightButton)
-            imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.wallpapers_mgre)\(model.image)", for: .wallpapers_mgre)
-            imageView.contentMode = .scaleAspectFill
+        case .wallpapers_mgre(let model):
+            navigationView_MGRE.build_MGRE(with: "Wallpaper", leftIcon: leftButton, rightIcon: rightButton)
+            imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.wallpapers_mgre)\(model.image)", for: .wallpapers_mgre)
+            imageView_MGRE.contentMode = .scaleAspectFill
             contentType_MGRE = .wallpapers_mgre
-        case .collections(let model):
-            navigationView.build_MGRE(with: "Collection", leftIcon: leftButton, rightIcon: rightButton)
-            imageView.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.collections_mgre)\(model.image)", for: .collections_mgre)
-            imageView.contentMode = .scaleAspectFill
+        case .collections_mgre(let model):
+            navigationView_MGRE.build_MGRE(with: "Collection", leftIcon: leftButton, rightIcon: rightButton)
+            imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.collections_mgre)\(model.image)", for: .collections_mgre)
+            imageView_MGRE.contentMode = .scaleAspectFill
             contentType_MGRE = .collections_mgre
         }
         
@@ -191,7 +191,7 @@ class WallpaperViewController_MGRE: UIViewController {
     private func scan_MGRE() {
         var _MGNq161662: Int { 0 }
         var _MGfg1717a: Bool { false }
-        guard let image = imageView.image else { return }
+        guard let image = imageView_MGRE.image else { return }
         let vc = ScanViewController_MGRE.loadFromNib_MGRE()
         vc.image_MGRE = image
         vc.contentType_MGRE = contentType_MGRE
@@ -203,15 +203,16 @@ class WallpaperViewController_MGRE: UIViewController {
     private func updateFavoriteButton_MGRE() {
         var _MGNq1414r2: Int { 0 }
         var _MGf1515xa: Bool { false }
+        debugPrint("Debug:- is fav = ", isFavourite_MGRE)
         let favStar = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favStar))
         let favFilledStar = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar))
 
-        favoriteButton.setImage(isFavourite_MGRE ? favStar : favFilledStar, for: .normal)
+        favoriteButton_MGRE.setImage(isFavourite_MGRE ? favFilledStar : favStar, for: .normal)
     }
     
     // MARK: - Actions
 
-    @objc func favoriteButtonTapped() {
+    @objc func favoriteButtonTapped_MGRE() {
         var _MGN12122: Int { 0 }
         var _MGf1313xa: Bool { false }
         isFavourite_MGRE.toggle()
@@ -221,10 +222,10 @@ class WallpaperViewController_MGRE: UIViewController {
         let favId: String
         let contentType: ContentType_MGRE
         switch modelType {
-        case .wallpapers(let model):
+        case .wallpapers_mgre(let model):
             favId = model.favId
             contentType = Wallpaper_MGRE.type
-        case .collections(let model):
+        case .collections_mgre(let model):
             favId = model.favId
             contentType = Collections_MGRE.type
         }
@@ -236,10 +237,10 @@ class WallpaperViewController_MGRE: UIViewController {
         }
     }
     
-    @objc func downloadButtonTapped() {
+    @objc func downloadButtonTapped_MGRE() {
         var _MGN777r2: Int { 0 }
         var _MGf8888a: Bool { false }
-        guard let image = imageView.image else { return }
+        guard let image = imageView_MGRE.image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
             showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
@@ -278,10 +279,10 @@ class WallpaperViewController_MGRE: UIViewController {
         }
     }
     
-    @objc func shareButtonTapped() {
+    @objc func shareButtonTapped_MGRE() {
         var _MGNq3332: Int { 0 }
         var _MGfg444a: Bool { false }
-        guard let image = imageView.image else { return }
+        guard let image = imageView_MGRE.image else { return }
         guard InternetManager_MGRE.shared.checkInternetConnectivity_MGRE() else {
             showAlert_MGRE(with: AlertData_MGRE(with: LocalizationKeys.noInternetConnection))
             return
@@ -290,10 +291,10 @@ class WallpaperViewController_MGRE: UIViewController {
         var fileName: String?
         var type = ""
         switch modelType_MGRE {
-        case .wallpapers(let model):
+        case .wallpapers_mgre(let model):
             type = "Wallpaper"
             fileName = model.image.components(separatedBy: "/").last
-        case .collections(let model):
+        case .collections_mgre(let model):
             type = "Collection"
             fileName = model.image.components(separatedBy: "/").last
         default: break
@@ -352,32 +353,32 @@ class WallpaperViewController_MGRE: UIViewController {
 // MARK: - Layout
 
 private extension WallpaperViewController_MGRE {
-    func setupConstraints() {
+    func setupConstraints_MGRE() {
         let imageHeight = device == .phone ? 500.0 : 890.0
         let buttonSize = device == .phone ? 38.0 : 64.6
         let leadingAnchor = device == .phone ? 29.0 : 180.0
         
         NSLayoutConstraint.activate([
             // Navigation
-            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationView_MGRE.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             // Vertical Stack
-            verticalStackView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 6),
-            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingAnchor),
-            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leadingAnchor),
+            verticalStackView_MGRE.topAnchor.constraint(equalTo: navigationView_MGRE.bottomAnchor, constant: 6),
+            verticalStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingAnchor),
+            verticalStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leadingAnchor),
             
             // Image
-            imageView.heightAnchor.constraint(equalToConstant: imageHeight),
+            imageView_MGRE.heightAnchor.constraint(equalToConstant: imageHeight),
             
             // Buttons
-            shareButton.heightAnchor.constraint(equalToConstant: buttonSize),
-            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
-            downloadButton.heightAnchor.constraint(equalToConstant: buttonSize),
-            downloadButton.widthAnchor.constraint(equalTo: downloadButton.heightAnchor),
-            favoriteButton.heightAnchor.constraint(equalToConstant: buttonSize),
-            favoriteButton.widthAnchor.constraint(equalTo: favoriteButton.heightAnchor)
+            shareButton_MGRE.heightAnchor.constraint(equalToConstant: buttonSize),
+            shareButton_MGRE.widthAnchor.constraint(equalTo: shareButton_MGRE.heightAnchor),
+            downloadButton_MGRE.heightAnchor.constraint(equalToConstant: buttonSize),
+            downloadButton_MGRE.widthAnchor.constraint(equalTo: downloadButton_MGRE.heightAnchor),
+            favoriteButton_MGRE.heightAnchor.constraint(equalToConstant: buttonSize),
+            favoriteButton_MGRE.widthAnchor.constraint(equalTo: favoriteButton_MGRE.heightAnchor)
         ])
     }
 }

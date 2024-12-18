@@ -87,7 +87,7 @@ extension UIImageView_MGRE {
         container.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(container)
             
-        let progressView = CircularProgressView_MGRE.create(in: container)
+        let progressView = CircularProgressView_MGRE.create_MGRE(in: container)
         loadingContainer = container
             
         // Check cache first
@@ -110,7 +110,7 @@ extension UIImageView_MGRE {
                           self.currentImagePath == imgPath else { return }
                         
                     DispatchQueue.main.async {
-                        (container.subviews.first as? CircularProgressView_MGRE)?.updateProgress(progress / 100)
+                        (container.subviews.first as? CircularProgressView_MGRE)?.updateProgress_MGRE(progress / 100)
                     }
                 },
                 completion: { [weak self] data in

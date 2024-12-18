@@ -27,15 +27,15 @@ class CharacterViewController_MGRE: UIViewController {
 
     private let downloadButton_MGRE = CharacterViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.download)
 
-    let navigationView = NavigationView_MGRE()
+    let navigationView_MGRE = NavigationView_MGRE()
     var toggleMenuAction_MGRE: (() -> Void)?
     private let device = Helper.getDeviceType()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewHierarchy()
-        configureLayout()
-        configureView()
+        setupViewHierarchy_MGRE()
+        configureLayout_MGRE()
+        configureView_MGRE()
         configureNavigationView_MGRE()
     }
 
@@ -52,16 +52,16 @@ class CharacterViewController_MGRE: UIViewController {
         return button
     }
     
-    private func setupViewHierarchy() {
+    private func setupViewHierarchy_MGRE() {
         view.addSubview(backgroundImageView_MGRE)
         
-        backgroundImageView_MGRE.addSubview(navigationView)
+        backgroundImageView_MGRE.addSubview(navigationView_MGRE)
         backgroundImageView_MGRE.addSubview(characterImageView_MGRE)
         backgroundImageView_MGRE.addSubview(downloadButton_MGRE)
     }
     
-    private func configureView() {
-        downloadButton_MGRE.addTarget(self, action: #selector(downloadButtonDidTapped(_:)), for: .touchUpInside)
+    private func configureView_MGRE() {
+        downloadButton_MGRE.addTarget(self, action: #selector(downloadButtonDidTapped_MGRE(_:)), for: .touchUpInside)
         
         let downloadButtonFontSize: CGFloat = device == .phone ? 20 : 34
         let downloadButtonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
@@ -71,7 +71,7 @@ class CharacterViewController_MGRE: UIViewController {
         downloadButton_MGRE.layer.cornerRadius = downloadButtonCornerRadius
     }
     
-    private func configureLayout() {
+    private func configureLayout_MGRE() {
         let characterImageViewHeight: CGFloat = device == .phone ? 531 : 918
         let characterImageViewWidth: CGFloat = device == .phone ? 309 : 535.5
         
@@ -82,7 +82,7 @@ class CharacterViewController_MGRE: UIViewController {
         let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
         let downloadButtonBottom: CGFloat = device == .phone ? -iphoneBottomConstraints : -40
         
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
+        navigationView_MGRE.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
@@ -90,9 +90,9 @@ class CharacterViewController_MGRE: UIViewController {
             backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 
-            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationView_MGRE.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             characterImageView_MGRE.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             characterImageView_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -108,10 +108,10 @@ class CharacterViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor",
+        navigationView_MGRE.build_MGRE(with: "Editor",
                                   leftIcon: UIImage(.backChevronIcon),
                                   rightIcon: nil)
-        navigationView.leftButtonAction_MGRE = { [weak self] in
+        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
 //        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
@@ -120,7 +120,7 @@ class CharacterViewController_MGRE: UIViewController {
 //        }
     }
     
-    @objc func downloadButtonDidTapped(_ sender: UIButton) {
+    @objc func downloadButtonDidTapped_MGRE(_ sender: UIButton) {
         var _mdzzz: Int { 0 }
         var _maaa: Bool { true }
         save_MGRE(image: characterImageView_MGRE.image)

@@ -340,7 +340,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             let isFavorites = favorites_MGRE.contains(model.favId)
             let wallpaperVC = WallpaperViewController_MGRE()
             wallpaperVC.isFavourite_MGRE = isFavorites
-            wallpaperVC.modelType_MGRE = .wallpapers(model)
+            wallpaperVC.modelType_MGRE = .wallpapers_mgre(model)
             vc = wallpaperVC
         case .characters_mgre:
             guard let model = data_MGRE[index] as? Character_MGRE else { return }
@@ -361,7 +361,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
             let isFavorites = favorites_MGRE.contains(model.favId)
             let collectionsVC = WallpaperViewController_MGRE()
             collectionsVC.isFavourite_MGRE = isFavorites
-            collectionsVC.modelType_MGRE = .collections(model)
+            collectionsVC.modelType_MGRE = .collections_mgre(model)
             vc = collectionsVC
         default: vc = UIViewController()
         }

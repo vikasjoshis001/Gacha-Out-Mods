@@ -64,7 +64,7 @@ class CharacterListViewController_MGRE: UIViewController {
     
     private let createNewCharacterButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
     
-    let navigationView = NavigationView_MGRE()
+    let navigationView_MGRE = NavigationView_MGRE()
     private var dropbox_MGRE: DBManager_MGRE { .shared }
     private var editorContentSet_MGRE: EditorContentSet_MGRE?
     private var characters_MGRE: [CharacterPreview_MGRE] = []
@@ -77,11 +77,11 @@ class CharacterListViewController_MGRE: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewHierarchy()
-        configureCell()
-        configureLayout()
+        setupViewHierarchy_MGRE()
+        configureCell_MGRE()
+        configureLayout_MGRE()
         configureNavigationView_MGRE()
-        addActionToButtons()
+        addActionToButtons_MGRE()
         loadCharacters_MGRE()
         loadContent_MGRE()
     }
@@ -106,20 +106,20 @@ class CharacterListViewController_MGRE: UIViewController {
         return button
     }
     
-    private func addActionToButtons() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+    private func addActionToButtons_MGRE() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped_MGRE))
         characterImageView_MGRE.addGestureRecognizer(tapGesture)
                 
-        leftButton_MGRE.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
-        rightButton_MGRE.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
-        deleteButton_MGRE.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
-        createNewCharacterButton_MGRE.addTarget(self, action: #selector(createNewCharacterButtonTapped(_:)), for: .touchUpInside)
+        leftButton_MGRE.addTarget(self, action: #selector(leftButtonTapped_MGRE), for: .touchUpInside)
+        rightButton_MGRE.addTarget(self, action: #selector(rightButtonTapped_MGRE), for: .touchUpInside)
+        deleteButton_MGRE.addTarget(self, action: #selector(deleteButtonDidTapped_MGRE), for: .touchUpInside)
+        createNewCharacterButton_MGRE.addTarget(self, action: #selector(createNewCharacterButtonTapped_MGRE(_:)), for: .touchUpInside)
     }
     
-    private func setupViewHierarchy() {
+    private func setupViewHierarchy_MGRE() {
         view.addSubview(backgroundImageView_MGRE)
                 
-        backgroundImageView_MGRE.addSubview(navigationView)
+        backgroundImageView_MGRE.addSubview(navigationView_MGRE)
         backgroundImageView_MGRE.addSubview(rightLeftButtonsStackView_MGRE)
         backgroundImageView_MGRE.addSubview(bottomButtonsStackView_MGRE)
         
@@ -132,7 +132,7 @@ class CharacterListViewController_MGRE: UIViewController {
         bottomButtonsStackView_MGRE.addArrangedSubview(deleteButton_MGRE)
     }
     
-    private func configureCell() {
+    private func configureCell_MGRE() {
         bottomButtonsStackView_MGRE.spacing = device == .phone ? 13 : 22.1
         
         let buttonsCornerRadius: CGFloat = device == .phone ? 14 : 23.8
@@ -154,7 +154,7 @@ class CharacterListViewController_MGRE: UIViewController {
         createNewCharacterButton_MGRE.setTitleColor(.black, for: .normal)
     }
     
-    private func configureLayout() {
+    private func configureLayout_MGRE() {
         let buttonHeight: CGFloat = device == .phone ? 38 : 64.6
         let bottomInset = Helper.getBottomInset()
         let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
@@ -166,7 +166,7 @@ class CharacterListViewController_MGRE: UIViewController {
         let characterImageHeight: CGFloat = device == .phone ? 531 : 918
         let characterImageWidth: CGFloat = device == .phone ? 309 : 535.5
 
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
+        navigationView_MGRE.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             backgroundImageView_MGRE.topAnchor.constraint(equalTo: view.topAnchor),
@@ -174,9 +174,9 @@ class CharacterListViewController_MGRE: UIViewController {
             backgroundImageView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView_MGRE.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 
-            navigationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationView_MGRE.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 
             rightLeftButtonsStackView_MGRE.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             rightLeftButtonsStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightLeftButtonsLeading),
@@ -223,7 +223,7 @@ class CharacterListViewController_MGRE: UIViewController {
         }
     }
     
-    @objc private func imageTapped(_ gesture: UITapGestureRecognizer) {
+    @objc private func imageTapped_MGRE(_ gesture: UITapGestureRecognizer) {
         guard let editorContentSet = editorContentSet_MGRE,
               characters_MGRE.indices.contains(currentPage_MGRE) else { return }
         let vc = CharacterEditorViewController_MGRE()
@@ -236,7 +236,7 @@ class CharacterListViewController_MGRE: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func createNewCharacterButtonTapped(_ sender: UIButton) {
+    @objc private func createNewCharacterButtonTapped_MGRE(_ sender: UIButton) {
         guard let editorContentSet = editorContentSet_MGRE else { return }
         showProgressView_MGRE()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
@@ -262,7 +262,7 @@ class CharacterListViewController_MGRE: UIViewController {
         updateCharImageView_MGRE()
     }
     
-    @objc private func deleteButtonDidTapped() {
+    @objc private func deleteButtonDidTapped_MGRE() {
         guard !characters_MGRE.isEmpty else { return }
         showSettingsCancelPopup_MGRE(title: LocalizationKeys.cancelAllSettings, onYes: { [weak self] in
             self?.deleteCharacter_MGRE()
@@ -281,19 +281,19 @@ class CharacterListViewController_MGRE: UIViewController {
     }
     
     private func configureNavigationView_MGRE() {
-        navigationView.build_MGRE(with: "Editor", rightIcon: nil)
-        navigationView.leftButtonAction_MGRE = { [weak self] in
+        navigationView_MGRE.build_MGRE(with: "Editor", rightIcon: nil)
+        navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.toggleMenuAction_MGRE?()
         }
     }
     
-    @objc private func leftButtonTapped() {
+    @objc private func leftButtonTapped_MGRE() {
         guard currentPage_MGRE > 0 else { return }
         currentPage_MGRE -= 1
         updateCharImageView_MGRE()
     }
     
-    @objc private func rightButtonTapped() {
+    @objc private func rightButtonTapped_MGRE() {
         guard currentPage_MGRE < characters_MGRE.count-1 else { return }
         currentPage_MGRE += 1
         updateCharImageView_MGRE()
