@@ -30,7 +30,7 @@
 // MARK: - NavBar
 "all" = "All";
 "new" = "New";
-"favourites" = "Favorites";
+"last_added" = "Last Added";
 "top" = "Top";
 
 // MARK: - Editor

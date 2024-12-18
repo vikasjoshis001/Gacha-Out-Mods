@@ -33,7 +33,7 @@ extension Filter_MGRE {
         case .new_mgre:
             return LocalizationKeys.new
         case .favourites_mgre:
-            return LocalizationKeys.favorites
+            return LocalizationKeys.lastAdded
         case .top_mgre:
             return LocalizationKeys.top
         }

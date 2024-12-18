@@ -38,6 +38,7 @@ enum LocalizationKeys {
     static var all: String { return "all".localized() }
     static var new: String { return "new".localized() }
     static var top: String { return "top".localized() }
+    static var lastAdded: String { return "last_added".localized() }
 
     // MARK: - Editor
 
