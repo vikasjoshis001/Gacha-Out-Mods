@@ -80,7 +80,7 @@ class SplashViewController_MGRE: UIViewController {
     var onDismiss: (() -> Void)?
     
     private var isDevicePhone: Bool {
-        return Helper.getDeviceType() == .phone
+        return Helper.getDeviceType_MGRE() == .phone
     }
     
     // MARK: - Lifecycle Methods
@@ -129,13 +129,13 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func configureForPhone_MGRE() {
-        backgroundImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+        backgroundImageView_MGRE.image = UIImage(named: StringConstants_MGRE.Images.launchScreenBackground)
         
         waitLabel_MGRE.text = LocalizationKeys.waitALittleBit
-        waitLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: 20)
-        waitLabel_MGRE.setLineHeight(20)
+        waitLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: 20)
+        waitLabel_MGRE.setLineHeight_MGRE(20)
         
-        launchImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreen)
+        launchImageView_MGRE.image = UIImage(named: StringConstants_MGRE.Images.launchScreen)
         launchImageView_MGRE.contentMode = .scaleAspectFill
         
         verticalStackView_MGRE.spacing = 138
@@ -143,13 +143,13 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func configureForIpad_MGRE() {
-        backgroundImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenBackground)
+        backgroundImageView_MGRE.image = UIImage(named: StringConstants_MGRE.Images.launchScreenBackground)
 
         waitLabel_MGRE.text = LocalizationKeys.waitALittleBit
-        waitLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: 34)
-        waitLabel_MGRE.setLineHeight(34)
+        waitLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: 34)
+        waitLabel_MGRE.setLineHeight_MGRE(34)
         
-        launchImageView_MGRE.image = UIImage(named: StringConstants.Images.launchScreenIpad)
+        launchImageView_MGRE.image = UIImage(named: StringConstants_MGRE.Images.launchScreenIpad)
         launchImageView_MGRE.contentMode = .scaleAspectFit
 
         verticalStackView_MGRE.spacing = 90
@@ -157,7 +157,7 @@ class SplashViewController_MGRE: UIViewController {
     }
     
     private func applyConstraints_MGRE() {
-        let bottomInsets = Helper.getBottomInset()
+        let bottomInsets = Helper.getBottomInset_MGRE()
         let horizontalStackViewBottomIphone: CGFloat = bottomInsets == 0 ? 34 : 0
         
         let horizontalStackViewBottom: CGFloat = isDevicePhone ? horizontalStackViewBottomIphone : 122
@@ -248,7 +248,7 @@ class SplashViewController_MGRE: UIViewController {
             
         // Update UI on main thread
         DispatchQueue.main.async { [weak self] in
-            self?.progressBar_MGRE.progress = CGFloat(totalProgress)
+            self?.progressBar_MGRE.progress_MGRE = CGFloat(totalProgress)
         }
     }
         

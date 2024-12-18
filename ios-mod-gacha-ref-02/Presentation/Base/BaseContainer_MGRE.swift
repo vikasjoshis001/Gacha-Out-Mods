@@ -18,7 +18,7 @@ class BaseContainer_MGRE: UIViewController {
     private var isMenuOpen_MGRE: Bool = false
     private var selectedMenu_MGRE: MenuItem_MGRE = .mods_MGRE
     
-    private let deviceType = Helper.getDeviceType()
+    private let deviceType = Helper.getDeviceType_MGRE()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class BaseContainer_MGRE: UIViewController {
                                                     y: 0, 
                                                     width: menuWidth,
                                                     height: view.bounds.height)
-        UIHelper.applyBottomRightCornerRadius(to: menuViewController_MGRE.view, radius: 20.0)
+        UIHelper_MGRE.applyBottomRightCornerRadius_MGRE(to: menuViewController_MGRE.view, radius: 20.0)
         
         // Ipad menu view controller
         iPadMenuViewController_MGRE = IpadMenuViewController_MGRE.loadFromNib_MGRE()

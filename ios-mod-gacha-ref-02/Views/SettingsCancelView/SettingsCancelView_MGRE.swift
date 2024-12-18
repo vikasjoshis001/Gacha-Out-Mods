@@ -44,7 +44,7 @@ class SettingsCancelView_MGRE: UIView {
         return button
     }()
     
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     private var containerLeadingConstraint_MGRE: NSLayoutConstraint?
     private var onYes_MGRE: (() -> Void)?
     private var onNo_MGRE: (() -> Void)?
@@ -79,8 +79,8 @@ class SettingsCancelView_MGRE: UIView {
         let titleLabelFontSize: CGFloat = device == .phone ? 30 : 51
         let titleLabelLineHeight: CGFloat = device == .phone ? 38.85 : 66.05
 
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
-        titleLabel_MGRE.setLineHeight(titleLabelLineHeight)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleLabelFontSize)
+        titleLabel_MGRE.setLineHeight_MGRE(titleLabelLineHeight)
         titleLabel_MGRE.textColor = .black
         titleLabel_MGRE.textAlignment = .center
         
@@ -88,8 +88,8 @@ class SettingsCancelView_MGRE: UIView {
         let buttonTitleFontSize: CGFloat = device == .phone ? 20 : 34
         yesButton_MGRE.layer.cornerRadius = buttonCornerRadius
         noButton_MGRE.layer.cornerRadius = buttonCornerRadius
-        yesButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonTitleFontSize)
-        noButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonTitleFontSize)
+        yesButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: buttonTitleFontSize)
+        noButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: buttonTitleFontSize)
     }
     
     private func setupView_MGRE() {

@@ -62,18 +62,18 @@ class Alert_MGRE: UIView {
         let titleFontLineHeight: CGFloat = deviceType == .phone ? 38.85 : 66.05
         let buttonFontLineHeight: CGFloat = deviceType == .phone ? 25.9 : 44.03
         
-        titleLabel_MGRE.setLineHeight(titleFontLineHeight)
+        titleLabel_MGRE.setLineHeight_MGRE(titleFontLineHeight)
         titleLabel_MGRE.textAlignment = .center
         
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
-        subtitleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: subtitleFontSize) ?? UIFont.systemFont(ofSize: subtitleFontSize)
-        leftButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
-        rightButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        subtitleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: subtitleFontSize) ?? UIFont.systemFont(ofSize: subtitleFontSize)
+        leftButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
+        rightButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: buttonFontSize) ?? UIFont.systemFont(ofSize: buttonFontSize)
         
-        leftButton_MGRE.titleLabel?.setLineHeight(buttonFontLineHeight)
+        leftButton_MGRE.titleLabel?.setLineHeight_MGRE(buttonFontLineHeight)
         leftButton_MGRE.layer.cornerRadius = deviceType == .phone ? 10 : 17
         
-        rightButton_MGRE.titleLabel?.setLineHeight(buttonFontLineHeight)
+        rightButton_MGRE.titleLabel?.setLineHeight_MGRE(buttonFontLineHeight)
         rightButton_MGRE.layer.cornerRadius = deviceType == .phone ? 10 : 17
     }
     

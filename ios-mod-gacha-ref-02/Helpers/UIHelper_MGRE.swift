@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-struct UIHelper {
-    static func applyBottomRightCornerRadius(to view: UIView, radius: CGFloat) {
+struct UIHelper_MGRE {
+    static func applyBottomRightCornerRadius_MGRE(to view: UIView, radius: CGFloat) {
         let maskPath = UIBezierPath(
             roundedRect: view.bounds,
             byRoundingCorners: [.bottomRight],
@@ -23,7 +23,7 @@ struct UIHelper {
         view.layer.mask = maskLayer
     }
     
-    static func showReadyDialogue() {
+    static func showReadyDialogue_MGRE() {
         var _MGRE21: Bool { false }
         var _MGRE31: Int { 0 }
         

@@ -21,11 +21,10 @@ class DropDownView_MGRE: UIView {
     var categories_MGRE: [String] = []
     var selectedCategory_MGRE: String = ""
     var categoryDidChange_MGRE: ((String) -> Void)?
-    let device = Helper.getDeviceType()
+    let device = Helper.getDeviceType_MGRE()
     
-    
-    private var overlayView: UIView?
-    private var overlayTableView: UITableView?
+    private var overlayView_MGRE: UIView?
+    private var overlayTableView_MGRE: UITableView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,26 +48,25 @@ class DropDownView_MGRE: UIView {
     private func configureLayout_MGRE() {
         let fontSize: CGFloat = device == .phone ? 20 : 34
         
-        categoryLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        categoryLabelHeight_MGRE.constant = getButtonHeight()
+        categoryLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
+        categoryLabelHeight_MGRE.constant = getButtonHeight_MGRE()
         categoryLabel_MGRE.textColor = .black
         tableView_MGRE.isHidden = !isOpen_MGRE
         imageView_MGRE.tintColor = .black
-        imageView_MGRE.image = isOpen_MGRE ? getDownChevron() : getUpChevron()
+        imageView_MGRE.image = isOpen_MGRE ? getDownChevron_MGRE() : getUpChevron_MGRE()
     }
     
     func closeView_MGRE() {
         isOpen_MGRE = false
         tableView_MGRE.isHidden = !isOpen_MGRE
-        imageView_MGRE.image = isOpen_MGRE ? getDownChevron() : getUpChevron()
+        imageView_MGRE.image = isOpen_MGRE ? getDownChevron_MGRE() : getUpChevron_MGRE()
     }
     
     func setupDropDownView_MGRE(with categories: [String], selectedCategory: String) {
         categories_MGRE = categories
         selectedCategory_MGRE = selectedCategory
         
-        let deviceType = UIDevice.current.userInterfaceIdiom
-        tableViewHeight_MGRE.constant = CGFloat(Int(getButtonHeight()) * categories.count)
+        tableViewHeight_MGRE.constant = CGFloat(Int(getButtonHeight_MGRE()) * categories.count)
         categoryLabel_MGRE.text = selectedCategory.capitalized
         tableView_MGRE.reloadData()
     }
@@ -77,11 +75,11 @@ class DropDownView_MGRE: UIView {
         updateView_MGRE()
     }
     
-    private func getButtonHeight() -> CGFloat {
+    private func getButtonHeight_MGRE() -> CGFloat {
         return device == .phone ? 38 : 64.6
     }
     
-    private func getDownChevron() -> UIImage? {
+    private func getDownChevron_MGRE() -> UIImage? {
         let chevronImage = UIImage(systemName: "chevron.down")
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .medium)
         let resizedChevron = chevronImage?.withConfiguration(imageConfig)
@@ -89,7 +87,7 @@ class DropDownView_MGRE: UIView {
         return resizedChevron
     }
     
-    private func getUpChevron() -> UIImage? {
+    private func getUpChevron_MGRE() -> UIImage? {
         let chevronImage = UIImage(systemName: "chevron.up")
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .medium)
         let resizedChevron = chevronImage?.withConfiguration(imageConfig)
@@ -112,7 +110,7 @@ class DropDownView_MGRE: UIView {
             if let window = window {
                 window.addSubview(tableView)
                 let globalPoint = convert(bounds, to: window)
-                let tableHeight = CGFloat(categories_MGRE.count) * getButtonHeight()
+                let tableHeight = CGFloat(categories_MGRE.count) * getButtonHeight_MGRE()
                 
                 tableView.frame = CGRect(
                     x: globalPoint.minX,
@@ -122,14 +120,15 @@ class DropDownView_MGRE: UIView {
                 )
             }
             
-            overlayTableView = tableView
+            overlayTableView_MGRE = tableView
         } else {
-            overlayTableView?.removeFromSuperview()
-            overlayTableView = nil
+            overlayTableView_MGRE?.removeFromSuperview()
+            overlayTableView_MGRE = nil
         }
         
-        imageView_MGRE.image = isOpen_MGRE ? getDownChevron() : getUpChevron()
+        imageView_MGRE.image = isOpen_MGRE ? getDownChevron_MGRE() : getUpChevron_MGRE()
     }
+
     override func removeFromSuperview() {
         super.removeFromSuperview()
         tableView_MGRE?.removeFromSuperview()
@@ -163,6 +162,6 @@ extension DropDownView_MGRE: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return getButtonHeight()
+        return getButtonHeight_MGRE()
     }
 }

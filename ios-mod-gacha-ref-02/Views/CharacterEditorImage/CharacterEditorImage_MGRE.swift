@@ -13,9 +13,9 @@ import UIKit
 final class CharacterEditorImage_MGRE: UIView {
     // MARK: - Properties
 
-    private var characterParts: [(type: String, image: UIImage)] = []
-    private var imageView: UIImageView!
-    private var combinedImage: UIImage?
+    private var characterParts_MGRE: [(type: String, image: UIImage)] = []
+    private var imageView_MGRE: UIImageView!
+    private var combinedImage_MGRE: UIImage?
     
     var imageViews_MGRE: [(String, UIImageView)] = []
     var character_MGRE: CharacterModel_MGRE?
@@ -47,11 +47,11 @@ final class CharacterEditorImage_MGRE: UIView {
         ])
         
         imageView.contentMode = .scaleAspectFill
-        self.imageView = imageView
+        self.imageView_MGRE = imageView
         return imageView
     }
     
-    private let partPositions: [String: CGRect] = [
+    private let partPositions_MGRE: [String: CGRect] = [
         "body": CGRect(x: 0, y: 0, width: 500, height: 500), // Base layer
         "bottom": CGRect(x: 150, y: 300, width: 200, height: 150), // Lower body area
         "shoes": CGRect(x: 150, y: 400, width: 200, height: 100), // Feet area
@@ -69,21 +69,21 @@ final class CharacterEditorImage_MGRE: UIView {
     func addBodyPart_MGRE(from data: Data, type: String) {
         guard let partImage = UIImage(data: data) else { return }
         
-        characterParts.removeAll { $0.type == type }
+        characterParts_MGRE.removeAll { $0.type == type }
         imageViews_MGRE.removeAll { $0.0 == type }
 
         let partView = UIImageView(image: partImage)
         partView.contentMode = .scaleAspectFit
         
         imageViews_MGRE.append((type, partView))
-        characterParts.append((type: type, image: partImage))
+        characterParts_MGRE.append((type: type, image: partImage))
         
         combineImages_MGRE()
     }
         
     func createCharacterToSave_MGRE() -> UIImage? {
         combineImages_MGRE()
-        return combinedImage
+        return combinedImage_MGRE
     }
     
     private func combineImages_MGRE() {
@@ -101,16 +101,16 @@ final class CharacterEditorImage_MGRE: UIView {
                             "accessory"]
         
         for componentType in drawingOrder {
-            if let component = characterParts.first(where: { $0.type.lowercased() == componentType.lowercased() }) {
+            if let component = characterParts_MGRE.first(where: { $0.type.lowercased() == componentType.lowercased() }) {
                 component.image.draw(in: CGRect(x: 0, y: 0, width: 500, height: 500))
             }
         }
 
-        combinedImage = UIGraphicsGetImageFromCurrentImageContext()
+        combinedImage_MGRE = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        if let combined = combinedImage {
-            imageView.image = combined
+        if let combined = combinedImage_MGRE {
+            imageView_MGRE.image = combined
         }
     }
 

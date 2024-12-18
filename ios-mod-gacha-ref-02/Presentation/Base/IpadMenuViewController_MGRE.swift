@@ -13,7 +13,7 @@ class IpadMenuViewController_MGRE: UIViewController {
     // MARK: - Properties
     @IBOutlet var collectionView: UICollectionView!
     
-    private let deviceType = Helper.getDeviceType()
+    private let deviceType = Helper.getDeviceType_MGRE()
     var menuAction_MGRE: ((MenuItem_MGRE) -> Void)?
     var selectedMenu_MGRE: MenuItem_MGRE = .mods_MGRE
     

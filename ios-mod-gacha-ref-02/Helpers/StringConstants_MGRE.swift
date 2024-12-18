@@ -8,7 +8,7 @@
 import Foundation
 
 /* A struct to store all string constants used in the app. */
-struct StringConstants {
+struct StringConstants_MGRE {
     // MARK: - Images
     struct Images {
         
@@ -37,16 +37,6 @@ struct StringConstants {
         static let upChevron = "upChevron"
         static let downChevron = "downChevron"
         static let trash = "trash"
-    }
-    
-    struct Ipad {
-        // Icons
-        static let menuIpad = "menuIpad"
-        static let searchIpad = "searchIpad"
-        static let favStarIpad = "favStarIpad"
-        static let favFilledStarIpad = "favFilledStarIpad"
-        static let openIpad = "openIpad"
-        static let backIpad = "backIpad"
     }
     
     // MARK: - Font

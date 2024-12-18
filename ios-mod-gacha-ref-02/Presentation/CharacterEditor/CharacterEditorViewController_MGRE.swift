@@ -15,7 +15,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
     private var characterImageView_MGRE: CharacterEditorImage_MGRE!
     
     private let backgroundImageView_MGRE: UIImageView = {
-        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
+        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.editorBackground)))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.isUserInteractionEnabled = true
@@ -40,14 +40,14 @@ class CharacterEditorViewController_MGRE: UIViewController {
         return view
     }()
     
-    private let resetButton_MGRE = CharacterEditorViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.reset)
+    private let resetButton_MGRE = CharacterEditorViewController_MGRE.makeActionButton_MGRE(image: StringConstants_MGRE.Images.reset)
     
-    private let doneButton_MGRE = CharacterEditorViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.done)
+    private let doneButton_MGRE = CharacterEditorViewController_MGRE.makeActionButton_MGRE(image: StringConstants_MGRE.Images.done)
         
     private var dropDownView_MGRE: DropDownView_MGRE!
     private var contentCollectionView_MGRE: UICollectionView!
     private let navigationView_MGRE = NavigationView_MGRE()
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     typealias ContentDataSource_MGRE = UICollectionViewDiffableDataSource<Int, EditorContentModel_MGRE>
     typealias ContentSnapshot_MGRE = NSDiffableDataSourceSnapshot<Int, EditorContentModel_MGRE>
@@ -145,7 +145,7 @@ class CharacterEditorViewController_MGRE: UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         if let image = image {
-            button.setImage(UIImage(named: Helper.deviceSpecificImage(image: image)), for: .normal)
+            button.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: image)), for: .normal)
         } else if let title = title {
             button.setTitle(title, for: .normal)
         }

@@ -29,7 +29,7 @@ class ModsCell_MGRE: UICollectionViewCell {
     @IBOutlet var cardTopConstraint: NSLayoutConstraint!
     
     private(set) var isFavourite_MGRE: Bool = false
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     var update_MGRE: (() -> Void)?
     var action_MGRE: (() -> Void)?
@@ -96,22 +96,22 @@ class ModsCell_MGRE: UICollectionViewCell {
         // Title label
         let titleFontSize: CGFloat = device == .phone ? 20 : 34
         let titleLineHeight: CGFloat = device == .phone ? 20 : 34
-        titleLabel.font = UIFont(name: StringConstants.ptSansRegular,
+        titleLabel.font = UIFont(name: StringConstants_MGRE.ptSansRegular,
                                  size: titleFontSize) ??
             UIFont.systemFont(ofSize: titleFontSize)
-        titleLabel.setLineHeight(titleLineHeight)
+        titleLabel.setLineHeight_MGRE(titleLineHeight)
         
         // Description label
         let descriptionFontSize: CGFloat = device == .phone ? 14 : 23.8
         let descriptionLineHeight: CGFloat = device == .phone ? 18.2 : 30.94
-        descriptionLabel.font = UIFont(name: StringConstants.ptSansRegular,
+        descriptionLabel.font = UIFont(name: StringConstants_MGRE.ptSansRegular,
                                        size: descriptionFontSize) ??
             UIFont.systemFont(ofSize: descriptionFontSize)
-        descriptionLabel.setLineHeight(descriptionLineHeight)
+        descriptionLabel.setLineHeight_MGRE(descriptionLineHeight)
         descriptionLabel.numberOfLines = 0
         
         // Buttons
-        openButton.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.open)), for: .normal)
+        openButton.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.open)), for: .normal)
         
         let buttonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
         openButton.layer.cornerRadius = buttonCornerRadius
@@ -148,8 +148,8 @@ class ModsCell_MGRE: UICollectionViewCell {
         var _mge6666: Int { 0 }
         var _mcd5552: Bool { true }
         let image = UIImage(named: isFavourite_MGRE ?
-            Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar) :
-            Helper.deviceSpecificImage(image: StringConstants.Images.favStar))
+            Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favFilledStar) :
+            Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favStar))
         
         favoriteButton.setImage(image, for: .normal)
         favoriteButton.backgroundColor = UIColor.buttonBg

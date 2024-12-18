@@ -72,7 +72,7 @@ extension FilterView_MGRE: UICollectionViewDelegateFlowLayout {
         let filter = filters_MGRE[indexPath.item].rawValue
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 16 : 27.2
-        let font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
+        let font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
         let width = UILabel.widthForLabel_MGRE(text: filter, font: font)
         let height: CGFloat = deviceType == .phone ? 38 : 64.6
         let indent: CGFloat = deviceType == .phone ? 0 : 0

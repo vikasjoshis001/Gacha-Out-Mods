@@ -114,7 +114,7 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
     func configureSubviews_MGRE() {
         let deviceType = UIDevice.current.userInterfaceIdiom
         let fontSize: CGFloat = deviceType == .phone ? 20 : 32
-        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
+        emptyLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
 
         configureNavigationView_MGRE()
         configureCollectionView_MGRE()
@@ -300,8 +300,8 @@ class BaseViewController_MGRE: UIViewController, UICollectionViewDelegate {
         let emptyLabelFontSize: CGFloat = deviceType == .phone ? 19.1 : 32.48
         let emptyLabelLineHeight: CGFloat = deviceType == .phone ? 23.88 : 40.6
 
-        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)
-        emptyLabel_MGRE.setLineHeight(emptyLabelLineHeight)
+        emptyLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: emptyLabelFontSize)
+        emptyLabel_MGRE.setLineHeight_MGRE(emptyLabelLineHeight)
         
         switch contentType {
         case .mods_mgre: snapshot.appendItems(data_MGRE.map { .mods_mgre($0 as! Mods_MGRE) })

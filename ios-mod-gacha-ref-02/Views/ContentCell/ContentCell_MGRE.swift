@@ -22,7 +22,7 @@ class ContentCell_MGRE: UICollectionViewCell {
     
     var update_MGRE: (() -> Void)?
     
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     override func awakeFromNib() {
         super.awakeFromNib()

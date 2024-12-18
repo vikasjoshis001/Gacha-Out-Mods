@@ -18,7 +18,7 @@ class ContentCharacterCell_MGRE: UICollectionViewCell {
         }
     }
     
-    let device = Helper.getDeviceType()
+    let device = Helper.getDeviceType_MGRE()
     
     override func awakeFromNib() {
         super.awakeFromNib()

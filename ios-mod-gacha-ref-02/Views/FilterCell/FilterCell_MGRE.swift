@@ -32,8 +32,8 @@ class FilterCell_MGRE: UICollectionViewCell {
         let fontSize: CGFloat = deviceType == .phone ? 16 : 27.2
         let lineHeight: CGFloat = deviceType == .phone ? 20.72 : 35.22
         
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        titleLabel_MGRE.setLineHeight(lineHeight)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
+        titleLabel_MGRE.setLineHeight_MGRE(lineHeight)
         titleLabel_MGRE.textAlignment = .center
         titleLabel_MGRE.textColor = .blackText
     }

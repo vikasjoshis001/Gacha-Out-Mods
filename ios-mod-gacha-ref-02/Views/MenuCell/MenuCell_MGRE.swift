@@ -13,7 +13,7 @@ class MenuCell_MGRE: UICollectionViewCell {
     @IBOutlet weak private var bottomView_MGRE: UIView!
     @IBOutlet weak private var bottomViewHeight_MGRE: NSLayoutConstraint!
     
-    private let deviceType = Helper.getDeviceType()
+    private let deviceType = Helper.getDeviceType_MGRE()
     override var isSelected: Bool {
         didSet {
             update_MGRE(with: isSelected)
@@ -27,8 +27,8 @@ class MenuCell_MGRE: UICollectionViewCell {
         
         let fontSize: CGFloat = deviceType == .phone ? 16 : 27.2
         let lineHeight: CGFloat = deviceType == .phone ? 20 : 34
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        titleLabel_MGRE.setLineHeight(lineHeight)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
+        titleLabel_MGRE.setLineHeight_MGRE(lineHeight)
         bottomViewHeight_MGRE.constant = deviceType == .phone ? 44 : 74.8
     }
     

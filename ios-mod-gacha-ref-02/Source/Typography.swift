@@ -10,7 +10,7 @@ import UIKit
 
 /* A struct to store all typography used in the app. */
 enum Typography {
-    static let heading = UIFont(name: StringConstants.ptSansRegular,
+    static let heading = UIFont(name: StringConstants_MGRE.ptSansRegular,
                                 size: 20) ??
         UIFont.systemFont(ofSize: 50,
                           weight: .bold)

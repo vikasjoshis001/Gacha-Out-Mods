@@ -19,7 +19,7 @@ extension UILabel_MGRE {
         return label.frame.width
     }
     
-    func setLineHeight(_ lineHeight: CGFloat) {
+    func setLineHeight_MGRE(_ lineHeight: CGFloat) {
         guard let text = text else { return }
             
         let paragraphStyle = NSMutableParagraphStyle()
@@ -36,7 +36,7 @@ extension UILabel_MGRE {
         attributedText = attributedString
     }
     
-    func setLetterSpacing(_ spacing: CGFloat) {
+    func setLetterSpacing_MGRE(_ spacing: CGFloat) {
         guard let text = text else { return }
             
         let attributedString = NSAttributedString(

@@ -11,7 +11,7 @@ import UIKit
 
 class CharacterListViewController_MGRE: UIViewController {
     private let backgroundImageView_MGRE: UIImageView = {
-        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
+        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.editorBackground)))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.isUserInteractionEnabled = true
@@ -56,11 +56,11 @@ class CharacterListViewController_MGRE: UIViewController {
         return label
     }()
     
-    private let rightButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.rightChevron)
+    private let rightButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants_MGRE.Images.rightChevron)
 
-    private let leftButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.back)
+    private let leftButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants_MGRE.Images.back)
     
-    private let deleteButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants.Images.trash)
+    private let deleteButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(image: StringConstants_MGRE.Images.trash)
     
     private let createNewCharacterButton_MGRE = CharacterListViewController_MGRE.makeActionButton_MGRE(title: LocalizationKeys.createNewCharacter_MGRE)
     
@@ -69,7 +69,7 @@ class CharacterListViewController_MGRE: UIViewController {
     private var editorContentSet_MGRE: EditorContentSet_MGRE?
     private var characters_MGRE: [CharacterPreview_MGRE] = []
     private var currentPage_MGRE = 0
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     var toggleMenuAction_MGRE: (() -> Void)?
 
@@ -99,7 +99,7 @@ class CharacterListViewController_MGRE: UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         if let image = image {
-            button.setImage(UIImage(named: Helper.deviceSpecificImage(image: image)), for: .normal)
+            button.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: image)), for: .normal)
         } else if let title = title {
             button.setTitle(title, for: .normal)
         }
@@ -143,20 +143,20 @@ class CharacterListViewController_MGRE: UIViewController {
         
         let emptyLabelFontSize: CGFloat = device == .phone ? 19.1 : 32.48
         let emptyLabelLineHeight: CGFloat = device == .phone ? 23.88 : 40.6
-        emptyLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: emptyLabelFontSize)
-        emptyLabel_MGRE.setLineHeight(emptyLabelLineHeight)
+        emptyLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: emptyLabelFontSize)
+        emptyLabel_MGRE.setLineHeight_MGRE(emptyLabelLineHeight)
         emptyLabel_MGRE.text = LocalizationKeys.emptyCharactersMsg
         
         let createNewButtonTitleFontSize: CGFloat = device == .phone ? 20 : 34
         createNewCharacterButton_MGRE.titleLabel?.font =
-            UIFont(name: StringConstants.ptSansRegular,
+            UIFont(name: StringConstants_MGRE.ptSansRegular,
                    size: createNewButtonTitleFontSize)
         createNewCharacterButton_MGRE.setTitleColor(.black, for: .normal)
     }
     
     private func configureLayout_MGRE() {
         let buttonHeight: CGFloat = device == .phone ? 38 : 64.6
-        let bottomInset = Helper.getBottomInset()
+        let bottomInset = Helper.getBottomInset_MGRE()
         let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
 
         let rightLeftButtonsLeading: CGFloat = device == .phone ? 19 : 81

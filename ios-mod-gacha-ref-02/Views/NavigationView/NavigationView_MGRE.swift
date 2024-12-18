@@ -56,12 +56,12 @@ class NavigationView_MGRE: UIView {
 
         let titleFontSize: CGFloat = deviceType == .phone ? 30 : 51
         let lineHeight: CGFloat = deviceType == .phone ? 38.85 : 66.05
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
-        titleLabel_MGRE.setLineHeight(lineHeight)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleFontSize) ?? UIFont.systemFont(ofSize: titleFontSize)
+        titleLabel_MGRE.setLineHeight_MGRE(lineHeight)
         undoButtonBottomView_MGRE.layer.cornerRadius = deviceType == .phone ? 21 : 26
         
         let fontSize: CGFloat = deviceType == .phone ? 18 : 24
-        let font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
+        let font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
         undoButton_MGRE.titleLabel?.font = font
         let width = UILabel.widthForLabel(text: "Reset changes", font: font)
         undoButtonWidth_MGRE.constant = width
@@ -72,8 +72,8 @@ class NavigationView_MGRE: UIView {
     }
     
     func build_MGRE(with title: String,
-                    leftIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.menu)),
-                    rightIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.search)),
+                    leftIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.menu)),
+                    rightIcon: UIImage? = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.search)),
                     isEditor: Bool = false)
     {
         titleLabel_MGRE.text = title

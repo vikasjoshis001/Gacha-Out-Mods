@@ -25,8 +25,8 @@ class IpadMenuCell_MGRE: UICollectionViewCell {
                 
         let fontSize: CGFloat = 27.2
         let lineHeight: CGFloat = 34
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize)!
-        titleLabel_MGRE.setLineHeight(lineHeight)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize)!
+        titleLabel_MGRE.setLineHeight_MGRE(lineHeight)
     }
     
     override func layoutSubviews() {

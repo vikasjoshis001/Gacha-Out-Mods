@@ -10,7 +10,7 @@ import UIKit
 
 class CharacterViewController_MGRE: UIViewController {
     private let backgroundImageView_MGRE: UIImageView = {
-        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.editorBackground)))
+        let backgroundImageView = UIImageView(image: UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.editorBackground)))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.isUserInteractionEnabled = true
@@ -29,7 +29,7 @@ class CharacterViewController_MGRE: UIViewController {
 
     let navigationView_MGRE = NavigationView_MGRE()
     var toggleMenuAction_MGRE: (() -> Void)?
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class CharacterViewController_MGRE: UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         if let image = image {
-            button.setImage(UIImage(named: Helper.deviceSpecificImage(image: image)), for: .normal)
+            button.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: image)), for: .normal)
         } else if let title = title {
             button.setTitle(title, for: .normal)
         }
@@ -66,7 +66,7 @@ class CharacterViewController_MGRE: UIViewController {
         let downloadButtonFontSize: CGFloat = device == .phone ? 20 : 34
         let downloadButtonCornerRadius: CGFloat = device == .phone ? 14 : 23.8
 
-        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: downloadButtonFontSize)
+        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: downloadButtonFontSize)
         downloadButton_MGRE.setTitleColor(.black, for: .normal)
         downloadButton_MGRE.layer.cornerRadius = downloadButtonCornerRadius
     }
@@ -78,7 +78,7 @@ class CharacterViewController_MGRE: UIViewController {
         let downloadButtonHeight: CGFloat = device == .phone ? 38 : 64.6
         let downloadButtonWidth: CGFloat = device == .phone ? 224 : 380
         
-        let bottomInset = Helper.getBottomInset()
+        let bottomInset = Helper.getBottomInset_MGRE()
         let iphoneBottomConstraints: CGFloat = bottomInset == 0 ? 34 : 0
         let downloadButtonBottom: CGFloat = device == .phone ? -iphoneBottomConstraints : -40
         
@@ -165,7 +165,7 @@ class CharacterViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            UIHelper.showReadyDialogue()
+            UIHelper_MGRE.showReadyDialogue_MGRE()
         }
     }
 }

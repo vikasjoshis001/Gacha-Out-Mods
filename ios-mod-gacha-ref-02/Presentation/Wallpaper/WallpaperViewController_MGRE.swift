@@ -87,7 +87,7 @@ class WallpaperViewController_MGRE: UIViewController {
     var modelType_MGRE: ModelType_MGRE?
     var contentType_MGRE: ContentType_MGRE?
     var isFavourite_MGRE: Bool = false
-    let device = Helper.getDeviceType()
+    let device = Helper.getDeviceType_MGRE()
     
     // MARK: - Lifecycle
 
@@ -143,8 +143,8 @@ class WallpaperViewController_MGRE: UIViewController {
     private func configureButtons_MGRE() {
         imageView_MGRE.layer.cornerRadius = device == .phone ? 14.0 : 23.8
         // Set Imaged
-        downloadButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.download)), for: .normal)
-        shareButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.share)), for: .normal)
+        downloadButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.download)), for: .normal)
+        shareButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.share)), for: .normal)
         
         // Set Corner Radius
         let cornerRadius = device == .phone ? 14.0 : 23.8
@@ -169,8 +169,8 @@ class WallpaperViewController_MGRE: UIViewController {
         navigationView_MGRE.rightButtonAction_MGRE = { [weak self] in
             self?.scan_MGRE()
         }
-        let leftButton = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.back))
-        let rightButton = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.fullScreen))
+        let leftButton = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.back))
+        let rightButton = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.fullScreen))
 
         switch modelType {
         case .wallpapers_mgre(let model):
@@ -204,8 +204,8 @@ class WallpaperViewController_MGRE: UIViewController {
         var _MGNq1414r2: Int { 0 }
         var _MGf1515xa: Bool { false }
         debugPrint("Debug:- is fav = ", isFavourite_MGRE)
-        let favStar = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favStar))
-        let favFilledStar = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar))
+        let favStar = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favStar))
+        let favFilledStar = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favFilledStar))
 
         favoriteButton_MGRE.setImage(isFavourite_MGRE ? favFilledStar : favStar, for: .normal)
     }
@@ -275,7 +275,7 @@ class WallpaperViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            UIHelper.showReadyDialogue()
+            UIHelper_MGRE.showReadyDialogue_MGRE()
         }
     }
     

@@ -23,7 +23,7 @@ class SearchBar_MGRE: UIView {
     @IBOutlet weak var searchIconImageView: UIImageView!
     @IBOutlet weak var searchIconLeadingConstraint: NSLayoutConstraint!
     
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     var textDidChange_MGRE: ((String?) -> Void)?
     var results_MGRE: [String] = []
@@ -59,10 +59,10 @@ class SearchBar_MGRE: UIView {
         
         let fontSize: CGFloat = deviceType == .phone ? 14 : 23.8
         let lineHeight: CGFloat = deviceType == .phone ? 18.2 : 30.94
-        searchTextField_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        searchTextField_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
         searchTextField_MGRE.setLineHeight(lineHeight)
         
-        searchIconImageView.image = UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.search))
+        searchIconImageView.image = UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.search))
         searchIconHeightConstraint.constant = deviceType == .phone ? 20 : 34
         
         bottomViewHeight_MGRE.constant = deviceType == .phone ? 58 : 97

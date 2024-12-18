@@ -42,7 +42,7 @@ class ProgressView_MGRE: UIView {
         label.textColor = .blackText
         let deviceType = UIDevice.current.userInterfaceIdiom
         let titleFontSize: CGFloat = deviceType == .phone ? 22 : 32
-        label.font = UIFont(name: StringConstants.ptSansRegular, size: titleFontSize)!
+        label.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleFontSize)!
         label.translatesAutoresizingMaskIntoConstraints = false
         customView.addSubview(label)
         

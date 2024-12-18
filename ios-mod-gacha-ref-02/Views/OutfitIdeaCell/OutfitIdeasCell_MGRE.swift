@@ -41,7 +41,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         return button
     }()
     
-    private let labelStackView: UIStackView = {
+    private let labelStackView_MGRE: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -53,14 +53,14 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         return stackView
     }()
     
-    private let titleLabel: UILabel = {
+    private let titleLabel_MGRE: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         return label
     }()
         
-    private let descriptionLabel: UILabel = {
+    private let descriptionLabel_MGRE: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.clipsToBounds = true
@@ -88,7 +88,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
     }()
     
     private(set) var isFavourite_MGRE: Bool = false
-    private let device = Helper.getDeviceType()
+    private let device = Helper.getDeviceType_MGRE()
     
     var update_MGRE: (() -> Void)?
     var action_MGRE: (() -> Void)?
@@ -97,12 +97,12 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupButtons()
+        setupButtons_MGRE()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupButtons()
+        setupButtons_MGRE()
     }
 
     override func awakeFromNib() {
@@ -142,7 +142,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
     
     // MARK: - Helpers
 
-    private func setupButtons() {
+    private func setupButtons_MGRE() {
         favoriteButton_MGRE.addTarget(self, action: #selector(favoriteButtonTapped_MGRE), for: .touchUpInside)
         openButton_MGRE.addTarget(self, action: #selector(detailButtonTapped_MGRE), for: .touchUpInside)
     }
@@ -157,7 +157,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         update_MGRE = update
         action_MGRE = action
         
-        labelStackView.isHidden = true
+        labelStackView_MGRE.isHidden = true
         
         isFavourite_MGRE = isFavorites
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.outfitIdeas_mgre)\(data.image)", for: .outfitIdeas_mgre)
@@ -176,8 +176,8 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         action_MGRE = action
         
         isFavourite_MGRE = isFavorites
-        titleLabel.text = data.name
-        descriptionLabel.text = data.description
+        titleLabel_MGRE.text = data.name
+        descriptionLabel_MGRE.text = data.description
         imageView_MGRE.add_MGRE(image: "\(Keys_MGRE.ImagePath_MGRE.mods_mgre)\(data.image)", for: .mods_mgre)
         
         configureCell_MGRE()
@@ -188,11 +188,11 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         contentView.addSubview(verticalStackView_MGRE)
         
         verticalStackView_MGRE.addArrangedSubview(imageView_MGRE)
-        verticalStackView_MGRE.addArrangedSubview(labelStackView)
+        verticalStackView_MGRE.addArrangedSubview(labelStackView_MGRE)
         verticalStackView_MGRE.addArrangedSubview(buttonStackView_MGRE)
         
-        labelStackView.addArrangedSubview(titleLabel)
-        labelStackView.addArrangedSubview(descriptionLabel)
+        labelStackView_MGRE.addArrangedSubview(titleLabel_MGRE)
+        labelStackView_MGRE.addArrangedSubview(descriptionLabel_MGRE)
         
         buttonStackView_MGRE.addArrangedSubview(openButton_MGRE)
         buttonStackView_MGRE.addArrangedSubview(favoriteButton_MGRE)
@@ -219,7 +219,7 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         
         // Configure open button
         let openButtonTitleFontSize: CGFloat = device == .phone ? 20 : 34
-        openButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular,
+        openButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular,
                                                   size: openButtonTitleFontSize)
         openButton_MGRE.layer.cornerRadius = buttonCornerRadius
         openButton_MGRE.setTitleColor(.black, for: .normal)
@@ -228,23 +228,23 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         
         // Configure label stack view
         let labelStackViewSpacing: CGFloat = device == .phone ? 0 : 13.6
-        labelStackView.spacing = labelStackViewSpacing
+        labelStackView_MGRE.spacing = labelStackViewSpacing
         
         // Configure title label
         let titleLabelFontSize: CGFloat = device == .phone ? 20 : 34
-        titleLabel.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
-        titleLabel.numberOfLines = 1
-        titleLabel.textColor = .black
-        titleLabel.setLineHeight(titleLabelFontSize)
-        titleLabel.addHuggingProperties()
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleLabelFontSize)
+        titleLabel_MGRE.numberOfLines = 1
+        titleLabel_MGRE.textColor = .black
+        titleLabel_MGRE.setLineHeight_MGRE(titleLabelFontSize)
+        titleLabel_MGRE.addHuggingProperties()
 
         
         // Configure description label
         let descriptionLabelFontSize: CGFloat = device == .phone ? 14 : 23.8
         let descriptionLabelLineHeight: CGFloat = device == .phone ? 14 : 30.82
-        descriptionLabel.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionLabelFontSize)
-        descriptionLabel.textColor = .black
-        descriptionLabel.setLineHeight(descriptionLabelLineHeight)
+        descriptionLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: descriptionLabelFontSize)
+        descriptionLabel_MGRE.textColor = .black
+        descriptionLabel_MGRE.setLineHeight_MGRE(descriptionLabelLineHeight)
         
         // Set up constraints
         NSLayoutConstraint.activate([
@@ -271,8 +271,8 @@ class OutfitIdeasCell_MGRE: UICollectionViewCell {
         var _mge6666: Int { 0 }
         var _mcd5552: Bool { true }
         let image = UIImage(named: isFavourite_MGRE ?
-            Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar) :
-            Helper.deviceSpecificImage(image: StringConstants.Images.favStar))
+            Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favFilledStar) :
+            Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favStar))
         
         favoriteButton_MGRE.setImage(image, for: .normal)
         favoriteButton_MGRE.backgroundColor = UIColor.buttonBg

@@ -39,7 +39,7 @@ class RoundProgressBar_MGRE: UIView {
     }
 
     // MARK: - UI Elements
-    private let percentageLabel: UILabel = {
+    private let percentageLabel_MGRE: UILabel = {
         let label = UILabel()
         label.text = "0%"
         label.textColor = UIColor.white
@@ -48,14 +48,14 @@ class RoundProgressBar_MGRE: UIView {
         return label
     }()
 
-    private let circularBackgroundView: UIView = {
+    private let circularBackgroundView_MGRE: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.circularProgressBarBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private let circularProgressView: UIView = {
+    private let circularProgressView_MGRE: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,57 +63,57 @@ class RoundProgressBar_MGRE: UIView {
     }()
 
     // Shape Layers
-    private let borderLayer = CAShapeLayer()
-    private let progressLayer = CAShapeLayer()
+    private let borderLayer_MGRE = CAShapeLayer()
+    private let progressLayer_MGRE = CAShapeLayer()
 
     // MARK: - Properties
     private let constants: Constants
-    var progress: CGFloat = 0 {
+    var progress_MGRE: CGFloat = 0 {
         didSet {
-            updateProgressView()
+            updateProgressView_MGRE()
         }
     }
 
     // MARK: - Initializers
     override init(frame: CGRect) {
-        self.constants = Helper.getDeviceType() == .phone ? Constants.iPhone : Constants.iPad
+        self.constants = Helper.getDeviceType_MGRE() == .phone ? Constants.iPhone : Constants.iPad
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        setupUI()
+        setupUI_MGRE()
     }
 
     required init?(coder: NSCoder) {
-        self.constants = Helper.getDeviceType() == .phone ? Constants.iPhone : Constants.iPad
+        self.constants = Helper.getDeviceType_MGRE() == .phone ? Constants.iPhone : Constants.iPad
         super.init(coder: coder)
-        setupUI()
+        setupUI_MGRE()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupLayout()
+        setupLayout_MGRE()
     }
 
     // MARK: - Setup Methods
-    private func setupUI() {
-        addSubview(circularProgressView)
-        circularProgressView.addSubview(circularBackgroundView)
-        circularBackgroundView.addSubview(percentageLabel)
+    private func setupUI_MGRE() {
+        addSubview(circularProgressView_MGRE)
+        circularProgressView_MGRE.addSubview(circularBackgroundView_MGRE)
+        circularBackgroundView_MGRE.addSubview(percentageLabel_MGRE)
 
-        configureUI()
-        configureLayers()
+        configureUI_MGRE()
+        configureLayers_MGRE()
     }
 
-    private func configureUI() {
-        percentageLabel.font = UIFont(name: StringConstants.ptSansRegular, size: constants.labelFontSize)
-        percentageLabel.setLineHeight(constants.labelLineHeight)
-        percentageLabel.setLetterSpacing(constants.labelLetterSpacing)
+    private func configureUI_MGRE() {
+        percentageLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: constants.labelFontSize)
+        percentageLabel_MGRE.setLineHeight_MGRE(constants.labelLineHeight)
+        percentageLabel_MGRE.setLetterSpacing_MGRE(constants.labelLetterSpacing)
         
-        circularBackgroundView.layer.cornerRadius = constants.backgroundCornerRadius
+        circularBackgroundView_MGRE.layer.cornerRadius = constants.backgroundCornerRadius
         
-        circularProgressView.layer.cornerRadius = constants.progressCornerRadius
+        circularProgressView_MGRE.layer.cornerRadius = constants.progressCornerRadius
     }
 
-    private func configureLayers() {
+    private func configureLayers_MGRE() {
         let radius = constants.progressCornerRadius
 
         let circularPath = UIBezierPath(
@@ -124,45 +124,45 @@ class RoundProgressBar_MGRE: UIView {
             clockwise: true
         )
 
-        borderLayer.path = circularPath.cgPath
-        borderLayer.strokeColor = UIColor.circularProgressBarBackground.cgColor
-        borderLayer.lineWidth = 4
-        borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeEnd = 1
+        borderLayer_MGRE.path = circularPath.cgPath
+        borderLayer_MGRE.strokeColor = UIColor.circularProgressBarBackground.cgColor
+        borderLayer_MGRE.lineWidth = 4
+        borderLayer_MGRE.fillColor = UIColor.clear.cgColor
+        borderLayer_MGRE.strokeEnd = 1
 
-        progressLayer.path = circularPath.cgPath
-        progressLayer.strokeColor = UIColor.buttonBg.cgColor
-        progressLayer.lineWidth = 4
-        progressLayer.fillColor = UIColor.clear.cgColor
-        progressLayer.strokeEnd = 0
-        progressLayer.lineCap = .round
+        progressLayer_MGRE.path = circularPath.cgPath
+        progressLayer_MGRE.strokeColor = UIColor.buttonBg.cgColor
+        progressLayer_MGRE.lineWidth = 4
+        progressLayer_MGRE.fillColor = UIColor.clear.cgColor
+        progressLayer_MGRE.strokeEnd = 0
+        progressLayer_MGRE.lineCap = .round
         
-        circularProgressView.layer.addSublayer(borderLayer)
-        circularProgressView.layer.addSublayer(progressLayer)
+        circularProgressView_MGRE.layer.addSublayer(borderLayer_MGRE)
+        circularProgressView_MGRE.layer.addSublayer(progressLayer_MGRE)
     }
 
-    private func updateProgressView() {
-        percentageLabel.text = "\(Int(progress * 100))%"
-        progressLayer.strokeEnd = progress
-        borderLayer.strokeColor = progress == 1.0 ? UIColor.buttonBg.cgColor : UIColor.circularProgressBarBackground.cgColor
+    private func updateProgressView_MGRE() {
+        percentageLabel_MGRE.text = "\(Int(progress_MGRE * 100))%"
+        progressLayer_MGRE.strokeEnd = progress_MGRE
+        borderLayer_MGRE.strokeColor = progress_MGRE == 1.0 ? UIColor.buttonBg.cgColor : UIColor.circularProgressBarBackground.cgColor
     }
 
-    private func setupLayout() {
+    private func setupLayout_MGRE() {
         NSLayoutConstraint.activate([
-            percentageLabel.widthAnchor.constraint(equalToConstant: constants.labelWidth),
-            percentageLabel.heightAnchor.constraint(equalToConstant: constants.labelHeight),
-            percentageLabel.centerXAnchor.constraint(equalTo: circularBackgroundView.centerXAnchor),
-            percentageLabel.centerYAnchor.constraint(equalTo: circularBackgroundView.centerYAnchor),
+            percentageLabel_MGRE.widthAnchor.constraint(equalToConstant: constants.labelWidth),
+            percentageLabel_MGRE.heightAnchor.constraint(equalToConstant: constants.labelHeight),
+            percentageLabel_MGRE.centerXAnchor.constraint(equalTo: circularBackgroundView_MGRE.centerXAnchor),
+            percentageLabel_MGRE.centerYAnchor.constraint(equalTo: circularBackgroundView_MGRE.centerYAnchor),
 
-            circularBackgroundView.widthAnchor.constraint(equalToConstant: constants.backgroundSize),
-            circularBackgroundView.heightAnchor.constraint(equalToConstant: constants.backgroundSize),
-            circularBackgroundView.centerXAnchor.constraint(equalTo: circularProgressView.centerXAnchor),
-            circularBackgroundView.centerYAnchor.constraint(equalTo: circularProgressView.centerYAnchor),
+            circularBackgroundView_MGRE.widthAnchor.constraint(equalToConstant: constants.backgroundSize),
+            circularBackgroundView_MGRE.heightAnchor.constraint(equalToConstant: constants.backgroundSize),
+            circularBackgroundView_MGRE.centerXAnchor.constraint(equalTo: circularProgressView_MGRE.centerXAnchor),
+            circularBackgroundView_MGRE.centerYAnchor.constraint(equalTo: circularProgressView_MGRE.centerYAnchor),
 
-            circularProgressView.widthAnchor.constraint(equalToConstant: constants.progressSize),
-            circularProgressView.heightAnchor.constraint(equalToConstant: constants.progressSize),
-            circularProgressView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            circularProgressView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            circularProgressView_MGRE.widthAnchor.constraint(equalToConstant: constants.progressSize),
+            circularProgressView_MGRE.heightAnchor.constraint(equalToConstant: constants.progressSize),
+            circularProgressView_MGRE.centerXAnchor.constraint(equalTo: centerXAnchor),
+            circularProgressView_MGRE.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

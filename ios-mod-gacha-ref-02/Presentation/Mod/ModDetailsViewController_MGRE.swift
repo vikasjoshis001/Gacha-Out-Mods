@@ -75,7 +75,7 @@ class ModDetailsViewController_MGRE: UIViewController {
     
     private let navigationView_MGRE = NavigationView_MGRE()
     
-    let device = Helper.getDeviceType()
+    let device = Helper.getDeviceType_MGRE()
     var modelType_MGRE: ModelType_MGRE?
     var isFavourite_MGRE: Bool = false
         
@@ -112,24 +112,24 @@ class ModDetailsViewController_MGRE: UIViewController {
         imageView_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
         
         favoriteButton_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
-        favoriteButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage(image: StringConstants.Images.favStar)), for: .normal)
+        favoriteButton_MGRE.setImage(UIImage(named: Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favStar)), for: .normal)
         
         let downloadButtonFontSize: CGFloat = device == .phone ? 20 : 34
         downloadButton_MGRE.layer.cornerRadius = device == .phone ? 14 : 23.8
         downloadButton_MGRE.setTitle(LocalizationKeys.download, for: .normal)
-        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants.ptSansRegular, size: downloadButtonFontSize)
+        downloadButton_MGRE.titleLabel?.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: downloadButtonFontSize)
         downloadButton_MGRE.setTitleColor(.black, for: .normal)
         
         let titleLabelFontSize: CGFloat = device == .phone ? 20 : 34
-        titleLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: titleLabelFontSize)
+        titleLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: titleLabelFontSize)
         titleLabel_MGRE.textColor = .black
-        titleLabel_MGRE.setLineHeight(titleLabelFontSize)
+        titleLabel_MGRE.setLineHeight_MGRE(titleLabelFontSize)
         
         let descriptionLabelFontSize: CGFloat = device == .phone ? 14 : 23.8
         let descriptionLabelLineHeight: CGFloat = device == .phone ? 14 : 30.82
-        descriptionLabel_MGRE.font = UIFont(name: StringConstants.ptSansRegular, size: descriptionLabelFontSize)
+        descriptionLabel_MGRE.font = UIFont(name: StringConstants_MGRE.ptSansRegular, size: descriptionLabelFontSize)
         descriptionLabel_MGRE.textColor = .black
-        descriptionLabel_MGRE.setLineHeight(descriptionLabelLineHeight)
+        descriptionLabel_MGRE.setLineHeight_MGRE(descriptionLabelLineHeight)
         
         // Add views
         view.addSubview(navigationView_MGRE)
@@ -169,7 +169,7 @@ class ModDetailsViewController_MGRE: UIViewController {
             verticalStackView_MGRE.topAnchor.constraint(equalTo: navigationView_MGRE.bottomAnchor, constant: 6),
             verticalStackView_MGRE.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: verticalStackViewLeadingAnchor),
             verticalStackView_MGRE.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -verticalStackViewLeadingAnchor),
-            verticalStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Helper.getBottomConstraint())),
+            verticalStackView_MGRE.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Helper.getBottomConstraint_MGRE())),
                 
             // Image container constraints
             imageContainer.heightAnchor.constraint(equalToConstant: imageContainerHeight),
@@ -196,7 +196,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         navigationView_MGRE.leftButtonAction_MGRE = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        let backIcon = Helper.deviceSpecificImage(image: StringConstants.Images.back)
+        let backIcon = Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.back)
         switch modelType {
         case .mods_mgre(let model):
                 navigationView_MGRE.build_MGRE(with: "Mod", leftIcon: UIImage(named: backIcon), rightIcon: nil)
@@ -220,8 +220,8 @@ class ModDetailsViewController_MGRE: UIViewController {
     private func updateFavoriteButton_MGRE() {
         var _MGNaswfc2: Int { 0 }
         var _Masree44a: Bool { false }
-        let favStar = Helper.deviceSpecificImage(image: StringConstants.Images.favStar)
-        let favFilledStar = Helper.deviceSpecificImage(image: StringConstants.Images.favFilledStar)
+        let favStar = Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favStar)
+        let favFilledStar = Helper.deviceSpecificImage_MGRE(image: StringConstants_MGRE.Images.favFilledStar)
 
         let image = UIImage(named: isFavourite_MGRE ? favFilledStar : favStar)
         favoriteButton_MGRE.setImage(image, for: .normal)
@@ -307,7 +307,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         if let error = error {
             print("Ошибка сохранения изображения: \(error.localizedDescription)")
         } else {
-            UIHelper.showReadyDialogue()
+            UIHelper_MGRE.showReadyDialogue_MGRE()
         }
     }
     
@@ -337,7 +337,7 @@ class ModDetailsViewController_MGRE: UIViewController {
         activityVC.title = "Download Mod"
         activityVC.completionWithItemsHandler = { [weak self] activityType, completed, items, error in
             if completed {
-                UIHelper.showReadyDialogue()
+                UIHelper_MGRE.showReadyDialogue_MGRE()
             } else {
                 print("Действие отменено")
             }
